@@ -190,6 +190,7 @@
             box-shadow: none;
             outline: none;
         }
+	
 
 	</style>
 
@@ -197,68 +198,9 @@
 
 	<section class="order_food_section">
 
-        <?php
+        
 
-            if(isset($_POST['submit_order_food_form']) && $_SERVER['REQUEST_METHOD'] === 'POST')
-            {
-                // Selected Menus
 
-                $selected_menus = $_POST['selected_menus'];
-
-                //Client Details
-
-                $client_full_name = test_input($_POST['client_full_name']);
-                $delivery_address = test_input($_POST['client_delivery_address']);
-                $client_phone_number = test_input($_POST['client_phone_number']);
-                $client_email = test_input($_POST['client_email']);
-
-                $con->beginTransaction();
-                try
-                {
-                    $stmtgetCurrentClientID = $con->prepare("SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'restaurant_website' AND TABLE_NAME = 'clients'");
-            
-                    $stmtgetCurrentClientID->execute();
-                    $client_id = $stmtgetCurrentClientID->fetch();
-
-                    $stmtClient = $con->prepare("insert into clients(client_name,client_phone,client_email) 
-                                values(?,?,?)");
-                    $stmtClient->execute(array($client_full_name,$client_phone_number,$client_email));
-
-                    $stmtgetCurrentOrderID = $con->prepare("SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'restaurant_website' AND TABLE_NAME = 'placed_orders'");
-            
-                    $stmtgetCurrentOrderID->execute();
-                    $order_id = $stmtgetCurrentOrderID->fetch();
-                    
-                    $stmt_order = $con->prepare("insert into placed_orders(order_time, client_id, delivery_address) values(?, ?, ?)");
-                    $stmt_order->execute(array(Date("Y-m-d H:i"),$client_id[0],$delivery_address));
-
-                    foreach($selected_menus as $menu)
-                    {
-                        $stmt = $con->prepare("insert into in_order(order_id, menu_id) values(?, ?)");
-                        $stmt->execute(array($order_id[0],$menu));
-                    }
-                    
-                    echo "<div class = 'alert alert-success'>";
-                        echo "Great! Your order has been created successfully.";
-                    echo "</div>";
-
-                    $con->commit();
-                }
-                catch(Exception $e)
-                {
-                    $con->rollBack();
-                    echo "<div class = 'alert alert-danger'>"; 
-                        echo $e->getMessage();
-                    echo "</div>";
-                }
-            }
-
-        ?>
-
-        <!-- ORDER FOOD FORM -->
-
-		<form method="post" id="order_food_form" action="order_food.php">
-		
 			<!-- SELECT MENUS -->
 
 			<div class="select_menus_tab order_food_tab" id="menus_tab">
@@ -266,18 +208,18 @@
 				<!-- ALERT MESSAGE -->
 
 				<div class="alert alert-danger" role="alert" style="display: none">
-					Please, select at least one item!
+					Bạn chưa chọn món ăn!!!!
 				</div>
 
                 <div class="text_header">
                     <span>
-                        1. Choice of Items
+                        1. Hãy chọn món ăn bạn muốn!!!
                     </span>
                 </div>
 
 				<div>
 					<?php
-						$stmt = $con->prepare("Select * from menu_categories");
+						$stmt = $con->prepare("Select * from loai_thucdon");
                     	$stmt->execute();
                     	$menu_categories = $stmt->fetchAll();
 
@@ -287,13 +229,13 @@
                     		?>
                     			<div class="text_header">
 									<span>
-										<?php echo $category['category_name']; ?>
+										<?php echo $category['tenthucdon']; ?>
 									</span>
 								</div>
 								<div class="items_tab">
 				        			<?php
-				        				$stmt = $con->prepare("Select * from menus where category_id = ?");
-				                    	$stmt->execute(array($category['category_id']));
+				        				$stmt = $con->prepare("Select * from monan where idloaithucdon = ?");
+				                    	$stmt->execute(array($category['idloaithucdon']));
 				                    	$rows = $stmt->fetchAll();
 
 				                    	foreach($rows as $row)
@@ -301,19 +243,27 @@
 				                        	echo "<div class='itemListElement'>";
 				                            	echo "<div class = 'item_details'>";
 				                                	echo "<div>";
-				                                    	echo $row['menu_name'];
+				                                    	 echo ("<img src='Design/image/".$row["hinhanh"]."' width='100px' height=100px/><br>"); 
+														echo "<div>";
+															echo "<br><h5><b>" . $row['tenmonan'] . "</b></h5>";
+														echo "</div>";
+
+				                                	echo "</div>";
+													
+													echo "<div class='item_description'>";
+				                                    	echo $row['mota'];
 				                                	echo "</div>";
 				                                	echo "<div class = 'item_select_part'>";
 				                                    	echo "<div class = 'menu_price_field'>";
 				    										echo "<span style = 'font-weight: bold;'>";
-				                                    			echo $row['menu_price']."$";
+				                                    			echo number_format($row['gia'], 0, ',', '.') . " VND"; 
 				                                    		echo "</span>";
 				                                    	echo "</div>";
 				                                    ?>
 				                                    	<div class="select_item_bttn">
 				                                    		<div class="btn-group-toggle" data-toggle="buttons">
 																<label class="menu_label item_label btn btn-secondary">
-																	<input type="checkbox"  name="selected_menus[]" value="<?php echo $row['menu_id'] ?>" autocomplete="off">Select
+																	<input type="checkbox"  name="selected_menus[]" value="<?php echo $row['idthucdon'] ?>" autocomplete="off">Đặt món
 																</label>
 															</div>
 				                                    	</div>
@@ -402,14 +352,15 @@
 
 	<!-- WIDGET SECTION / FOOTER -->
 
-    <section class="widget_section" style="background-color: #222227;padding: 100px 0;">
+     <section class="widget_section" style="background-color: #222227;padding: 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
+                <img src="Design/images/Nhom_vo_tri_logos_white.png" alt="Restaurant Logo" style="width: 150px;margin-bottom: 20px;">
                     <div class="footer_widget">
-                        <img src="Design/images/restaurant-logo.png" alt="Restaurant Logo" style="width: 150px;margin-bottom: 20px;">
+                        
                         <p>
-                            Our Restaurnt is one of the bests, provide tasty Menus and Dishes. You can reserve a table or Order food.
+                            Bếp ăn chúng tui cam kết đem lại cho nhân viên công ty những bữa ăn chất lượng và đầy đủ dinh dưỡng
                         </p>
                         <ul class="widget_social">
                             <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fab fa-facebook-f fa-2x"></i></a></li>
@@ -422,42 +373,45 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                      <div class="footer_widget">
-                        <h3>Headquarters</h3>
+                        <h3>Địa chỉ</h3>
                         <p>
-                            962 Fifth Avenue, 3rd Floor New York, NY10022
+                            Số 4, Nguyễn Văn Bảo, Phường 4, Gò Vấp
                         </p>
                         <p>
-                            contact@restaurant.com
-                            <br>
-                            (+123) 456 789 101    
+                            votri666.@gmail.com <br>
+                            0123456789
                         </p>
                      </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="footer_widget">
                         <h3>
-                            Opening Hours
+                            Thời gian hoạt động
                         </h3>
                         <ul class="opening_time">
-                            <li>Monday - Friday 11:30am - 2:008pm</li>
-                            <li>Monday - Friday 11:30am - 2:008pm</li>
-                            <li>Monday - Friday 11:30am - 2:008pm</li>
-                            <li>Monday - Friday 11:30am - 2:008pm</li>
+                            <li>Thứ 2 _ 6:30am - 6:00pm</li>
+                            <li>Thứ 3 _ 6:30am - 6:00pm</li>
+                            <li>Thứ 4 _ 6:30am - 6:00pm</li>
+                            <li>Thứ 5 _ 6:30am - 6:00pm</li>
+                            <li>Thứ 6 _ 6:30am - 6:00pm</li>
+                            <li>Thứ 7 _ 6:30am - 6:00pm</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="footer_widget">
-                        <h3>Subscribe to our contents</h3>
-                        <div class="subscribe_form">
-                            <form action="#" class="subscribe_form" novalidate="true">
-                                <input type="email" name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address...">
-                                <button type="submit" class="submit">SUBSCRIBE</button>
-                                <div class="clearfix"></div>
-                            </form>
-                        </div>
+						<div class="footer_widget">
+                        <h3>
+                            Thời gian hoạt động
+                        </h3>
+                   
+						<ul class="footer_social">
+							<li><a href="#">Đặt món</a></li> <br>
+							<li><a href="#">Giới thiệu</a></li><br>
+							<li><a href="#">Báo cáo vấn đề</a></li><br>
+						</ul>
+					
                     </div>
-                </div>
+					</div>
             </div>
         </div>
     </section>
@@ -471,7 +425,7 @@
 
     <script type="text/javascript">
 
-        /* TOGGLE MENU SELECT BUTTON */
+        /* chọn nhiều món */
 
         $('.menu_label').click(function() 
         {

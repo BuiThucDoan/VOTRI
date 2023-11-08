@@ -8,16 +8,10 @@
 							<script type="text/javascript"> 
 								document.write(new Date().getFullYear())
 							</script>
-							Vincent Restaurant Powered by JAIRI Idriss
+							 Bản quyền thuộc về nhóm Vô Tri
 						</div>
 					</div>
-					<div class="col-md-6 xs-padding">
-						<ul class="footer_social">
-							<li><a href="#">Orders</a></li>
-							<li><a href="#">Terms</a></li>
-							<li><a href="#">Report Problem</a></li>
-						</ul>
-					</div>
+					
 				</div>
 			</div>
 		</footer>

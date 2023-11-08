@@ -6,13 +6,13 @@
 	{
 		global $pageTitle;
 		if(isset($pageTitle))
-			echo $pageTitle." | Vincent Restaurant - Your Restaurant";
+			echo $pageTitle."| Bếp ăn Vô tri";
 		else
-			echo "Vincent Restaurant | Your Restaurant";
+			echo "Bếp ăn Vô tri";
 	}
 
 	/*
-		This function returns the number of items in a given table
+		Hàm này trả về số mục trong một bảng nhất định
 	*/
 
     function countItems($item,$table)
@@ -26,7 +26,7 @@
 
     /*
 	
-	** Check Items Function
+	** Chức năng kiểm tra danh mục
 	** Function to Check Item In Database [Function with Parameters]
 	** $select = the item to select [Example : user, item, category]
 	** $from = the table to select from [Example : users, items, categories]
@@ -46,8 +46,7 @@
 
   	/*
     	==============================================
-    	TEST INPUT FUNCTION, IS USED FOR SANITIZING USER INPUTS
-    	AND REMOVE SUSPICIOUS CHARS and Remove Extra Spaces
+    Kiểm tra đầu vào và xóa các khoảng trắng thừa
     	==============================================
 	
 	*/
@@ -59,14 +58,6 @@
       	$data = htmlspecialchars($data);
       	return $data;
   	}
-
-
-
-
-
-
-
-
 
 ?>
 
