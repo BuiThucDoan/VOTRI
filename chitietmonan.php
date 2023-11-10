@@ -129,7 +129,7 @@
         </div>
         <div id="danhgia">
             <div class="item">
-                <div><a href="danhgiamonan.html">Đánh giá món ăn</a></div>
+                <div><a href="danhgiamonan.html">Đánh giá món ăn no</a></div>
             </div>
         </div>
     </div>
