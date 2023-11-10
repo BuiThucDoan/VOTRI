@@ -237,14 +237,13 @@ ul.nav>li>a:hover
     color: #ffc851;
     border-color: #222227;
 }
-
-.home-section h1
-{
+.home-section h1 {
     color: rgb(255, 255, 255);
     white-space: nowrap;
     letter-spacing: 12px;
     font-weight: 400;
-    font-size: 50px;
+    font-size: 126px;
+    
 }
 
 .home-section h2
@@ -253,7 +252,7 @@ ul.nav>li>a:hover
     white-space: nowrap;
     letter-spacing: 12px;
     font-weight: 400;
-    ont-size: 30px;
+    font-size: 30px;
 }
 
 .home-section p

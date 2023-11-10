@@ -280,9 +280,9 @@
 	                                                        	<?php echo number_format($menu['gia'], 0, ',', '.') . " VND"; ?>
 	                                                        </span>
                                                             <div class="buttondatmon">
-																<label class="menu_label item_label btn btn-secondary ">
-																	<input type="checkbox"  name="selected_menus[]" value="<?php echo $row['idthucdon'] ?>" autocomplete="off">Đặt món
-																</label>
+																<a href="order_food.php">
+																	<button class="btn btn-danger btn-icon" style="margin: 5px 0;" type="button">Đặt món</button>	
+																</a>
 															</div>
 	                                                    </div>
 														
@@ -335,9 +335,9 @@
 	                                                        	<?php echo number_format($menu['gia'], 0, ',', '.') . " VND"; ?>
 	                                                        </span>
                                                             <div class="buttondatmon">
-																<label class="menu_label item_label btn btn-secondary">
-																	<input type="checkbox"  name="selected_menus[]" value="<?php echo $row['idthucdon'] ?>" autocomplete="off">Đặt món
-																</label>
+																<a href="order_food.php">
+																	<button class="btn btn-danger btn-icon" style="margin: 5px 0;" type="button">Đặt món</button>	
+																</a>
 															</div>
 	                                                    </div>
 	                                                </div>

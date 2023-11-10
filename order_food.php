@@ -227,11 +227,7 @@
                     	foreach($menu_categories as $category)
                     	{
                     		?>
-                    			<div class="text_header">
-									<span>
-										<?php echo $category['tenthucdon']; ?>
-									</span>
-								</div>
+                    			
 								<div class="items_tab">
 				        			<?php
 				        				$stmt = $con->prepare("Select * from monan where idloaithucdon = ?");

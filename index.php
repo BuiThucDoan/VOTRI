@@ -17,12 +17,12 @@
 		<div class="container">
 			<div class="row" style="flex-wrap: nowrap;">
 				<div class="col-md-6 home-left-section">
-					<div style="padding: 100px 0px; color: white;">
-						<h1>
-							Công ty Vô Tri
+					<div style="padding: 61px 88px; color: #f2f2f2;">
+						<h1 style="font-weight:normal">
+							Công Ty Vô Tri
 						</h1>
                         <hr>
-						<h5>
+						<h5 style="font-weight:normal">
 							Hệ thống bếp ăn của công ty Vô Tri cam kết đem lại cho nhân viên công ty những bữa ăn chất lượng và đầy đủ dinh dưỡng
 						</h5>
                         <hr>
@@ -306,13 +306,13 @@
 							
                             <div class="form-group colum-row row">
                                 <div class="col-sm-6">
-                                    <input type="text" id="contact_name" name="name" oninput="document.getElementById('invalid-name').innerHTML = ''" onkeyup="this.value=this.value.replace(/[^\sa-zA-Z]/g,'');" class="form-control" placeholder="Name">
+                                    <input type="text" id="contact_name" name="name" oninput="document.getElementById('invalid-name').innerHTML = ''" onkeyup="this.value=this.value.replace(/[^\sa-zA-Z]/g,'');" class="form-control" placeholder="Tên">
                                     <div class="invalid-feedback" id="invalid-name" style="display: block">
                                     	
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="email" id="contact_email" name="email" oninput="document.getElementById('invalid-email').innerHTML = ''" class="form-control" placeholder="Email">
+                                    <input type="email" id="contact_email" name="email" oninput="document.getElementById('invalid-email').innerHTML = ''" class="form-control" placeholder="E-mail">
                                     <div class="invalid-feedback" id="invalid-email" style="display: block">
                                     	
                                     </div>
@@ -320,7 +320,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <input type="text" id="contact_subject" name="subject" oninput="document.getElementById('invalid-subject').innerHTML = ''" onkeyup="this.value=this.value.replace(/[^\sa-zA-Z]/g,'');" class="form-control" placeholder="Subject">
+                                    <input type="text" id="contact_subject" name="subject" oninput="document.getElementById('invalid-subject').innerHTML = ''" onkeyup="this.value=this.value.replace(/[^\sa-zA-Z]/g,'');" class="form-control" placeholder="Ghi chú">
                                     <div class="invalid-feedback" id="invalid-subject" style="display: block">
                                     	
                                     </div>
@@ -328,7 +328,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <textarea id="contact_message" name="message" oninput="document.getElementById('invalid-message').innerHTML = ''" cols="30" rows="5" class="form-control message" placeholder="Message"></textarea>
+                                    <textarea id="contact_message" name="message" oninput="document.getElementById('invalid-message').innerHTML = ''" cols="30" rows="5" class="form-control message" placeholder="Tin nhắn"></textarea>
                                     <div class="invalid-feedback" id="invalid-message" style="display: block">
                                     	
                                     </div>
@@ -336,7 +336,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <button id="contact_send" class="bttn_style_2">Send Message</button>
+                                    <a href="https://www.facebook.com/profile.php?id=61553456308017"><button id="contact_send" class="bttn_style_2">Gửi tin nhắn</button></a>
                                 </div>
                             </div>
                             <div id="sending_load" style="display: none;">Sending...</div>
@@ -362,11 +362,11 @@
                             Bếp ăn chúng tui cam kết đem lại cho nhân viên công ty những bữa ăn chất lượng và đầy đủ dinh dưỡng
                         </p>
                         <ul class="widget_social">
-                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fab fa-facebook-f fa-2x"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="fab fa-twitter fa-2x"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Instagram"><i class="fab fa-instagram fa-2x"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Google+"><i class="fab fa-google-plus-g fa-2x"></i></a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=61553456308017" data-toggle="tooltip" title="Facebook"><i class="fab fa-facebook-f fa-2x"></i></a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=61553456308017" data-toggle="tooltip" title="Twitter"><i class="fab fa-twitter fa-2x"></i></a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=61553456308017" data-toggle="tooltip" title="Instagram"><i class="fab fa-instagram fa-2x"></i></a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=61553456308017" data-toggle="tooltip" title="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=61553456308017" data-toggle="tooltip" title="Google+"><i class="fab fa-google-plus-g fa-2x"></i></a></li>
                         </ul>
                     </div>
                 </div>
