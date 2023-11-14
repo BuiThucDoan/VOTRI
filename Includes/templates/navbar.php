@@ -14,12 +14,12 @@
                         <ul class="nav">
                             <li><a href="index.php#home">Trang chủ</a></li>
                             <li><a href="thucdon.php">Thực đơn</a></li>
-                              <li><a href="thucdon1.php">Thực đơn1</a></li>
+                           <li><a href="test.php">test</a></li>
                             <li><a href="thanhtoan.php">Thanh toán</a></li>
                             <li><a href="gioithieu.php">Giới thiệu</a></li>
                             <li><a href="index.php#contact">CSKH</a></li>
-                            <li><a href="./admin/index.php"><img src="./Design/images/user.png" alt=""></a></li>
-                            <li><a href="./admin/dashboard.php"><img src="./Design/images/cart.png" alt=""></a></li>
+                            <li><a href="./NhanVien123/index.php"><img src="./Design/images/user.png" alt=""></a></li>
+                            <li><a href="./NhanVien123/dashboard.php"><img src="./Design/images/cart.png" alt=""></a></li>
                         </ul>
                     </div>
                     <div>

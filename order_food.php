@@ -290,7 +290,7 @@
 
                 <div>
                     <div class="form-group colum-row row">
-                        <div class="col-sm-12">
+                   0     <div class="col-sm-12">
                             <input type="text" name="client_full_name" id="client_full_name" oninput="document.getElementById('required_fname').style.display = 'none'" onkeyup="this.value=this.value.replace(/[^\sa-zA-Z]/g,'');" class="form-control" placeholder="Full name">
                             <div class="invalid-feedback" id="required_fname">
                                 Invalid Name!

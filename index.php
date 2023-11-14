@@ -17,12 +17,12 @@
 		<div class="container">
 			<div class="row" style="flex-wrap: nowrap;">
 				<div class="col-md-6 home-left-section">
-					<div style="padding: 61px 88px; color: #f2f2f2;">
-						<h1 style="font-weight:normal">
-							Công Ty Vô Tri
+					<div style="padding: 100px 0px; color: white;">
+						<h1>
+							Công ty Vô Tri
 						</h1>
                         <hr>
-						<h5 style="font-weight:normal">
+						<h5>
 							Hệ thống bếp ăn của công ty Vô Tri cam kết đem lại cho nhân viên công ty những bữa ăn chất lượng và đầy đủ dinh dưỡng
 						</h5>
                         <hr>
@@ -283,7 +283,7 @@
 							<br>gửi tin nhắn cho chúng tôi ngay hôm nay!
                         </h2>
                         <p>
-						"Chúng tôi thành lập tập đoàn này không chỉ để kiếm tiền,
+						"Chúng tôi thành lập công ty này không chỉ để kiếm tiền,
 						 <br> mà còn để tạo ra những sản phẩm và dịch vụ tốt nhất cho cộng đồng."
                         </p>
                         <h3>
@@ -293,7 +293,7 @@
                             <span>Email:</span> 
                             <p>tapdoanvotri6789@gmail.com</p>
                             <br> 
-                            <span>Phone:</span> 
+                            <span>Số điện thoại:</span> 
                             <p>0123467899</p>
                         </h4>
                     </div>
@@ -306,13 +306,13 @@
 							
                             <div class="form-group colum-row row">
                                 <div class="col-sm-6">
-                                    <input type="text" id="contact_name" name="name" oninput="document.getElementById('invalid-name').innerHTML = ''" onkeyup="this.value=this.value.replace(/[^\sa-zA-Z]/g,'');" class="form-control" placeholder="Tên">
+                                    <input type="text" id="contact_name" name="name" oninput="document.getElementById('invalid-name').innerHTML = ''" onkeyup="this.value=this.value.replace(/[^\sa-zA-Z]/g,'');" class="form-control" placeholder="Họ&Tên">
                                     <div class="invalid-feedback" id="invalid-name" style="display: block">
                                     	
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="email" id="contact_email" name="email" oninput="document.getElementById('invalid-email').innerHTML = ''" class="form-control" placeholder="E-mail">
+                                    <input type="email" id="contact_email" name="email" oninput="document.getElementById('invalid-email').innerHTML = ''" class="form-control" placeholder="Email">
                                     <div class="invalid-feedback" id="invalid-email" style="display: block">
                                     	
                                     </div>
@@ -320,15 +320,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <input type="text" id="contact_subject" name="subject" oninput="document.getElementById('invalid-subject').innerHTML = ''" onkeyup="this.value=this.value.replace(/[^\sa-zA-Z]/g,'');" class="form-control" placeholder="Ghi chú">
-                                    <div class="invalid-feedback" id="invalid-subject" style="display: block">
-                                    	
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <textarea id="contact_message" name="message" oninput="document.getElementById('invalid-message').innerHTML = ''" cols="30" rows="5" class="form-control message" placeholder="Tin nhắn"></textarea>
+                                    <textarea id="contact_message" name="Nội dung" oninput="document.getElementById('invalid-message').innerHTML = ''" cols="30" rows="5" class="form-control message" placeholder="Nội dung"></textarea>
                                     <div class="invalid-feedback" id="invalid-message" style="display: block">
                                     	
                                     </div>
@@ -336,10 +328,10 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <a href="https://www.facebook.com/profile.php?id=61553456308017"><button id="contact_send" class="bttn_style_2">Gửi tin nhắn</button></a>
+                                    <button id="contact_send" class="bttn_style_2">Gửi tin nhắn </button>
                                 </div>
                             </div>
-                            <div id="sending_load" style="display: none;">Sending...</div>
+                            <div id="sending_load" style="display: none;">Đang gửi...</div>
                             <div id="contact_status_message"></div>
                         </div>
                     </div>
@@ -362,11 +354,11 @@
                             Bếp ăn chúng tui cam kết đem lại cho nhân viên công ty những bữa ăn chất lượng và đầy đủ dinh dưỡng
                         </p>
                         <ul class="widget_social">
-                            <li><a href="https://www.facebook.com/profile.php?id=61553456308017" data-toggle="tooltip" title="Facebook"><i class="fab fa-facebook-f fa-2x"></i></a></li>
-                            <li><a href="https://www.facebook.com/profile.php?id=61553456308017" data-toggle="tooltip" title="Twitter"><i class="fab fa-twitter fa-2x"></i></a></li>
-                            <li><a href="https://www.facebook.com/profile.php?id=61553456308017" data-toggle="tooltip" title="Instagram"><i class="fab fa-instagram fa-2x"></i></a></li>
-                            <li><a href="https://www.facebook.com/profile.php?id=61553456308017" data-toggle="tooltip" title="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a></li>
-                            <li><a href="https://www.facebook.com/profile.php?id=61553456308017" data-toggle="tooltip" title="Google+"><i class="fab fa-google-plus-g fa-2x"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fab fa-facebook-f fa-2x"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="fab fa-twitter fa-2x"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Instagram"><i class="fab fa-instagram fa-2x"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Google+"><i class="fab fa-google-plus-g fa-2x"></i></a></li>
                         </ul>
                     </div>
                 </div>

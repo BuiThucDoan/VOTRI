@@ -1,88 +1,71 @@
 <?php
+    //Set page title
+    $pageTitle = 'Thực đơn';
 
-    include "connect.php";
+
     include 'Includes/functions/functions.php';
     include "Includes/templates/header.php";
     include "Includes/templates/navbar.php";
 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .payment-selection {
-    font-family: 'Arial', sans-serif;
-    width: 80%;
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    padding: 20px;
-}
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
 
-.payment-method {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-}
+	<section class="our_menus" id="menus">
+		<div class="container">
+			<h2 style="text-align: center;margin-bottom: 30px">Thực đơn trong tuần</h2>
+            <div class="menus_tabs">
+            <div class="sidebar__item__size">
+            <h2 style="margin-bottom: 30px">Lọc theo ngày</h2>
+				<?php
+					include ("View/vLoaiThucDon.php");
+					$p = new ViewCateMenu();
+					$p->viewAllCateMenu();
+				?>
+				</div>
+                </div>
+            <div class="menus_tabs">
+            <div class="sidebar__item__size">
+            <h2 style="margin-bottom: 30px">Lọc theo thực đơn</h2>
+            
+				<?php
+					include ("View/vThucdon.php");
+					$p = new ViewMenu();
+					$p->viewAllMenu();
+				?>
+				</div>
+                </div>
+				<div class="menus_tabs">
+                
+            <div class="sidebar__item__size">
+			<?php
+					include("View/vMonan.php");
+					$p = new viewMonan();
+					
+					if (isset($_REQUEST["menu"])) {
+						// Xử lý tham số 'menu'
+						$p->viewAllMonanbyThucdon($_REQUEST["menu"]);
+					} elseif (isset($_REQUEST["cate"])) {
+						// Xử lý tham số 'cate'
+						$p->viewAllMonanbyLoai($_REQUEST["cate"]);
+					}elseif (isset($_REQUEST["id"])) {
+						
+					include_once("View/vChitietmonan.php");
+					} else {
+						// Hiển thị tất cả món ăn nếu không có tham số nào được gửi
+						$p->viewAllMonan();
+					}
+					?>
 
-.payment-method:last-child {
-    border-bottom: none;
-}
+				</div>
+                </div>
+			</div>
+		</div>
+     
+	</section>
+	<!-- WIDGET SECTION / FOOTER -->
 
-.payment-method img {
-    width: 50px;
-    height: auto;
-    margin-right: 20px;
-}
-
-.payment-method span.dropdown {
-    margin-left: auto;
-    font-size: 1.2em;
-}
-
-button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-    cursor: pointer;
-}
-
-        </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-        </head>
-<body>
-    <div class="payment-selection">
-        <h2>Chọn Phương thức thanh toán</h2>
-        <div class="payment-method">
-            <a href="thanhtoanbangATM.php"><img src="Design/images/Atmcard.png" alt="ATM Card">
-            <span>Thẻ ATM và tài khoản ngân hàng</span></a>
-        </div>
-        <div class="payment-method">
-            <a href="https://momo.vn/"><img src="Design/images/Vimomo.png"  alt="Vinpay">
-            <span>Ví điện tử</span></a>
-        </div>
-        <div style="margin-left: 300px">
-            <a href="index.php"><button id="btnQuayLai" class="btn btn-primary">QUAY LẠI TRANG CHỦ</button></a>
-            <a href="../NhanVien123/index.php"><button id="btnQuayLai" class="btn btn-primary">QUAY LẠI TRANG NHÂN VIÊN</button></a>
-    	</div>
-    </div>
-    
-</body>
-</html>
-  <section class="widget_section" style="background-color: #222227;padding: 100px 0;">
+     <section class="widget_section" style="background-color: #222227;padding: 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
@@ -145,42 +128,5 @@ button {
             </div>
         </div>
     </section>
- </section>		
-		<footer class="footer_section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 xs-padding">
-						<div class="copyright">
-							© 
-							<script type="text/javascript"> 
-								document.write(new Date().getFullYear())
-							</script>
-							Vincent Restaurant Powered by JAIRI Idriss
-						</div>
-					</div>
-					<div class="col-md-6 xs-padding">
-						<ul class="footer_social">
-							<li><a href="#">Orders</a></li>
-							<li><a href="#">Terms</a></li>
-							<li><a href="#">Report Problem</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</footer>
-
-	
-		<!-- INCLUDE JS SCRIPTS -->
-
-		<script src="Design/js/jquery.min.js"></script>
-		<script src="Design/js/bootstrap.min.js"></script>
-		<script src="Design/js/bootstrap.bundle.min.js"></script>
-		<script src="Design/js/main.js"></script>
-
-	</body>
-
-	<!-- END BODY TAG -->
-
-</html>
-
-<!-- END HTML TAG -->
+<!-- FOOTER BOTTOM  -->
+<?php include "Includes/templates/footer.php"; ?>

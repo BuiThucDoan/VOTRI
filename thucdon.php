@@ -12,197 +12,24 @@
 
 ?>
 
-    <!-- ORDER FOOD PAGE STYLE -->
-
-	<style type="text/css">
-        body
-        {
-            background: #f7f7f7;
-        }
-
-		.text_header
-		{
-			margin-bottom: 5px;
-    		font-size: 18px;
-    		font-weight: bold;
-    		line-height: 1.5;
-    		margin-top: 22px;
-    		text-transform: capitalize;
-		}
-
-        .items_tab
-        {
-            border-radius: 4px;
-            background-color: white;
-            overflow: hidden;
-            box-shadow: 0 0 5px 0 rgba(60, 66, 87, 0.04), 0 0 10px 0 rgba(0, 0, 0, 0.04);
-        }
-
-        .itemListElement
-        {
-            font-size: 14px;
-            line-height: 1.29;
-            border-bottom: solid 1px #e5e5e5;
-            cursor: pointer;
-            padding: 16px 12px 18px 12px;
-        }
-
-        .item_details
-        {
-            width: auto;
-            display: -webkit-box;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            -webkit-box-orient: horizontal;
-            -webkit-box-direction: normal;
-            -webkit-flex-direction: row;
-            -webkit-box-pack: justify;
-            -webkit-justify-content: space-between;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-        }
-
-        .item_label
-        {
-        	color: #9e8a78;
-            border-color: #9e8a78;
-            background: white;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active 
-        {
-            color: #fff;
-            background-color: #9e8a78;
-            border-color: #9e8a78;
-        }
-
-        .item_select_part
-        {
-            display: flex;
-            -webkit-box-pack: justify;
-            justify-content: space-between;
-            -webkit-box-align: center;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .select_item_bttn
-        {
-            width: 55px;
-            display: flex;
-            margin-left: 30px;
-            -webkit-box-pack: end;
-            justify-content: flex-end;
-        }
-
-        .menu_price_field
-        {
-        	width: auto;
-            display: flex;
-            margin-left: 30px;
-            -webkit-box-align: baseline;
-            align-items: baseline;
-        }
-
-        .order_food_section
-        {
-            max-width: 720px;
-            margin: 50px auto;
-            padding: 0px 15px;
-        }
-
-        .item_label.focus,
-        .item_label:focus
-        {
-            outline: none;
-            background:initial;
-            box-shadow: none;
-            color: #9e8a78;
-            border-color: #9e8a78;
-        }
-
-        .item_label:hover
-        {
-            color: #fff;
-            background-color: #9e8a78;
-            border-color: #9e8a78;
-        }
-
-        /* Make circles that indicate the steps of the form: */
-        .step 
-        {
-            height: 15px;
-            width: 15px;
-            margin: 0 2px;
-            background-color: #bbbbbb;
-            border: none;  
-            border-radius: 50%;
-            display: inline-block;
-            opacity: 0.5;
-        }
-
-        .step.active 
-        {
-            opacity: 1;
-        }
-
-        /* Mark the steps that are finished and valid: */
-        .step.finish 
-        {
-            background-color: #4CAF50;
-        }
 
 
-        .order_food_tab
-        {
-            display: none;
-        }
-
-        .next_prev_buttons
-        {
-            background-color: #4CAF50;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 17px;
-            cursor: pointer;
-        }
-
-        .client_details_tab  .form-control
-        {
-            background-color: #fff;
-            border-radius: 0;
-            padding: 25px 10px;
-            box-shadow: none;
-            border: 2px solid #eee;
-        }
-
-        .client_details_tab  .form-control:focus 
-        {
-            border-color: #ffc851;
-            box-shadow: none;
-            outline: none;
-        }
-	
-
-	</style>
 
 <section class="our_menus" id="menus">
 		<div class="container">
 			<h2 style="text-align: center;margin-bottom: 30px">THỰC ĐƠN TRONG TUẦN</h2>
 			<div class="menus_tabs">
+            <div class="sidebar__item__size">
+							<?php
+
+							 ?>
+             </div>
+
 				<div class="menus_tabs_picker">
 					<ul style="text-align: center;margin-bottom: 70px">
 						<?php
 
-	                        $stmt = $con->prepare("Select * from loai_thucdon");
+	                        $stmt = $con->prepare("Select * from loai_thucdon  ");
 	                        $stmt->execute();
 	                        $rows = $stmt->fetchAll();
 	                        $count = $stmt->rowCount();
@@ -229,11 +56,12 @@
 				<div class="menus_tab">
 					<?php
                 
-                        $stmt = $con->prepare("Select * from loai_thucdon");
+                        $stmt = $con->prepare("Select * from loai_thucdon, thucdon");
                         $stmt->execute();
                         $rows = $stmt->fetchAll();
                         $count = $stmt->rowCount();
-
+						
+					
                         $i = 0;
 
                         foreach($rows as $row) 
@@ -241,12 +69,12 @@
 
                             if($i == 0)
                             {
-
-                                echo '<div class="menu_item  tab_category_content" id="'.str_replace(' ', '', $row['tenloaithucdon']).'" style=display:block>';
-
-                                    $stmt_menus = $con->prepare("Select * from monan where idloaithucdon = ?");
-                                    $stmt_menus->execute(array($row['idloaithucdon']) );
-                                    $rows_menus = $stmt_menus->fetchAll();
+									
+									   echo '<div class="menu_item  tab_category_content" id="'.str_replace(' ', '', $row['tenloaithucdon'] and $row['tenthucdon']).'" style="display:block">';
+									
+									$stmt_menus = $con->prepare("Select * from monan where idloaithucdon = ? and idthucdon = ? ORDER BY idloaithucdon, idthucdon ");
+									$stmt_menus->execute(array($row['idloaithucdon'], $row['idthucdon']));
+									$rows_menus = $stmt_menus->fetchAll();
 
                                     if($stmt_menus->rowCount() == 0)
                                     {
@@ -259,7 +87,7 @@
 	                                        ?>
 
 	                                            <div class="col-md-4 col-lg-3 menu-column">
-													<a href="chitietmonan.php">
+													<a href="View/vChitietmonan.php?id">
 	                                                <div class="thumbnail" style="cursor:pointer">
 	                                                    <?php $source = "Design/image/".$menu['hinhanh']; ?>
 
@@ -279,7 +107,7 @@
 	                                                        <span class="menu_price text-warning" >
 	                                                        	<?php echo number_format($menu['gia'], 0, ',', '.') . " VND"; ?>
 	                                                        </span>
-                                                            <div class="buttondatmon">
+                                                           <div class="buttondatmon">
 																<a href="order_food.php">
 																	<button class="btn btn-danger btn-icon" style="margin: 5px 0;" type="button">Đặt món</button>	
 																</a>
@@ -300,11 +128,12 @@
                             else
                             {
 
-                                echo '<div class="menus_categories  tab_category_content" id="'.str_replace(' ', '', $row['tenloaithucdon']).'">';
+										echo '<div class="menu_item  tab_category_content" id="'.str_replace(' ', '', $row['tenloaithucdon'] and $row['tenthucdon']).'" style="display:block">';
+										
+										$stmt_menus = $con->prepare("Select * from monan where idloaithucdon = ? and idthucdon = ? ");
+										$stmt_menus->execute(array($row['idloaithucdon'], $row['idthucdon']));
+										$rows_menus = $stmt_menus->fetchAll();
 
-                                       $stmt_menus = $con->prepare("Select * from monan where idloaithucdon = ? ");
-                                    $stmt_menus->execute(array($row['idloaithucdon']) );
-                                    $rows_menus = $stmt_menus->fetchAll();
 
                                     if($stmt_menus->rowCount() == 0)
                                     {

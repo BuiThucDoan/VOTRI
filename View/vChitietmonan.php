@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web bán thức ăn </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="chitietmon.css">
 <style>
     #wp-products {
     width: 100%;
@@ -85,55 +76,37 @@
     text-transform: uppercase;
   }
 </style>
-</head>
-<?php
-     include 'Includes/functions/functions.php';
-     include "Includes/templates/header.php";
-     include "Includes/templates/navbar.php";
-?>
+
+
 <body>
     <div id="wp-products">
         <h2>CHI TIẾT MÓN ĂN </h2>
-        
         <div id="products">
-            <div class="chitiet">
-                <img src="Design/images/img_1.jpg" alt="">
-            </div>
-            <div class="chitiet1">
-                <div class="stars">
-                    
-                    <span>
-                        <img src="Design/images/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="Design/images/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="Design/images/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="Design/images/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="Design/images/star.png" alt="">
-                    </span>
-                </div>
+            <?php
+ 
+    include_once("../Controller/cMonan.php");
+  
+	$p = new  modelMonan();
+    $tbl = $p->getAllMonanbyid($id);
 
-                <div class="name">Món Ăn 1</div>
-                <div class="desc">Mô Tả Ngắn Cho Sản Phẩm</div>
-                <div class="price">50.000 VNĐ</div>
-                <div class="order"><a href="datmon.html">Đặt món</a></div>
-            </div>
+    if ($tbl) {
+		
+        echo '<div class="chitiet">';
+        echo '<img src="Design/images/' . $monan['hinhanh'] . '" alt="' . $monan['tenmonan'] . '">';
+        echo '</div>';
+        echo '<div class="name">' . $monan['tenmonan'] . '</div>';
+        echo '<div class="desc">' . $monan['mota'] . '</div>';
+        echo '<div class="price">' . number_format($monan['gia'], 0, ',', '.') . ' VNĐ</div>';
+        echo '<div class="order"><a href="datmon.html">Đặt món</a></div>';
+    } else {
+        echo "Không tìm thấy thông tin món ăn.";
+    }
+?>
+
 
         </div>
-        <div id="danhgia">
-            <div class="item">
-                <div><a href="danhgiamonan.html">Đánh giá món ăn</a></div>
-            </div>
-        </div>
-    </div>
-    
-    </div>
+       
+
    
 </div>
 </body>
@@ -202,5 +175,5 @@
         </div>
     </section>
 
-    <?php include "Includes/templates/footer.php"; ?>
-</html>
+    <?php include "../Includes/templates/footer.php"; ?>
+

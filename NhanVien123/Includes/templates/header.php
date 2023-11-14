@@ -11,9 +11,9 @@
 
 		<!-- EXTERNAL CSS LINKS -->
 
-		<link rel="stylesheet" type="text/css" href="../../../NhanVien123/Includes/templates/Design/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../../../NhanVien123/Includes/templates/Design/fonts/css/all.min.css">
-		<link rel="stylesheet" type="text/css" href="../../../NhanVien123/Includes/templates/Design/css/main.css">
+		<link rel="stylesheet" type="text/css" href="Design/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="Design/fonts/css/all.min.css">
+		<link rel="stylesheet" type="text/css" href="Design/css/main.css">
 
 		<!-- GOOGLE FONTS -->
 

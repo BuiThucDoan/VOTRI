@@ -76,7 +76,8 @@
             <tr>
                 <td>
                     <img src="Design/images/img_1.jpg" alt="">
-                    <h3>ĐẶNG NGỌC HIẾU</h3>
+                    <h3>ĐẶNG NGỌC HIẾU </h3>
+                    
                 </td>
                 <td>
                     <img src="Design/images/img_1.jpg" alt="">

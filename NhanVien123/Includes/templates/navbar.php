@@ -6,7 +6,7 @@
     <header class="headerMenu сlearfix sb-page-header">   
         <div class="nav-header">
         
-            <a class="navbar-brand" href="../../../NhanVien123/Includes/templates/index.php">
+            <a class="navbar-brand" href="index.php">
                 Nhân viên
             </a> 
         </div>
@@ -35,7 +35,7 @@
                                 </span>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../../../NhanVien123/Includes/templates/logout.php">
+                            <a class="dropdown-item" href="logout.php">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <span style="padding-left:6px">
                                     Đăng xuất
@@ -45,7 +45,7 @@
                     </div>
                 </li>
                 <li class="main-li webpage-btn">
-                    <a class="nav-item-button " href="../../../NhanVien123/Includes" target="_blank">
+                    <a class="nav-item-button " href="../" target="_blank">
                         <i class="fas fa-binoculars"></i>
                         <span>Xem Website</span>
                     </a>
@@ -62,7 +62,7 @@
                 <div class="dropdown-divider"></div>
 
                 <li>
-                    <a href="../../../NhanVien123/Includes/templates/index.php" class="a-verMenu dashboard_link">
+                    <a href="index.php" class="a-verMenu dashboard_link">
                         <i class="fas fa-tachometer-alt icon-ver"></i>
                         <span style="padding-left:6px;">Trang chủ</span>
                     </a>
@@ -87,7 +87,7 @@
                 <div class="dropdown-divider"></div>
                 
                 <li>
-                    <a href="#" class="a-verMenu clients_link">
+                    <a href="../thanhtoan.php" class="a-verMenu clients_link">
                         <i class="far fa-address-card icon-ver"></i>
                         <span style="padding-left:6px;">Thanh toán</span>
                     </a>
