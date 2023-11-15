@@ -15,14 +15,15 @@ function SelectAllMonan(){
 				return false;
 			}
 	}
-function SelectAllMonanbyid($id){
+function Showchitiet($id){
 			$p = new KetNoiDB();
 			$con;
 			if ($p->moKetNoi($con)){
-				$query = "Select * from monan where idmonan = ".$id;
+				$query = "Select * from monan where id_monan = ".$id;
 				$tbl = mysql_query($query);
+				$result = mysql_fetch_assoc($tbl);
 				$p->dongKetNoi($con);
-				return $tbl;	
+				return $result;	
 			}else{
 				return false;
 			}

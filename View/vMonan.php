@@ -49,7 +49,7 @@
                 echo '<br><p><b>' . $row['tenmonan'] . '</b></p>';
                 echo number_format($row['gia'], 0, ',', '.') . ' VND';
 				echo '<br>';
-				echo '<a href="View/vChitietmonan.php?id=' . $row['id_monan'] . '" onclick="showDetails(this)"><button>Xem chi tiết</button></a>';
+				echo '<a href="test.php?id=' . $row['id_monan'] . '" onclick="showDetails(this)"><button>Xem chi tiết</button></a>';
                 echo '<div class="buttondatmon">';
                 echo '<a href="order_food.php">';
                 echo '<button class="btn btn-danger btn-icon" style="margin: 5px 0;" type="button">';

@@ -1,179 +1,120 @@
-
-<style>
-    #wp-products {
-    width: 100%;
-    margin: 50px;
-
-  }
-  
-  #products {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  
-  .chitiet img {
-    object-fit: cover;
-    width: 600px;
-    height: 400px;
-  }
-  
-  .chitiet1 {
-    width: 500px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  
-  .stars {
-    display: flex;
-  }
-  
-  .name {
-    font-size: 30px;
-    font-weight: bold;
-  }
-  
-  .desc {
-    font-size: 20px;
-  }
-  
-  .price {
-    font-size: 50px;
-    color: red;
-  }
-  
-  .order {
-    background-color: blue;
-    font-size: 30px;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    margin-top: 20px;
-    border-radius: 10px;
-  }
-  .order a{
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
-  }
-  #danhgia{
-    width: 200px;
-    height: 50px;
-    background-color: #5cb9eb;
-    margin-top: 40px;
-    text-align: center;
-    padding-top: 10px;
-    border-radius: 10px;
-  }
-  #danhgia a{
-    text-decoration: none;
-    color: rgb(219, 40, 40);
-    text-transform: uppercase;
-  }
-</style>
-
-
-<body>
-    <div id="wp-products">
-        <h2>CHI TIẾT MÓN ĂN </h2>
-        <div id="products">
-            <?php
+ <?php
  
-    include_once("../Controller/cMonan.php");
-  
-	$p = new  modelMonan();
-    $tbl = $p->getAllMonanbyid($id);
+    include_once("Controller/cMonan.php");
 
-    if ($tbl) {
-		
-        echo '<div class="chitiet">';
-        echo '<img src="Design/images/' . $monan['hinhanh'] . '" alt="' . $monan['tenmonan'] . '">';
-        echo '</div>';
-        echo '<div class="name">' . $monan['tenmonan'] . '</div>';
-        echo '<div class="desc">' . $monan['mota'] . '</div>';
-        echo '<div class="price">' . number_format($monan['gia'], 0, ',', '.') . ' VNĐ</div>';
-        echo '<div class="order"><a href="datmon.html">Đặt món</a></div>';
-    } else {
-        echo "Không tìm thấy thông tin món ăn.";
-    }
+  	
+	$p = new  controlMonan();
+	if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $monan = $p->getShowchitiet($id);
+} else {
+    echo "Không có ID món ăn được cung cấp.";
+}
 ?>
 
-
-        </div>
-       
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Món Ăn</title>
+    <link rel="stylesheet" href="../Design/css/bootstrap.min.css">
    
-</div>
-</body>
+    <style>
+        /* Định dạng hình ảnh */
+.chitiet img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+}
 
-  <section class="widget_section" style="background-color: #222227;padding: 100px 0;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                <img src="Design/images/Nhom_vo_tri_logos_white.png" alt="Restaurant Logo" style="width: 150px;margin-bottom: 20px;">
-                    <div class="footer_widget">
-                        
-                        <p>
-                            Bếp ăn chúng tui cam kết đem lại cho nhân viên công ty những bữa ăn chất lượng và đầy đủ dinh dưỡng
-                        </p>
-                        <ul class="widget_social">
-                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fab fa-facebook-f fa-2x"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="fab fa-twitter fa-2x"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Instagram"><i class="fab fa-instagram fa-2x"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Google+"><i class="fab fa-google-plus-g fa-2x"></i></a></li>
-                        </ul>
-                    </div>
+/* Định dạng phần thông tin món ăn */
+.info {
+    overflow: hidden;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.desc {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e44d26; /* Màu cam, có thể điều chỉnh tùy ý */
+}
+
+.order {
+    margin-top: 10px;
+}
+
+/* Định dạng tabs */
+.nav-tabs {
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row">
+      
+           
+
+            <div class="chitiet">
+                <img src="Design/image/<?php echo $monan['hinhanh']; ?>" alt="<?php echo $monan['tenmonan']; ?>">
+            </div>
+
+
+            <div class="info">
+                <div class="name"><?php echo $monan['tenmonan']; ?></div>
+                <div class="price"><?php echo number_format($monan['gia'], 0, ',', '.') ?> VNĐ</div>
+                <div class="order"><a href="#" class="btn btn-primary">Đặt món</a></div>
+                
+            </div>
+
+            <!-- Tabs cho mô tả và đánh giá -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" id="moTa-tab" data-toggle="tab" href="#moTa">Mô tả</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="danhGia-tab" data-toggle="tab" href="#danhGia">Đánh giá</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="moTa">
+                    <p><?php echo $monan['mota']; ?></p>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                     <div class="footer_widget">
-                        <h3>Địa chỉ</h3>
-                        <p>
-                            Số 4, Nguyễn Văn Bảo, Phường 4, Gò Vấp
-                        </p>
-                        <p>
-                            votri666.@gmail.com <br>
-                            0123456789
-                        </p>
-                     </div>
+                <div class="tab-pane fade" id="danhGia">
+                    <!-- Nội dung đánh giá ở đây -->
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer_widget">
-                        <h3>
-                            Thời gian hoạt động
-                        </h3>
-                        <ul class="opening_time">
-                            <li>Thứ 2 _ 6:30am - 6:00pm</li>
-                            <li>Thứ 3 _ 6:30am - 6:00pm</li>
-                            <li>Thứ 4 _ 6:30am - 6:00pm</li>
-                            <li>Thứ 5 _ 6:30am - 6:00pm</li>
-                            <li>Thứ 6 _ 6:30am - 6:00pm</li>
-                            <li>Thứ 7 _ 6:30am - 6:00pm</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-						<div class="footer_widget">
-                        <h3>
-                            Thời gian hoạt động
-                        </h3>
-                   
-						<ul class="footer_social">
-							<li><a href="#">Đặt món</a></li> <br>
-							<li><a href="#">Giới thiệu</a></li><br>
-							<li><a href="#">Báo cáo vấn đề</a></li><br>
-						</ul>
-					
-                    </div>
-					</div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <?php include "../Includes/templates/footer.php"; ?>
 
+<!-- Sử dụng Bootstrap JS và Popper.js nếu cần thiết -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- Nếu bạn muốn sử dụng Bootstrap 5, hãy thay đổi đường dẫn đến file JS -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/js/bootstrap.min.js"></script> -->
+
+</body>
+</html>
+
+
+
+
+
+
+ 
+
+   

@@ -35,7 +35,7 @@
 				?>
 				</div>
                 </div>
-				<div class="menus_tabs">
+			<div class="menus_tabs">
                 
             <div class="sidebar__item__size">
 			<?php
@@ -48,9 +48,10 @@
 					} elseif (isset($_REQUEST["cate"])) {
 						// Xử lý tham số 'cate'
 						$p->viewAllMonanbyLoai($_REQUEST["cate"]);
+					
 					}elseif (isset($_REQUEST["id"])) {
 						
-					include_once("View/vChitietmonan.php");
+						include_once("View/vChitietmonan.php");
 					} else {
 						// Hiển thị tất cả món ăn nếu không có tham số nào được gửi
 						$p->viewAllMonan();

@@ -6,9 +6,9 @@ class controlMonan{
         $tbl = $p->SelectAllMonan();
         return  $tbl;
     }
-	function getAllMonanbyid($id) {
+	function getShowchitiet($id) {
 			$p = new  modelMonan();
-			$tbl = $p-> SelectAllMonanbyid($id);
+			$tbl = $p->Showchitiet($id);
 			return $tbl;
 			}
 	function getAllMonanbyLoai($cate) {
@@ -22,10 +22,7 @@ class controlMonan{
 			$tbl = $p-> SelectAllMonanbyThucDon($menu);
 			return $tbl;
 			}
-			
-		
-		
-			function getAllMonanbyMenuAndCate($menu, $cate) {
+	function getAllMonanbyMenuAndCate($menu, $cate) {
 			$p = new  modelMonan();
 			$tbl = $p-> SelectAllMonanbyMenuAndCate($menu, $cate);
 			return $tbl;
