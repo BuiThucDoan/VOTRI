@@ -16,7 +16,7 @@
 						</h5>
                         <hr>
 						<div style="display: flex;">
-							<a href="../order_food.php" target="_blank" class="bttn_style_1" style="margin-right: 10px; display: flex;justify-content: center;align-items: center;">
+							<a href="./order_food.php" target="_blank" class="bttn_style_1" style="margin-right: 10px; display: flex;justify-content: center;align-items: center;">
 								Đặt món 
 								<i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i>
 							</a>
@@ -39,7 +39,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="our_qualities_column">
-	                    <img src="../Design/images/quality_food_img.png" >
+	                    <img src="./Design/images/quality_food_img.png" >
 	                    <div class="caption">
 	                        <h3>
 	                            Thực đơn buổi sáng 
@@ -52,7 +52,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="our_qualities_column">
-	                    <img src="../Design/images/fast_delivery_img.png" >
+	                    <img src="./Design/images/fast_delivery_img.png" >
 	                    <div class="caption">
 	                        <h3>
 	                            Thực đơn buổi trưa
@@ -65,7 +65,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="our_qualities_column">
-	                    <img src="../Design/images/original_taste_img.png" >
+	                    <img src="./Design/images/original_taste_img.png" >
 	                    <div class="caption">
 	                        <h3>
 	                            Thực đơn buổi chiều
@@ -250,9 +250,9 @@
 				</div>
 			</div>
 		</div>
-          <a href="../thucdon.php" style="color: black;">
+          <a href="./thucdon.php" style="color: black;">
             <button class="btn btn-primary btn-icon" style="margin-left: 700px ;background-color: #F3D302">
-              <img src="../Design/images/menu.svg" alt="menu icon">
+              <img src="./Design/images/menu.svg" alt="menu icon">
               Xem thêm
             </button>
           </a>
@@ -336,7 +336,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
-                <img src="../Design/images/Nhom_vo_tri_logos_white.png" alt="Restaurant Logo" style="width: 150px;margin-bottom: 20px;">
+                <img src="./Design/images/Nhom_vo_tri_logos_white.png" alt="Restaurant Logo" style="width: 150px;margin-bottom: 20px;">
                     <div class="footer_widget">
                         
                         <p>
