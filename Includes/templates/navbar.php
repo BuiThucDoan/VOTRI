@@ -14,7 +14,6 @@
                         <ul class="nav">
                             <li><a href="index.php#home">Trang chủ</a></li>
                             <li><a href="thucdon.php">Thực đơn</a></li>
-                           <li><a href="test.php">test</a></li>
                             <li><a href="thanhtoan.php">Thanh toán</a></li>
                             <li><a href="gioithieu.php">Giới thiệu</a></li>
                             <li><a href="index.php#contact">CSKH</a></li>

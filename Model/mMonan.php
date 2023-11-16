@@ -42,7 +42,7 @@ function Showchitiet($id){
 			}
 	} 
 	
-/*
+
 	function SelectAllMonanbyMenuAndCate($menu, $cate){
     $p = new KetNoiDB();
     $con;
@@ -56,7 +56,8 @@ function Showchitiet($id){
     }
 }
 
-	*/
+
+
 	function SelectAllMonanbyThucDon($menu){
 			$p = new KetNoiDB();
 			$con;

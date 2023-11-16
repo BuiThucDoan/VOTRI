@@ -1,10 +1,8 @@
-<!-- PHP INCLUDES -->
-
 <?php
     //Set page title
     $pageTitle = 'Thực đơn';
 
-    include "connect.php";
+
     include 'Includes/functions/functions.php';
     include "Includes/templates/header.php";
     include "Includes/templates/navbar.php";
@@ -12,189 +10,62 @@
 
 ?>
 
-
-
-
-<section class="our_menus" id="menus">
-		<div class="container">
-			<h2 style="text-align: center;margin-bottom: 30px">THỰC ĐƠN TRONG TUẦN</h2>
-			<div class="menus_tabs">
-            <div class="sidebar__item__size">
-							<?php
-
-							 ?>
-             </div>
-
-				<div class="menus_tabs_picker">
-					<ul style="text-align: center;margin-bottom: 70px">
-						<?php
-
-	                        $stmt = $con->prepare("Select * from loai_thucdon  ");
-	                        $stmt->execute();
-	                        $rows = $stmt->fetchAll();
-	                        $count = $stmt->rowCount();
-
-	                        $x = 0;
-
-							foreach ($rows as $row) {
-								if ($x == 0) {
-									echo "<li class = 'menu_category_name tab_category_links active_category' onclick=showCategoryMenus(event,'".str_replace(' ', '', $row['tenloaithucdon'])."')>";
-									echo $row['tenloaithucdon'];
-									echo "</li>";
-								} else {
-									echo "<li class = 'menu_category_name tab_category_links' onclick=showCategoryMenus(event,'".str_replace(' ', '', $row['tenloaithucdon'])."')>";
-									echo $row['tenloaithucdon'];
-									echo "</li>";
-								}
-							
-								$x++;
-							}
-						?>
-					</ul>
-				</div>
-
-				<div class="menus_tab">
-					<?php
+<style>
+    /* Thêm đường dọc giữa cột trái và phải */
+    .menus_tabs {
+        border-left: 1px solid #ccc; /* Chọn màu sắc bạn muốn */
+    }
+</style>
+	<section class="our_menus" id="menus">
+    <div class="container">
+        <div class="row">
+            <!-- Phần lọc theo ngày và thực đơn (Bên trái) -->
+            <div class="col-md-3">
                 
-                        $stmt = $con->prepare("Select * from loai_thucdon, thucdon");
-                        $stmt->execute();
-                        $rows = $stmt->fetchAll();
-                        $count = $stmt->rowCount();
-						
-					
-                        $i = 0;
+                    <div class="sidebar__item__size">
+                        <h2 style="margin-bottom: 30px">Lọc theo ngày</h2>
+                        <?php
+                            include ("View/vLoaiThucDon.php");
+                            $p = new ViewCateMenu();
+                            $p->viewAllCateMenu();
+                        ?>
+                    </div>
 
-                        foreach($rows as $row) 
-                        {
+                    <div class="sidebar__item__size">
+                        <h2 style="margin-bottom: 30px">Lọc theo thực đơn</h2>
+                        <?php
+                            include ("View/vThucdon.php");
+                            $p = new ViewMenu();
+                            $p->viewAllMenu();
+                        ?>
+                    </div>
+             
+            </div>
 
-                            if($i == 0)
-                            {
-									
-									   echo '<div class="menu_item  tab_category_content" id="'.str_replace(' ', '', $row['tenloaithucdon'] and $row['tenthucdon']).'" style="display:block">';
-									
-									$stmt_menus = $con->prepare("Select * from monan where idloaithucdon = ? and idthucdon = ? ORDER BY idloaithucdon, idthucdon ");
-									$stmt_menus->execute(array($row['idloaithucdon'], $row['idthucdon']));
-									$rows_menus = $stmt_menus->fetchAll();
-
-                                    if($stmt_menus->rowCount() == 0)
-                                    {
-                                        echo "<div style='margin:auto'>không có món ăn nào trong thực đơn!</div>";
-                                    }
-
-                                    echo "<div class='row'>";
-	                                    foreach($rows_menus as $menu)
-	                                    {
-	                                        ?>
-
-	                                            <div class="col-md-4 col-lg-3 menu-column">
-													<a href="View/vChitietmonan.php?id">
-	                                                <div class="thumbnail" style="cursor:pointer">
-	                                                    <?php $source = "Design/image/".$menu['hinhanh']; ?>
-
-	                                                    <div class="menu-image">
-													        <div class="image-preview">
-													            <div style="background-image: url('<?php echo $source; ?>');"></div>
-													        </div>
-													    </div>
-													</a>                                                    
-	                                                    <div class="caption">
-	                                                        <h3>
-	                                                            <?php echo $menu['tenmonan'];?>
-	                                                        </h3>
-	                                                        <p>
-	                                                            <?php echo $menu['mota']; ?>
-	                                                        </p>
-	                                                        <span class="menu_price text-warning" >
-	                                                        	<?php echo number_format($menu['gia'], 0, ',', '.') . " VND"; ?>
-	                                                        </span>
-                                                           <div class="buttondatmon">
-																<a href="order_food.php">
-																	<button class="btn btn-danger btn-icon" style="margin: 5px 0;" type="button">Đặt món</button>	
-																</a>
-															</div>
-	                                                    </div>
-														
-													</div>
-	                                            </div>
-
-	                                        <?php
-	                                    }
-	                                echo "</div>";
-
-                                echo '</div>';
-
-                            }
-
-                            else
-                            {
-
-										echo '<div class="menu_item  tab_category_content" id="'.str_replace(' ', '', $row['tenloaithucdon'] and $row['tenthucdon']).'" style="display:block">';
-										
-										$stmt_menus = $con->prepare("Select * from monan where idloaithucdon = ? and idthucdon = ? ");
-										$stmt_menus->execute(array($row['idloaithucdon'], $row['idthucdon']));
-										$rows_menus = $stmt_menus->fetchAll();
-
-
-                                    if($stmt_menus->rowCount() == 0)
-                                    {
-                                        echo "<div style='margin:auto'>không có món ăn nào trong thực đơn!</div>";
-                                    }
-
-                                    echo "<div class='row'>";
-	                                    foreach($rows_menus as $menu)
-	                                    {
-	                                        ?>
-
-	                                            <div class="col-md-4 col-lg-3 menu-column">
-	                                                <div class="thumbnail" style="cursor:pointer">
-	                                                	<?php $source = "Design/image/".$menu['hinhanh']; ?>
-	                                                    <div class="menu-image">
-													        <div class="image-preview">
-													            <div style="background-image: url('<?php echo $source; ?>');"></div>
-													        </div>
-													    </div>
-	                                                    <div class="caption">
-	                                                       <h3>
-	                                                            <?php echo $menu['tenmonan'];?>
-	                                                        </h3>
-	                                                        <p>
-	                                                            <?php echo $menu['mota']; ?>
-	                                                        </p>
-	                                                       <span class="menu_price text-warning" >
-	                                                        	<?php echo number_format($menu['gia'], 0, ',', '.') . " VND"; ?>
-	                                                        </span>
-                                                            <div class="buttondatmon">
-																<a href="order_food.php">
-																	<button class="btn btn-danger btn-icon" style="margin: 5px 0;" type="button">Đặt món</button>	
-																</a>
-															</div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-
-	                                        <?php
-	                                    }
-	                               	echo "</div>";
-
-                                echo '</div>';
-
-                            }
-
-                            $i++;
+            <!-- Phần hiển thị món ăn (Bên phải) -->
+            <div class="col-md-9">
+                <div class="menus_tabs">
+                    <div class="sidebar__item__size">
+                        <?php
+                            include("View/vMonan.php");
+                            $p = new viewMonan();
                             
-                        }
-                    
-                        echo "</div>";
-                
-                    ?>
-				</div>
-			</div>
-		</div>
-        
-	</section>
- 
-
-
+                            if (isset($_REQUEST["menu"])) {
+                                $p->viewAllMonanbyThucdon($_REQUEST["menu"]);
+                            } elseif (isset($_REQUEST["cate"])) {
+                                $p->viewAllMonanbyLoai($_REQUEST["cate"]);
+                            } elseif (isset($_REQUEST["id"])) {
+                                include_once("View/vChitietmonan.php");
+                            } else {
+                                $p->viewAllMonan();
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 	<!-- WIDGET SECTION / FOOTER -->
 
@@ -261,7 +132,5 @@
             </div>
         </div>
     </section>
-
-    <!-- FOOTER BOTTOM  -->
-
-    <?php include "Includes/templates/footer.php"; ?>
+<!-- FOOTER BOTTOM  -->
+<?php include "Includes/templates/footer.php"; ?>

@@ -15,7 +15,7 @@
             while ($row = mysql_fetch_assoc($tbl)) {
                 $isSelected = ($row["idloaithucdon"] == $selectedCate) ? 'selected' : ''; // Kiểm tra danh mục được chọn
                 // Hiển thị danh mục trong dropdown và thiết lập selected
-                echo "<option value='test.php?cate=" . $row["idloaithucdon"] . "' $isSelected>" . $row["tenloaithucdon"] . "</option>";
+                echo "<option value='thucdon.php?cate=" . $row["idloaithucdon"] . "' $isSelected>" . $row["tenloaithucdon"] . "</option>";
 				
             }
             echo "<option value='test.php'>Hủy chọn</option>"; // Thêm tùy chọn "Hủy chọn"
