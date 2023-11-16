@@ -60,7 +60,6 @@
                 echo '</div>';
                 $dem++;
             }
-
             echo '</div>';
             echo '</div>';
             echo '</div>';
