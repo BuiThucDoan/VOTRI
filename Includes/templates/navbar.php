@@ -17,8 +17,9 @@
                             <li><a href="thanhtoan.php">Thanh toán</a></li>
                             <li><a href="gioithieu.php">Giới thiệu</a></li>
                             <li><a href="index.php#contact">CSKH</a></li>
-                            <li><a href="./NhanVien123/index.php"><img src="./Design/images/user.png" alt=""></a></li>
-                            <li><a href="./NhanVien123/dashboard.php"><img src="./Design/images/cart.png" alt=""></a></li>
+                            <li><a href="index.php?act=login" id="login"><img src="Design/images/<?php echo $_SESSION['is_login']['hinhanh'] ?>" alt="Login" class="rounded-circle">&nbsp;</a>
+                            <span style="font-weight: 700;" class="d-none d-md-block dropdown-toggle ps-2"> <?php echo  $_SESSION['is_login']['hoten']; ?> </span></li>
+                            <li><a href="#"><img src="./Design/images/cart.png" alt=""></a></li>
                         </ul>
                     </div>
                     <div>
