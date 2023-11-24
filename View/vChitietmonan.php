@@ -3,6 +3,7 @@
 
   	
 	$p = new  controlMonan();
+  
 	if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $monan = $p->getShowchitiet($id);
@@ -18,10 +19,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết món ăn</title>
     <style>
+        body{
+            background-color: black;
+            color: white;
+        }
         /* Định dạng hình ảnh */
         .chitiet img {
-            width: 100%; /* Điều chỉnh kích thước để nó đầy đủ cả chiều rộng của phần chứa */
-            height: auto; /* Đảm bảo tỷ lệ khung hình được giữ nguyên */
+            width: 650px; /* Điều chỉnh kích thước để nó đầy đủ cả chiều rộng của phần chứa */
+            height: 400px; /* Đảm bảo tỷ lệ khung hình được giữ nguyên */
             object-fit: cover; /* Hiển thị toàn bộ hình ảnh và không bị méo */
         }
 
@@ -68,7 +73,7 @@
     <div class="name"><h2><?php echo $monan['monan']['tenmonan']; ?></h2></div>
 
     <div class="price"><?php echo number_format($monan['monan']['gia'], 0, ',', '.') ?> VNĐ</div>
-    <div><h3>Nguyên liệu:</h3></div>
+    <div><h3>Nguyên liệu bao gồm:</h3></div>
 
     <?php
     if (isset($monan['nguyenlieu']) && is_array($monan['nguyenlieu'])) {
@@ -112,6 +117,69 @@
 </div>
 
 
+<section class="widget_section" style="background-color: #222227;padding: 100px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                <img src="./Design/images/Nhom_vo_tri_logos_white.png" alt="Restaurant Logo" style="width: 150px;margin-bottom: 20px;">
+                    <div class="footer_widget">
+                        
+                        <p>
+                            Bếp ăn chúng tui cam kết đem lại cho nhân viên công ty những bữa ăn chất lượng và đầy đủ dinh dưỡng
+                        </p>
+                        <ul class="widget_social">
+                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fab fa-facebook-f fa-2x"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="fab fa-twitter fa-2x"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Instagram"><i class="fab fa-instagram fa-2x"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Google+"><i class="fab fa-google-plus-g fa-2x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                     <div class="footer_widget">
+                        <h3>Địa chỉ</h3>
+                        <p>
+                            Số 4, Nguyễn Văn Bảo, Phường 4, Gò Vấp
+                        </p>
+                        <p>
+                            votri666.@gmail.com <br>
+                            0123456789
+                        </p>
+                     </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer_widget">
+                        <h3>
+                            Thời gian hoạt động
+                        </h3>
+                        <ul class="opening_time">
+                            <li>Thứ 2 _ 6:30am - 6:00pm</li>
+                            <li>Thứ 3 _ 6:30am - 6:00pm</li>
+                            <li>Thứ 4 _ 6:30am - 6:00pm</li>
+                            <li>Thứ 5 _ 6:30am - 6:00pm</li>
+                            <li>Thứ 6 _ 6:30am - 6:00pm</li>
+                            <li>Thứ 7 _ 6:30am - 6:00pm</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+						<div class="footer_widget">
+                        <h3>
+                            Thời gian hoạt động
+                        </h3>
+                   
+						<ul class="footer_social">
+							<li><a href="#">Đặt món</a></li> <br>
+							<li><a href="#">Giới thiệu</a></li><br>
+							<li><a href="#">Báo cáo vấn đề</a></li><br>
+						</ul>
+					
+                    </div>
+					</div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>

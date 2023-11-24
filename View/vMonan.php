@@ -47,17 +47,19 @@ class viewMonan
                         echo '</div><div class="row">';
                     }
                     echo '<div class="col-md-3">';
+                    echo '<a  href="?act=chitiet&id=' . $row['id_monan'] . '" onclick="showDetails(this)">';
                     echo '<div class="thumbnail" style="cursor:pointer">';
                     echo '<div class="menu-image">';
                     echo '<div class="circular-image">';
-
+                    
                     echo '<img src="Design/image/' . $row['hinhanh'] . '" style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid orange;" /><br>';
                     echo '</div>';
                     echo '</div>';
                     echo '<br><p><b>' . $row['tenmonan'] . '</b></p>';
+                    echo '</a>';
                     echo number_format($row['gia'], 0, ',', '.') . ' VND';
                     echo '<br>';
-                    echo '<a class="btn btn-primary " href="thucdon.php?id=' . $row['id_monan'] . '" onclick="showDetails(this)"><i class="fa fa-eye"></i>Xem chi tiết</a>';
+                    
                     echo '<div class="buttondatmon">';
                     echo '<a href="order_food.php" class="btn btn-danger btn-icon" style="margin: 5px 0;">';
 

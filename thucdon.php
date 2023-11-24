@@ -17,55 +17,55 @@
     }
 </style>
 	<section class="our_menus" id="menus">
-    <div class="container">
-        <div class="row">
-            <!-- Phần lọc theo ngày và thực đơn (Bên trái) -->
-            <div class="col-md-3">
+        <div class="container">
+            <div class="row">
+                <!-- Phần lọc theo ngày và thực đơn (Bên trái) -->
+                <div class="col-md-3">
+                    
+                        <div class="sidebar__item__size">
+                            <h2 style="margin-bottom: 30px">Lọc theo ngày</h2>
+                            <?php
+                                include ("View/vLoaiThucDon.php");
+                                $p = new ViewCateMenu();
+                                $p->viewAllCateMenu();
+                            ?>
+                        </div>
+
+                        <div class="sidebar__item__size">
+                            <h2 style="margin-bottom: 30px">Lọc theo thực đơn</h2>
+                            <?php
+                                include ("View/vThucdon.php");
+                                $p = new ViewMenu();
+                                $p->viewAllMenu();
+                            ?>
+                        </div>
                 
-                    <div class="sidebar__item__size">
-                        <h2 style="margin-bottom: 30px">Lọc theo ngày</h2>
-                        <?php
-                            include ("View/vLoaiThucDon.php");
-                            $p = new ViewCateMenu();
-                            $p->viewAllCateMenu();
-                        ?>
-                    </div>
+                </div>
 
-                    <div class="sidebar__item__size">
-                        <h2 style="margin-bottom: 30px">Lọc theo thực đơn</h2>
-                        <?php
-                            include ("View/vThucdon.php");
-                            $p = new ViewMenu();
-                            $p->viewAllMenu();
-                        ?>
-                    </div>
-             
-            </div>
-
-            <!-- Phần hiển thị món ăn (Bên phải) -->
-            <div class="col-md-9">
-                <div class="menus_tabs">
-                    <div class="sidebar__item__size">
-                        <?php
-                            include("View/vMonan.php");
-                            $p = new viewMonan();
-                            
-                            if (isset($_REQUEST["menu"])) {
-                                $p->viewAllMonanbyThucdon($_REQUEST["menu"]);
-                            } elseif (isset($_REQUEST["cate"])) {
-                                $p->viewAllMonanbyLoai($_REQUEST["cate"]);
-                            } elseif (isset($_REQUEST["id"])) {
-                                include_once("View/vChitietmonan.php");
-                            } else {
-                                $p->viewAllMonan();
-                            }
-                        ?>
+                <!-- Phần hiển thị món ăn (Bên phải) -->
+                <div class="col-md-9">
+                    <div class="menus_tabs">
+                        <div class="sidebar__item__size">
+                            <?php
+                                include("View/vMonan.php");
+                                $p = new viewMonan();
+                                
+                                if (isset($_REQUEST["menu"])) {
+                                    $p->viewAllMonanbyThucdon($_REQUEST["menu"]);
+                                } elseif (isset($_REQUEST["cate"])) {
+                                    $p->viewAllMonanbyLoai($_REQUEST["cate"]);
+                                }/* elseif (isset($_REQUEST["id"])) {
+                                    include_once("View/vChitietmonan.php");
+                                } */else {
+                                    $p->viewAllMonan();
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 	<!-- WIDGET SECTION / FOOTER -->
 

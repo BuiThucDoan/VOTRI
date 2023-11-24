@@ -79,7 +79,7 @@
                 <div class="dropdown-divider"></div> 
 
                 <li>
-                    <a href="View/avThucdon.php" class="a-verMenu menus_link">
+                    <a href="View/vadminThucdon.php" class="a-verMenu menus_link">
                         <i class="fas fa-utensils icon-ver"></i>
                         <span style="padding-left:6px;">Thực đơn</span>
                     </a>

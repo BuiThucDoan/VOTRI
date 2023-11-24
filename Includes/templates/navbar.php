@@ -9,9 +9,9 @@
                 <div class="mainmenu" id="mainmenu">
                     <ul class="nav">
                         <li><a href="index.php">Trang chủ</a></li>
-                        <li><a href="thucdon.php">Thực đơn</a></li>
-                        <li><a href="thanhtoan.php">Thanh toán</a></li>
-                        <li><a href="gioithieu.php">Giới thiệu</a></li>
+                        <li><a href="?act=menus" id="menus">Thực đơn</a></li>
+                        <li><a href="?act=pay" id="pay">Thanh toán</a></li>
+                        <li><a href="?act=introduce" id="introduce">Giới thiệu</a></li>
                     </ul>
                 </div>
                 <ul class="nav ms-auto">

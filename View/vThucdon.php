@@ -5,7 +5,7 @@ include_once("Controller/cThucdon.php");
 
 class ViewMenu
 {
-    // tao moi dooi tuong controller company
+   
     function viewAllMenu()
     {
         $p = new controlMenu();

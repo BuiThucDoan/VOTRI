@@ -270,23 +270,7 @@ ul.nav>li>a:hover
 
 /*** END HOME SECTION STYLE ***/
 
-/*** START OUR QUALITIES SECTION STYLE ***/
 
-.our_qualities
-{
-    background: url(../images/our_qualities_bg.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    
-}
-.our_qualities_column
-{
-    text-align: center;
-}
-
-/*** END OUR QUALITIES SECTION STYLE ***/
 
 /*** START OUR MENUS SECTION STYLE ***/
 

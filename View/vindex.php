@@ -20,7 +20,7 @@
 								Đặt món 
 								<i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i>
 							</a>
-							<a href="thucdon.php" class="bttn_style_2" style="display: flex;justify-content: center;align-items: center;">
+							<a href="?act=menus" class="bttn_style_2" style="display: flex;justify-content: center;align-items: center;">
 								Xem Thực đơn
 								<i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i>
 							</a>
@@ -148,7 +148,7 @@
 	                                        ?>
 
 	                                            <div class="col-md-4 col-lg-3 menu-column">
-													<a href="thucdon.php">
+													<a href="?act=menus">
 	                                                <div class="thumbnail" style="cursor:pointer">
 	                                                    <?php $source = "Design/image/".$menu['hinhanh']; ?>
 
@@ -206,7 +206,7 @@
 	                                        ?>
 
 	                                            <div class="col-md-4 col-lg-3 menu-column">
-												<a href="thucdon.php">
+												<a href="?act=menus">
 	                                                <div class="thumbnail" style="cursor:pointer">
 	                                                	<?php $source = "Design/image/".$menu['hinhanh']; ?>
 	                                                    <div class="menu-image">
@@ -252,7 +252,7 @@
 				</div>
 			</div>
 		</div>
-          <a href="./thucdon.php" style="color: black;">
+          <a href="?act=menus" style="color: black;">
             <button class="btn btn-primary btn-icon" style="margin-left: 700px ;background-color: #F3D302">
               <img src="./Design/images/menu.svg" alt="menu icon">
               Xem thêm
