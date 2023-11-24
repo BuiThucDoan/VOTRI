@@ -1,5 +1,4 @@
  <?php
- 
     include_once("Controller/cMonan.php");
 
   	
@@ -7,6 +6,7 @@
 	if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $monan = $p->getShowchitiet($id);
+   
 } else {
     echo "Không có ID món ăn được cung cấp.";
 }
@@ -59,16 +59,34 @@
     <div class="row">
         <div class="col-md-8">
             <div class="chitiet">
-                <img src="Design/image/<?php echo $monan['hinhanh']; ?>" alt="<?php echo $monan['tenmonan']; ?>">
+                <img src="Design/image/<?php echo $monan['monan']['hinhanh']; ?>" alt="<?php echo $monan['monan']['tenmonan']; ?>">
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="info">
-                <div class="name"><?php echo $monan['tenmonan']; ?></div>
-                <div class="price"><?php echo number_format($monan['gia'], 0, ',', '.') ?> VNĐ</div>
-                <div class="order"><a href="#" class="btn btn-primary">Đặt món</a></div>
-            </div>
+        <div class="info">
+    <div class="name"><h2><?php echo $monan['monan']['tenmonan']; ?></h2></div>
+
+    <div class="price"><?php echo number_format($monan['monan']['gia'], 0, ',', '.') ?> VNĐ</div>
+    <div><h3>Nguyên liệu:</h3></div>
+
+    <?php
+    if (isset($monan['nguyenlieu']) && is_array($monan['nguyenlieu'])) {
+        echo '<ul>';
+        foreach ($monan['nguyenlieu'] as $nguyenlieu) {
+            // Hiển thị thông tin nguyên liệu với số lượng sử dụng và đơn vị tính
+            echo '<li>' . $nguyenlieu['tennguyenlieu'] . ': ' . $nguyenlieu['soluongsudung'] . ' ' . $nguyenlieu['donvitinh'] . '</li>';
+        }
+        echo '</ul>';
+    } else {
+        echo 'Không có nguyên liệu.';
+    }
+    ?>
+
+    <div class="order"><a href="#" class="btn btn-primary">Đặt món</a></div>
+</div>
+
+
         </div>
 
         <!-- Tabs cho mô tả và đánh giá -->
@@ -83,7 +101,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="moTa">
-                    <p><?php echo $monan['mota']; ?></p>
+                    <p><?php echo $monan['monan']['mota']; ?></p>
                 </div>
                 <div class="tab-pane fade" id="danhGia">
                     <!-- Nội dung đánh giá ở đây -->

@@ -8,7 +8,7 @@
 				<div class="col-md-6 home-left-section">
 					<div style="padding: 100px 0px; color: white;">
 						<h1>
-							Công ty Vô Tri
+							Công ty Vô Tri 
 						</h1>
                         <hr>
 						<h5>
@@ -148,7 +148,7 @@
 	                                        ?>
 
 	                                            <div class="col-md-4 col-lg-3 menu-column">
-													<a href="chitietmonan.php">
+													<a href="thucdon.php">
 	                                                <div class="thumbnail" style="cursor:pointer">
 	                                                    <?php $source = "Design/image/".$menu['hinhanh']; ?>
 
@@ -191,7 +191,7 @@
 
                                 echo '<div class="menus_categories  tab_category_content" id="'.str_replace(' ', '', $row['tenloaithucdon']).'">';
 
-                                       $stmt_menus = $con->prepare("Select * from monan where idloaithucdon = ? ");
+                                    $stmt_menus = $con->prepare("Select * from monan where idloaithucdon = ? ");
                                     $stmt_menus->execute(array($row['idloaithucdon']) );
                                     $rows_menus = $stmt_menus->fetchAll();
 
@@ -206,6 +206,7 @@
 	                                        ?>
 
 	                                            <div class="col-md-4 col-lg-3 menu-column">
+												<a href="thucdon.php">
 	                                                <div class="thumbnail" style="cursor:pointer">
 	                                                	<?php $source = "Design/image/".$menu['hinhanh']; ?>
 	                                                    <div class="menu-image">
@@ -213,6 +214,7 @@
 													            <div style="background-image: url('<?php echo $source; ?>');"></div>
 													        </div>
 													    </div>
+														</a> 
 	                                                    <div class="caption">
 	                                                       <h3>
 	                                                            <?php echo $menu['tenmonan'];?>
@@ -288,6 +290,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 sm-padding">
+
 				<b>ĐỀ XUẤT</b>
                     <div class="contact-form">
 					

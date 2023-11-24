@@ -76,7 +76,7 @@ button {
         </div>
         <div style="margin-left: 300px">
             <a href="index.php"><button id="btnQuayLai" class="btn btn-primary">QUAY LẠI TRANG CHỦ</button></a>
-            <a href="NhanVien123/index.php"><button id="btnQuayLai" class="btn btn-primary">QUAY LẠI TRANG NHÂN VIÊN</button></a>
+            <a href="NhanVien/nhanvien.php"><button id="btnQuayLai" class="btn btn-primary">QUAY LẠI TRANG NHÂN VIÊN</button></a>
     	</div>
     </div>
     

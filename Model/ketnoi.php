@@ -1,17 +1,21 @@
 <?php
-	class KetNoiDB{
-		function moKetNoi(& $con){
-		$con = mysql_connect("localhost","root","");
-		mysql_set_charset("utf8");
-		if ($con){
-			$db = mysql_select_db("bepan_votri");
-			return $db;
-		}else {
-			return false;
-		}
-		}
-		function dongKetNoi($con){
-			mysql_close($con);
-		}
-	}
+class KetNoiDB
+{
+    function moKetNoi(& $con)
+    {
+        $con = new mysqli("localhost", "root", "", "bepan_votri");
+
+        if ($con->connect_error) {
+            die("Kết nối đến cơ sở dữ liệu thất bại: " . $con->connect_error);
+        }
+
+        $con->set_charset("utf8");
+        return $con;
+    }
+
+    function dongKetNoi($con)
+    {
+        $con->close();
+    }
+}
 ?>

@@ -6,7 +6,7 @@
 	  if ($_GET['act'] == 'login') {
 		include_once('View/vlogin.php');
 	  } 
-	} else {
+	}else {
     include "connect.php";
     include 'Includes/functions/functions.php';
     include "Includes/templates/header.php";
@@ -16,6 +16,3 @@
 }
 ?>
 
-<?php 
-
-?>
