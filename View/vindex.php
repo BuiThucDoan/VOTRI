@@ -91,7 +91,7 @@
 					<ul style="text-align: center;margin-bottom: 70px">
 						<?php
 
-	                        $stmt = $con->prepare("Select * from loai_thucdon");
+	                        $stmt = $con->prepare("Select * from loaimonan");
 	                        $stmt->execute();
 	                        $rows = $stmt->fetchAll();
 	                        $count = $stmt->rowCount();
@@ -100,12 +100,12 @@
 
 							foreach ($rows as $row) {
 								if ($x == 0) {
-									echo "<li class = 'menu_category_name tab_category_links active_category' onclick=showCategoryMenus(event,'".str_replace(' ', '', $row['tenloaithucdon'])."')>";
-									echo $row['tenloaithucdon'];
+									echo "<li class = 'menu_category_name tab_category_links active_category' onclick=showCategoryMenus(event,'".str_replace(' ', '', $row['tenloaimonan'])."')>";
+									echo $row['tenloaimonan'];
 									echo "</li>";
 								} else {
-									echo "<li class = 'menu_category_name tab_category_links' onclick=showCategoryMenus(event,'".str_replace(' ', '', $row['tenloaithucdon'])."')>";
-									echo $row['tenloaithucdon'];
+									echo "<li class = 'menu_category_name tab_category_links' onclick=showCategoryMenus(event,'".str_replace(' ', '', $row['tenloaimonan'])."')>";
+									echo $row['tenloaimonan'];
 									echo "</li>";
 								}
 							
@@ -118,7 +118,7 @@
 				<div class="menus_tab">
 					<?php
                 
-                        $stmt = $con->prepare("Select * from loai_thucdon");
+                        $stmt = $con->prepare("Select * from loaimonan");
                         $stmt->execute();
                         $rows = $stmt->fetchAll();
                         $count = $stmt->rowCount();
@@ -131,10 +131,10 @@
                             if($i == 0)
                             {
 
-                                echo '<div class="menu_item  tab_category_content" id="'.str_replace(' ', '', $row['tenloaithucdon']).'" style=display:block>';
+                                echo '<div class="menu_item  tab_category_content" id="'.str_replace(' ', '', $row['tenloaimonan']).'" style=display:block>';
 
-                                    $stmt_menus = $con->prepare("Select * from monan where idloaithucdon = ?");
-                                    $stmt_menus->execute(array($row['idloaithucdon']) );
+                                    $stmt_menus = $con->prepare("Select * from monan where id_loaimonan = ?");
+                                    $stmt_menus->execute(array($row['id_loaimonan']) );
                                     $rows_menus = $stmt_menus->fetchAll();
 
                                     if($stmt_menus->rowCount() == 0)
@@ -189,10 +189,10 @@
                             else
                             {
 
-                                echo '<div class="menus_categories  tab_category_content" id="'.str_replace(' ', '', $row['tenloaithucdon']).'">';
+                                echo '<div class="menus_categories  tab_category_content" id="'.str_replace(' ', '', $row['tenloaimonan']).'">';
 
-                                    $stmt_menus = $con->prepare("Select * from monan where idloaithucdon = ? ");
-                                    $stmt_menus->execute(array($row['idloaithucdon']) );
+                                    $stmt_menus = $con->prepare("Select * from monan where id_loaimonan = ? ");
+                                    $stmt_menus->execute(array($row['id_loaimonan']) );
                                     $rows_menus = $stmt_menus->fetchAll();
 
                                     if($stmt_menus->rowCount() == 0)
@@ -252,7 +252,7 @@
 				</div>
 			</div>
 		</div>
-          <a href="?act=menus" style="color: black;">
+          <a href="?mod=menus" style="color: black;">
             <button class="btn btn-primary btn-icon" style="margin-left: 700px ;background-color: #F3D302">
               <img src="./Design/images/menu.svg" alt="menu icon">
               Xem thêm

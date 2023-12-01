@@ -69,40 +69,18 @@ class modelMonan
     }
 }    
 
-    
-/*
-    function Selectnguyenlieu()
-    {
-        $p = new KetNoiDB();
-        $con;
 
-        if ($p->moKetNoi($con)) {
-            $query = "SELECT *
-                        FROM nguyenlieu
-                        JOIN chitietnguyenlieu ON nguyenlieu.idnguyenlieu = chitietnguyenlieu.idnguyenlieu
-                        JOIN monan ON chitietnguyenlieu.id_monan = monan.id_monan
-                     " ;
-            $result = $con->query($query);
-            if ($result) {
-                $row = $result->fetch_assoc();
-                $p->dongKetNoi($con);
-                return $row;
-            } else {
-                // Xử lý lỗi truy vấn
-                echo "Lỗi truy vấn: " . $con->error;
-            }
-        } else {
-            return false;
-        }
-    }
-*/
     function SelectAllMonanbyLoai($cate)
     {
         $p = new KetNoiDB();
         $con;
 
         if ($p->moKetNoi($con)) {
-            $query = "SELECT * FROM monan WHERE idloaithucdon =" . $cate;
+            $query = "SELECT *
+            FROM thucdon
+            JOIN chitietthucdon ON thucdon.idthucdon = chitietthucdon.idthucdon
+            JOIN monan ON chitietthucdon.id_monan = monan.id_monan
+            WHERE monan.id_loaimonan = $cate" ;
             $result = $con->query($query);
 
             if ($result) {
@@ -117,13 +95,14 @@ class modelMonan
         }
     }
 
-    function SelectAllMonanbyMenuAndCate($menu, $cate)
+
+    function selectAllMonAnThucdonbyDate($date)
     {
         $p = new KetNoiDB();
         $con;
-
         if ($p->moKetNoi($con)) {
-            $query = "SELECT * FROM monan WHERE idthucdon = " . $menu . " AND idloaithucdon = " . $cate;
+            $query = "SELECT * FROM thucdon JOIN chitietthucdon ON thucdon.idthucdon = chitietthucdon.idthucdon 
+            JOIN monan ON chitietthucdon.id_monan = monan.id_monan WHERE ngaytao = '$date'";
             $result = $con->query($query);
 
             if ($result) {
@@ -138,13 +117,113 @@ class modelMonan
         }
     }
 
-    function SelectAllMonanbyThucDon($menu)
+    function selectAllMonAnLoaiThucdon($cm)
+    {
+        $p = new KetNoiDB();
+        $con;
+        if ($p->moKetNoi($con)) {
+            $query = "SELECT *
+            FROM loai_thucdon
+            JOIN chitietthucdon ON loai_thucdon.idloaithucdon = chitietthucdon.idloaithucdon
+            JOIN monan ON chitietthucdon.id_monan = monan.id_monan
+            WHERE loai_thucdon.idloaithucdon = '$cm' ";
+            $result = $con->query($query);
+
+            if ($result) {
+                $p->dongKetNoi($con);
+                return $result;
+            } else {
+                // Xử lý lỗi truy vấn
+                echo "Lỗi truy vấn: " . $con->error;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function selectAllMonAnThucdon()
     {
         $p = new KetNoiDB();
         $con;
 
         if ($p->moKetNoi($con)) {
-            $query = "SELECT * FROM monan WHERE idthucdon =" . $menu;
+            $query = "SELECT * FROM thucdon JOIN chitietthucdon ON thucdon.idthucdon = chitietthucdon.idthucdon 
+            JOIN monan ON chitietthucdon.id_monan = monan.id_monan" ;
+            $result = $con->query($query);
+
+            if ($result) {
+                $p->dongKetNoi($con);
+                return $result;
+            } else {
+                // Xử lý lỗi truy vấn
+                echo "Lỗi truy vấn: " . $con->error;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function SelectAllLoaiThucDon()
+    {
+        $p = new KetNoiDB();
+        $con;
+    
+        if ($p->moKetNoi($con)) {
+            $query = "SELECT * FROM loai_thucdon";
+            $result = $con->query($query);
+    
+            if ($result) {
+                $data = array();
+    
+                while ($row = $result->fetch_assoc()) {
+                    $data[] = $row;
+                }
+    
+                $p->dongKetNoi($con);
+                return $data;
+            } else {
+                // Xử lý lỗi truy vấn
+                echo "Lỗi truy vấn: " . $con->error;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function SelectAllLoaiMonAn()
+    {
+        $p = new KetNoiDB();
+        $con;
+    
+        if ($p->moKetNoi($con)) {
+            $query = "SELECT * FROM loaimonan";
+            $result = $con->query($query);
+    
+            if ($result) {
+                $data = array();
+    
+                while ($row = $result->fetch_assoc()) {
+                    $data[] = $row;
+                }
+    
+                $p->dongKetNoi($con);
+                return $data;
+            } else {
+                // Xử lý lỗi truy vấn
+                echo "Lỗi truy vấn: " . $con->error;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+
+    function selectSearch($search){
+        $p = new KetNoiDB();
+        $con;
+        
+        if ($p->moKetNoi($con)) {
+            $query = "SELECT * FROM monan where tenMon LIKE '%$search%' OR gia like '%$search%' OR Mota like '%$search%' ORDER BY gia ASC";
             $result = $con->query($query);
 
             if ($result) {

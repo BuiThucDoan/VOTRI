@@ -59,8 +59,8 @@
     </style>
 </head>
 <body>
-
-<div class="container mt-5">
+<section style="padding: 200px 0 100px; background-color: black;">
+<div class="container mt-5 ">
     <div class="row">
         <div class="col-md-8">
             <div class="chitiet">
@@ -109,13 +109,26 @@
                     <p><?php echo $monan['monan']['mota']; ?></p>
                 </div>
                 <div class="tab-pane fade" id="danhGia">
-                    <!-- Nội dung đánh giá ở đây -->
+                <div class="product__details__text">
+                            <h3><?php echo  $monan['monan']['tenmonan'] ?></h3>
+                            <div class="product__details__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <span>(<?php if (!empty($phanhoi)) {
+                                            echo count($phanhoi);
+                                        } else {
+                                            echo 0;
+                                        } ?> nhận xét)</span>
+                            </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+</section>
 
 <section class="widget_section" style="background-color: #222227;padding: 100px 0;">
         <div class="container">

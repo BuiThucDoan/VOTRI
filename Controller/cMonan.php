@@ -16,14 +16,13 @@ class controlMonan
         $tbl = $p->Showchitiet($id);
         return $tbl;
     }
-/*
-    function getnguyenlieu()
+    function getAllMonAnThucdon()
     {
         $p = new modelMonan();
-        $tbl = $p->Selectnguyenlieu();
+        $tbl = $p->selectAllMonAnThucdon();
         return $tbl;
     }
-*/
+
     function getAllMonanbyLoai($cate)
     {
         $p = new modelMonan();
@@ -31,17 +30,37 @@ class controlMonan
         return $tbl;
     }
 
-    function getAllMonanbyThucdon($menu)
+    function getAllMonAnThucdonbyDate($date)
     {
         $p = new modelMonan();
-        $tbl = $p->SelectAllMonanbyThucDon($menu);
+        $tbl = $p->selectAllMonAnThucdonbyDate($date);
         return $tbl;
     }
 
-    function getAllMonanbyMenuAndCate($menu, $cate)
+    function getAllLoaiThucdon()
     {
         $p = new modelMonan();
-        $tbl = $p->SelectAllMonanbyMenuAndCate($menu, $cate);
+        $tbl = $p->selectAllLoaiThucdon();
+        return $tbl;
+    }
+
+    function getAllMonAnLoaiThucdon($cm)
+    {
+        $p = new modelMonan();
+        $tbl = $p->selectAllMonAnLoaiThucdon($cm);
+        return $tbl;
+    }
+
+    function getAllLoaiMonAn()
+    {
+        $p = new modelMonan();
+        $tbl = $p->SelectAllLoaiMonAn();
+        return $tbl;
+    }
+    function getSearch($search)
+    {
+        $p = new modelMonan();
+        $tbl = $p->selectSearch($search);
         return $tbl;
     }
 }
