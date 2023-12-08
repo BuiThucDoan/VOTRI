@@ -1,17 +1,26 @@
- <?php
-    include_once("Controller/cMonan.php");
+<?php
+include_once("Controller/cMonan.php");
 
-  	
-	$p = new  controlMonan();
-  
-	if (isset($_GET['id'])) {
+
+$p = new controlMonan();
+
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $monan = $p->getShowchitiet($id);
-   
+
+    if (!$monan) {
+        echo "Không có món ăn nào được tìm thấy với ID này.";
+        exit; // Stop execution if no menu item is found
+    }
 } else {
     echo "Không có ID món ăn được cung cấp.";
+    exit; // Stop execution if no ID is provided
 }
+
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +68,7 @@
     </style>
 </head>
 <body>
-<section style="padding: 200px 0 100px; background-color: black;">
+<section style="padding: 100px 0 100px; background-color: black;">
 <div class="container mt-5 ">
     <div class="row">
         <div class="col-md-8">
@@ -88,7 +97,8 @@
     }
     ?>
 
-    <div class="order"><a href="#" class="btn btn-primary">Đặt món</a></div>
+        <a href="index.php?mod=cart&act=Add&id_monan=<?php echo $monan['monan']['id_monan']; ?>&date=<?php echo $_GET['date'] ?>" class="btn btn-danger">Đặt món</a>
+ 
 </div>
 
 

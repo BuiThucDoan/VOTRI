@@ -11,6 +11,6 @@
     include 'Includes/functions/functions.php'; 
     include 'Includes/templates/adminHeader.php';
     include 'Includes/templates/adminNavbar.php';
-	include 'View/vAdmin.php';
+	include 'View/Admin/vAdmin.php';
     include 'Includes/templates/adminFooter.php';
 ?>

@@ -1,67 +1,113 @@
 <?php
-	session_start();
-	ob_start();
-	
+session_start();
+ob_start();
 
-
-	if (isset($_GET['mod'])) {
-	  if ($_GET['mod'] == 'login') {
-		include_once('View/vlogin.php');
-
-	  } elseif($_GET['mod'] == 'menus' ){
-
+if (isset($_GET['mod'])) {
+    switch ($_GET['mod']) {
+        case 'login':
+            include_once('View/vlogin.php');
+            break;
+        case 'logout':
+            include_once('View/vlogout.php');
+            break;
+        case 'menus':
             include_once('View/vMonan.php');
-	 
-		
-	  }elseif ($_GET['mod'] == 'addcart'){
-		if(isset($_POST['addtocart'])&&($_POST['addtocart'])){
-			$id_monan = $_POST['id_monan'];
-			$hinhanh = $_POST['hinhanh'];
-			$tenmonan = $_POST['tenmonan'];
-			$gia = $_POST['gia'];
-
-		
-			// Kiểm tra xem $_SESSION['giohang'] đã tồn tại chưa
-			if (!isset($_SESSION['giohang'])) {
-				$_SESSION['giohang'] = array(); // Nếu chưa tồn tại, tạo mới
+            break;
+        case 'cart':
+            if (!isset($_GET['act'])) {
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/Cart/vCart.php');
+                include_once("Includes/templates/footer.php");
+            }elseif($_GET['act'] == 'Add'){
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/cart/vAddcart.php');
+                include_once("Includes/templates/footer.php");
+            }elseif($_GET['act'] == 'Update'){
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/Cart/vUpdatecart.php');
+                include_once("Includes/templates/footer.php");
 			}
-		
-			$item = array($id_monan, $hinhanh, $tenmonan, $gia);
-		
-			// Thêm vào giỏ hàng
-			$_SESSION['giohang'][]=$item;
-		}
-		
-	
-		include_once('View/vCart.php');
-
-	
-	  }
-	  elseif($_GET['mod'] == 'introduce'){
-		include_once('gioithieu.php');
-	  }elseif($_GET['mod'] == 'pay'){
-		include_once('thanhtoan.php');
-
-	  }elseif ($_GET['mod'] == 'chitiet') {
-        if (isset($_GET['id'])) {
-			include 'Includes/functions/functions.php';
-			include "Includes/templates/header.php";
-			include "Includes/templates/navbar.php";
-			
-			include_once('View/vChitietmonan.php');
-			include_once ("Includes/templates/footer.php");
-            
-        } else {
-            echo "Không có ID món ăn được cung cấp.";
-        }
+            elseif($_GET['act'] == 'DeleteDuplicate'){
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/Cart/vDeleteDuplicate.php');
+                include_once("Includes/templates/footer.php");
+			}
+            elseif($_GET['act'] == 'DeleteMonan'){
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/Cart/vDeleteMonan.php');
+                include_once("Includes/templates/footer.php");
+			}
+            elseif($_GET['act'] == 'DeleteGioHang'){
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/Cart/vDeleteGioHang.php');
+                include_once("Includes/templates/footer.php");
+			}
+            break;  
+        case 'Order':
+            if (!isset($_GET['act'])) {
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/Cart/vCart.php');
+                include_once("Includes/templates/footer.php");
+            }elseif($_GET['act'] == 'OrderDate'){
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/PhieuDat/vAddChitietphieu.php');
+                include_once("Includes/templates/footer.php");
+            }elseif($_GET['act'] == 'AddPhieu'){
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/PhieuDat/vAddPhieudat.php');
+                include_once("Includes/templates/footer.php");
+			}
+            break;    
+        case 'introduce':
+            include_once('gioithieu.php');
+            break;
+        case 'pay':
+            include_once('thanhtoan.php');
+            break;
+        case 'chitiet':
+            if (isset($_GET['id'])) {
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/vChitietmonan.php');
+                include_once("Includes/templates/footer.php");
+            } else {
+                echo "Không có ID món ăn được cung cấp.";
+            }
+            break;
+        default:
+            include "connect.php";
+            include 'Includes/functions/functions.php';
+            include "Includes/templates/header.php";
+            include "Includes/templates/navbar.php";
+            include_once("View/vindex.php");
+            include_once("Includes/templates/footer.php");
+            break;
     }
-	}else {
+} else {
     include "connect.php";
     include 'Includes/functions/functions.php';
     include "Includes/templates/header.php";
     include "Includes/templates/navbar.php";
-	include_once ("View/vindex.php");
-	include_once ("Includes/templates/footer.php");
+    include_once("View/vindex.php");
+    include_once("Includes/templates/footer.php");
 }
 ?>
-

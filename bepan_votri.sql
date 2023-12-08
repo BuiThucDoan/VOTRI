@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 01, 2023 lúc 08:07 AM
+-- Thời gian đã tạo: Th12 08, 2023 lúc 02:33 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -24,11 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `chitietgiohang`
+--
+
+CREATE TABLE `chitietgiohang` (
+  `id_monan` int(2) NOT NULL,
+  `ngaydat` datetime NOT NULL,
+  `ngaylenmon` datetime NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `idtaikhoan` int(2) NOT NULL,
+  `idgiohang` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `chitietnguyenlieu`
 --
 
 CREATE TABLE `chitietnguyenlieu` (
-  `idchitietngl` int(2) NOT NULL,
   `idnguyenlieu` int(2) NOT NULL,
   `id_monan` int(2) NOT NULL,
   `soluongsudung` int(10) NOT NULL,
@@ -39,170 +53,195 @@ CREATE TABLE `chitietnguyenlieu` (
 -- Đang đổ dữ liệu cho bảng `chitietnguyenlieu`
 --
 
-INSERT INTO `chitietnguyenlieu` (`idchitietngl`, `idnguyenlieu`, `id_monan`, `soluongsudung`, `donvitinh`) VALUES
-(1, 2, 1, 200, 'gram'),
-(2, 3, 1, 2, 'quả'),
-(3, 4, 1, 100, 'gram'),
-(4, 27, 1, 1, 'quả'),
-(5, 5, 1, 100, 'gram'),
-(6, 6, 1, 100, 'gram'),
-(7, 9, 1, 10, 'gram'),
-(8, 7, 2, 250, 'gram'),
-(9, 8, 2, 200, 'gram'),
-(10, 29, 2, 100, 'gram'),
-(11, 1, 3, 250, 'gram'),
-(12, 10, 3, 200, 'gram'),
-(13, 11, 4, 1, 'trái'),
-(14, 12, 4, 200, 'gram'),
-(15, 13, 5, 200, 'gram'),
-(16, 14, 5, 200, 'gram'),
-(17, 14, 6, 200, 'gram'),
-(18, 15, 6, 200, 'gram'),
-(19, 16, 7, 200, 'gram'),
-(20, 17, 7, 200, 'gram'),
-(21, 17, 8, 200, 'gram'),
-(22, 18, 8, 100, 'gram'),
-(23, 46, 8, 150, 'gram'),
-(24, 20, 9, 300, 'gram'),
-(25, 21, 9, 3, 'tép'),
-(26, 22, 10, 300, 'gram'),
-(27, 23, 10, 2, 'quả'),
-(28, 24, 11, 200, 'gram'),
-(29, 25, 11, 200, 'gram'),
-(30, 11, 12, 2, 'Trái'),
-(31, 23, 12, 2, 'Quả'),
-(32, 26, 13, 300, 'gram'),
-(33, 27, 13, 1, 'Quả'),
-(34, 45, 13, 1, 'Trái'),
-(35, 28, 14, 200, 'gram'),
-(36, 29, 14, 200, 'gram'),
-(37, 2, 15, 500, 'gram'),
-(38, 45, 15, 2, 'Quả'),
-(39, 36, 15, 2, 'muỗng'),
-(40, 12, 16, 250, 'gram'),
-(41, 28, 16, 2, 'Quả'),
-(42, 36, 16, 1, 'Muỗng canh '),
-(43, 1, 17, 500, 'gram'),
-(44, 30, 17, 200, 'gram'),
-(45, 45, 17, 2, 'Quả'),
-(46, 12, 18, 500, 'gram'),
-(47, 30, 18, 200, 'gram'),
-(48, 45, 18, 2, 'Quả'),
-(49, 31, 19, 500, 'gram'),
-(50, 32, 19, 300, 'gram'),
-(51, 45, 19, 2, 'Quả'),
-(52, 33, 20, 500, 'gram'),
-(53, 45, 20, 2, 'Quả'),
-(54, 36, 20, 2, 'Muỗng canh'),
-(55, 34, 21, 500, 'gram'),
-(56, 35, 21, 1, 'Củ'),
-(57, 36, 21, 2, 'Muỗng canh'),
-(58, 1, 22, 500, 'gram'),
-(59, 36, 22, 1, 'Muỗng canh'),
-(60, 23, 23, 2, 'Quả'),
-(61, 17, 24, 500, 'gram'),
-(62, 37, 24, 1, 'Củ'),
-(63, 45, 24, 2, 'Quả'),
-(64, 38, 25, 500, 'gram'),
-(65, 36, 25, 1, 'Muỗng canh'),
-(66, 45, 25, 1, 'Muỗng cà phê'),
-(67, 39, 26, 2, 'Miếng'),
-(68, 23, 26, 1, 'Quả'),
-(69, 47, 26, 1, 'Muỗng canh'),
-(70, 48, 27, 200, 'gram'),
-(71, 47, 27, 1, 'Muỗng canh'),
-(72, 23, 27, 1, 'Quả'),
-(73, 1, 28, 200, 'gram'),
-(74, 23, 28, 1, 'quả'),
-(75, 47, 28, 1, 'Muỗng canh'),
-(76, 12, 29, 250, 'gram'),
-(77, 41, 29, 1, 'Muỗng canh'),
-(78, 44, 29, 2, 'Quả'),
-(79, 45, 29, 1, 'Quả'),
-(80, 1, 30, 1, 'Kg'),
-(81, 35, 30, 1, 'Củ'),
-(82, 1, 31, 1, 'Kg'),
-(83, 35, 31, 1, 'Củ'),
-(84, 49, 31, 1, 'Kg'),
-(85, 37, 32, 250, 'gram'),
-(86, 43, 32, 500, 'gram'),
-(87, 44, 32, 2, 'Quả'),
-(88, 12, 33, 100, 'gram'),
-(89, 50, 33, 50, 'gram'),
-(90, 51, 33, 1, 'ổ'),
-(91, 53, 33, 20, 'gram'),
-(92, 5, 34, 100, 'gram'),
-(93, 52, 34, 200, 'gram'),
-(94, 9, 34, 10, 'gram'),
-(95, 12, 34, 150, 'gram'),
-(96, 36, 34, 3, 'muỗng'),
-(97, 54, 35, 250, 'gram'),
-(98, 17, 35, 200, 'gram'),
-(99, 50, 35, 50, 'gram'),
-(100, 55, 35, 30, 'gram'),
-(101, 9, 36, 15, 'gram'),
-(102, 16, 36, 20, 'gram'),
-(103, 18, 36, 15, 'gram'),
-(104, 25, 36, 150, 'gram'),
-(105, 52, 36, 250, 'gram'),
-(106, 56, 37, 250, 'gram'),
-(107, 5, 37, 50, 'gram'),
-(108, 9, 37, 20, 'gram'),
-(109, 18, 37, 15, 'gram'),
-(110, 25, 37, 200, 'gram'),
-(111, 5, 38, 100, 'gram'),
-(112, 7, 38, 20, 'gram'),
-(113, 12, 38, 150, 'gram'),
-(114, 16, 38, 50, 'gram'),
-(115, 52, 38, 200, 'gram'),
-(116, 5, 39, 100, 'gram'),
-(117, 12, 39, 100, 'gram'),
-(118, 14, 39, 100, 'gram'),
-(119, 16, 39, 20, 'gram'),
-(120, 57, 39, 150, 'gram'),
-(121, 12, 40, 150, 'gram'),
-(122, 16, 40, 100, 'gram'),
-(123, 30, 40, 2, 'quả'),
-(124, 58, 40, 100, 'gram'),
-(125, 9, 41, 30, 'gram'),
-(126, 16, 41, 60, 'gram'),
-(127, 18, 41, 10, 'gram'),
-(128, 25, 41, 150, 'gram'),
-(129, 51, 41, 1, 'ổ'),
-(130, 5, 42, 70, 'gram'),
-(131, 12, 42, 100, 'gram'),
-(132, 16, 42, 70, 'gram'),
-(133, 52, 42, 150, 'gram'),
-(134, 59, 42, 100, 'gram'),
-(135, 5, 43, 70, 'gram'),
-(136, 12, 43, 180, 'gram'),
-(137, 16, 43, 40, 'gram'),
-(138, 9, 43, 30, 'gram'),
-(139, 60, 43, 200, 'gram'),
-(140, 2, 44, 100, 'gram'),
-(141, 5, 44, 100, 'gram'),
-(142, 12, 44, 100, 'gram'),
-(143, 52, 44, 150, 'gram'),
-(144, 61, 44, 50, 'gram'),
-(145, 3, 45, 200, 'gram'),
-(146, 9, 45, 50, 'gram'),
-(147, 23, 45, 3, 'quả'),
-(148, 3, 46, 50, 'gram'),
-(149, 4, 46, 30, 'gram'),
-(150, 5, 46, 20, 'gram'),
-(151, 6, 46, 10, 'gram'),
-(152, 9, 46, 10, 'gram'),
-(153, 62, 46, 150, 'gram'),
-(154, 15, 47, 150, 'gram'),
-(155, 16, 47, 50, 'gram'),
-(156, 55, 47, 50, 'gram'),
-(157, 65, 48, 150, 'gram'),
-(158, 66, 48, 100, 'gram'),
-(159, 9, 49, 50, 'gram'),
-(160, 67, 49, 150, 'gram'),
-(161, 68, 49, 150, 'gram'),
-(162, 69, 50, 150, 'gram'),
-(163, 12, 50, 100, 'gram');
+INSERT INTO `chitietnguyenlieu` (`idnguyenlieu`, `id_monan`, `soluongsudung`, `donvitinh`) VALUES
+(2, 1, 200, 'gram'),
+(3, 1, 2, 'quả'),
+(4, 1, 100, 'gram'),
+(27, 1, 1, 'quả'),
+(5, 1, 100, 'gram'),
+(6, 1, 100, 'gram'),
+(9, 1, 10, 'gram'),
+(7, 2, 250, 'gram'),
+(8, 2, 200, 'gram'),
+(29, 2, 100, 'gram'),
+(1, 3, 250, 'gram'),
+(10, 3, 200, 'gram'),
+(11, 4, 1, 'trái'),
+(12, 4, 200, 'gram'),
+(13, 5, 200, 'gram'),
+(14, 5, 200, 'gram'),
+(14, 6, 200, 'gram'),
+(15, 6, 200, 'gram'),
+(16, 7, 200, 'gram'),
+(17, 7, 200, 'gram'),
+(17, 8, 200, 'gram'),
+(18, 8, 100, 'gram'),
+(46, 8, 150, 'gram'),
+(20, 9, 300, 'gram'),
+(21, 9, 3, 'tép'),
+(22, 10, 300, 'gram'),
+(23, 10, 2, 'quả'),
+(24, 11, 200, 'gram'),
+(25, 11, 200, 'gram'),
+(11, 12, 2, 'Trái'),
+(23, 12, 2, 'Quả'),
+(26, 13, 300, 'gram'),
+(27, 13, 1, 'Quả'),
+(45, 13, 1, 'Trái'),
+(28, 14, 200, 'gram'),
+(29, 14, 200, 'gram'),
+(2, 15, 500, 'gram'),
+(45, 15, 2, 'Quả'),
+(36, 15, 2, 'muỗng'),
+(12, 16, 250, 'gram'),
+(28, 16, 2, 'Quả'),
+(36, 16, 1, 'Muỗng canh '),
+(1, 17, 500, 'gram'),
+(30, 17, 200, 'gram'),
+(45, 17, 2, 'Quả'),
+(12, 18, 500, 'gram'),
+(30, 18, 200, 'gram'),
+(45, 18, 2, 'Quả'),
+(31, 19, 500, 'gram'),
+(32, 19, 300, 'gram'),
+(45, 19, 2, 'Quả'),
+(33, 20, 500, 'gram'),
+(45, 20, 2, 'Quả'),
+(36, 20, 2, 'Muỗng canh'),
+(34, 21, 500, 'gram'),
+(35, 21, 1, 'Củ'),
+(36, 21, 2, 'Muỗng canh'),
+(1, 22, 500, 'gram'),
+(36, 22, 1, 'Muỗng canh'),
+(23, 23, 2, 'Quả'),
+(17, 24, 500, 'gram'),
+(37, 24, 1, 'Củ'),
+(45, 24, 2, 'Quả'),
+(38, 25, 500, 'gram'),
+(36, 25, 1, 'Muỗng canh'),
+(45, 25, 1, 'Muỗng cà phê'),
+(39, 26, 2, 'Miếng'),
+(23, 26, 1, 'Quả'),
+(47, 26, 1, 'Muỗng canh'),
+(48, 27, 200, 'gram'),
+(47, 27, 1, 'Muỗng canh'),
+(23, 27, 1, 'Quả'),
+(1, 28, 200, 'gram'),
+(23, 28, 1, 'quả'),
+(47, 28, 1, 'Muỗng canh'),
+(12, 29, 250, 'gram'),
+(41, 29, 1, 'Muỗng canh'),
+(44, 29, 2, 'Quả'),
+(45, 29, 1, 'Quả'),
+(1, 30, 1, 'Kg'),
+(35, 30, 1, 'Củ'),
+(1, 31, 1, 'Kg'),
+(35, 31, 1, 'Củ'),
+(49, 31, 1, 'Kg'),
+(37, 32, 250, 'gram'),
+(43, 32, 500, 'gram'),
+(44, 32, 2, 'Quả'),
+(12, 33, 100, 'gram'),
+(50, 33, 50, 'gram'),
+(51, 33, 1, 'ổ'),
+(53, 33, 20, 'gram'),
+(5, 34, 100, 'gram'),
+(52, 34, 200, 'gram'),
+(9, 34, 10, 'gram'),
+(12, 34, 150, 'gram'),
+(36, 34, 3, 'muỗng'),
+(54, 35, 250, 'gram'),
+(17, 35, 200, 'gram'),
+(50, 35, 50, 'gram'),
+(55, 35, 30, 'gram'),
+(9, 36, 15, 'gram'),
+(16, 36, 20, 'gram'),
+(18, 36, 15, 'gram'),
+(25, 36, 150, 'gram'),
+(52, 36, 250, 'gram'),
+(56, 37, 250, 'gram'),
+(5, 37, 50, 'gram'),
+(9, 37, 20, 'gram'),
+(18, 37, 15, 'gram'),
+(25, 37, 200, 'gram'),
+(5, 38, 100, 'gram'),
+(7, 38, 20, 'gram'),
+(12, 38, 150, 'gram'),
+(16, 38, 50, 'gram'),
+(52, 38, 200, 'gram'),
+(5, 39, 100, 'gram'),
+(12, 39, 100, 'gram'),
+(14, 39, 100, 'gram'),
+(16, 39, 20, 'gram'),
+(57, 39, 150, 'gram'),
+(12, 40, 150, 'gram'),
+(16, 40, 100, 'gram'),
+(30, 40, 2, 'quả'),
+(58, 40, 100, 'gram'),
+(9, 41, 30, 'gram'),
+(16, 41, 60, 'gram'),
+(18, 41, 10, 'gram'),
+(25, 41, 150, 'gram'),
+(51, 41, 1, 'ổ'),
+(5, 42, 70, 'gram'),
+(12, 42, 100, 'gram'),
+(16, 42, 70, 'gram'),
+(52, 42, 150, 'gram'),
+(59, 42, 100, 'gram'),
+(5, 43, 70, 'gram'),
+(12, 43, 180, 'gram'),
+(16, 43, 40, 'gram'),
+(9, 43, 30, 'gram'),
+(60, 43, 200, 'gram'),
+(2, 44, 100, 'gram'),
+(5, 44, 100, 'gram'),
+(12, 44, 100, 'gram'),
+(52, 44, 150, 'gram'),
+(61, 44, 50, 'gram'),
+(3, 45, 200, 'gram'),
+(9, 45, 50, 'gram'),
+(23, 45, 3, 'quả'),
+(3, 46, 50, 'gram'),
+(4, 46, 30, 'gram'),
+(5, 46, 20, 'gram'),
+(6, 46, 10, 'gram'),
+(9, 46, 10, 'gram'),
+(62, 46, 150, 'gram'),
+(15, 47, 150, 'gram'),
+(16, 47, 50, 'gram'),
+(55, 47, 50, 'gram'),
+(65, 48, 150, 'gram'),
+(66, 48, 100, 'gram'),
+(9, 49, 50, 'gram'),
+(67, 49, 150, 'gram'),
+(68, 49, 150, 'gram'),
+(69, 50, 150, 'gram'),
+(12, 50, 100, 'gram');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietphieu`
+--
+
+CREATE TABLE `chitietphieu` (
+  `idPhieu` int(11) NOT NULL,
+  `id_monan` int(11) NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `ngaylenmon` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietphieu`
+--
+
+INSERT INTO `chitietphieu` (`idPhieu`, `id_monan`, `soluong`, `ngaylenmon`) VALUES
+(3130188, 8, 1, '2023-12-08 00:00:00'),
+(3790059, 13, 2, '2023-12-08 00:00:00'),
+(3790059, 3, 1, '2023-12-08 00:00:00'),
+(3942741, 3, 1, '2023-12-08 00:00:00'),
+(3942741, 8, 1, '2023-12-08 00:00:00'),
+(3761277, 17, 2, '2023-12-09 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -211,23 +250,28 @@ INSERT INTO `chitietnguyenlieu` (`idchitietngl`, `idnguyenlieu`, `id_monan`, `so
 --
 
 CREATE TABLE `chitietthucdon` (
+  `ichitietthucdon` int(2) NOT NULL,
   `idthucdon` int(2) NOT NULL,
-  `id_monan` int(2) NOT NULL,
-  `idloaithucdon` int(2) NOT NULL
+  `id_monan` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `chitietthucdon`
 --
 
-INSERT INTO `chitietthucdon` (`idthucdon`, `id_monan`, `idloaithucdon`) VALUES
-(1, 22, 1),
-(1, 3, 2),
-(2, 21, 3),
-(2, 10, 4),
-(3, 5, 5),
-(1, 17, 4),
-(1, 18, 5);
+INSERT INTO `chitietthucdon` (`ichitietthucdon`, `idthucdon`, `id_monan`) VALUES
+(1, 1, 1),
+(2, 1, 6),
+(3, 1, 11),
+(4, 2, 2),
+(5, 2, 7),
+(6, 2, 12),
+(7, 3, 3),
+(8, 3, 8),
+(9, 3, 13),
+(10, 4, 4),
+(11, 4, 9),
+(12, 4, 17);
 
 -- --------------------------------------------------------
 
@@ -237,15 +281,73 @@ INSERT INTO `chitietthucdon` (`idthucdon`, `id_monan`, `idloaithucdon`) VALUES
 
 CREATE TABLE `giohang` (
   `idgiohang` int(2) NOT NULL,
-  `ngaydatmon` datetime NOT NULL
+  `ngaydat` datetime NOT NULL,
+  `tongtien` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `giohang`
 --
 
-INSERT INTO `giohang` (`idgiohang`, `ngaydatmon`) VALUES
-(1, '2023-11-29 08:39:49');
+INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
+(328763, '2023-12-07 22:51:13', 0),
+(336551, '2023-12-07 23:11:43', 0),
+(338708, '2023-12-08 00:51:23', 0),
+(354558, '2023-12-07 23:06:21', 0),
+(355814, '2023-12-07 10:26:34', 0),
+(359706, '2023-12-07 10:14:50', 0),
+(371332, '2023-12-07 22:54:57', 0),
+(385158, '2023-12-07 22:58:46', 0),
+(390905, '2023-12-06 23:14:10', 0),
+(397339, '2023-12-07 10:21:33', 0),
+(3120502, '2023-12-07 23:21:46', 0),
+(3127435, '2023-12-07 10:28:49', 0),
+(3131152, '2023-12-07 23:09:50', 0),
+(3135875, '2023-12-07 23:08:25', 0),
+(3179965, '2023-12-07 23:10:27', 0),
+(3196967, '2023-12-07 10:34:09', 0),
+(3222057, '2023-12-07 10:45:40', 0),
+(3229311, '2023-12-07 22:48:48', 0),
+(3244975, '2023-12-07 10:33:12', 0),
+(3264812, '2023-12-07 22:52:07', 0),
+(3267224, '2023-12-07 23:20:29', 0),
+(3290470, '2023-12-07 10:47:06', 0),
+(3305704, '2023-12-08 00:45:06', 0),
+(3310411, '2023-12-07 23:33:04', 0),
+(3312210, '2023-12-07 10:18:13', 0),
+(3315222, '2023-12-07 11:08:44', 0),
+(3328573, '2023-12-07 10:19:13', 0),
+(3362707, '2023-12-07 23:13:14', 0),
+(3389769, '2023-12-06 21:35:13', 0),
+(3431203, '2023-12-07 23:43:44', 0),
+(3433513, '2023-12-06 23:01:39', 0),
+(3514118, '2023-12-07 10:47:42', 0),
+(3547795, '2023-12-07 23:11:17', 0),
+(3620117, '2023-12-06 23:15:12', 0),
+(3655015, '2023-12-07 23:41:27', 0),
+(3656668, '2023-12-07 22:53:52', 0),
+(3657623, '2023-12-07 23:06:05', 0),
+(3687171, '2023-12-07 10:45:19', 0),
+(3709054, '2023-12-07 11:09:07', 0),
+(3740617, '2023-12-07 23:36:26', 0),
+(3753170, '2023-12-07 23:40:05', 0),
+(3781061, '2023-12-07 11:24:56', 0),
+(3782188, '2023-12-07 23:15:55', 0),
+(3787646, '2023-12-07 22:51:56', 0),
+(3800194, '2023-12-06 23:11:10', 0),
+(3811561, '2023-12-07 22:45:33', 0),
+(3815748, '2023-12-07 11:26:54', 0),
+(3840280, '2023-12-07 22:58:13', 0),
+(3853969, '2023-12-06 22:59:17', 0),
+(3866374, '2023-12-07 23:18:20', 0),
+(3876428, '2023-12-08 00:50:48', 0),
+(3923684, '2023-12-07 23:07:47', 0),
+(3931301, '2023-12-08 08:20:11', 0),
+(3932052, '2023-12-08 00:50:33', 0),
+(3934283, '2023-12-07 23:02:30', 0),
+(3943421, '2023-12-08 00:49:24', 0),
+(3954707, '2023-12-07 10:16:00', 0),
+(3986736, '2023-12-07 23:14:30', 0);
 
 -- --------------------------------------------------------
 
@@ -306,7 +408,7 @@ CREATE TABLE `monan` (
   `tenmonan` varchar(50) NOT NULL,
   `mota` varchar(300) NOT NULL,
   `hinhanh` varchar(150) NOT NULL,
-  `gia` double NOT NULL,
+  `gia` int(11) NOT NULL,
   `id_loaimonan` int(2) NOT NULL,
   `trangthai` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -471,23 +573,25 @@ CREATE TABLE `phanhoi` (
 --
 
 CREATE TABLE `phieudatmon` (
-  `idphieu` int(2) NOT NULL,
-  `id_monan` int(2) NOT NULL,
+  `idPhieu` int(11) NOT NULL,
+  `idtaikhoan` int(11) NOT NULL,
+  `tongsoluong` int(11) NOT NULL,
+  `tongtien` int(11) DEFAULT NULL,
+  `ngaylenmon` datetime DEFAULT NULL,
   `ngaydat` datetime NOT NULL,
-  `soluong` int(11) NOT NULL,
-  `gia` double NOT NULL,
-  `tongtien` double NOT NULL,
-  `trangthai` int(11) NOT NULL,
-  `idtaikhoan` int(2) NOT NULL,
-  `idgiohang` int(2) NOT NULL
+  `trangthai` int(11) NOT NULL DEFAULT 0,
+  `duyetdon` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phieudatmon`
 --
 
-INSERT INTO `phieudatmon` (`idphieu`, `id_monan`, `ngaydat`, `soluong`, `gia`, `tongtien`, `trangthai`, `idtaikhoan`, `idgiohang`) VALUES
-(1, 6, '2023-11-29 08:39:02', 3, 50000, 1500000, 1, 3, 1);
+INSERT INTO `phieudatmon` (`idPhieu`, `idtaikhoan`, `tongsoluong`, `tongtien`, `ngaylenmon`, `ngaydat`, `trangthai`, `duyetdon`) VALUES
+(3130188, 3, 1, 45000, '2023-12-08 00:00:00', '2023-12-07 18:50:37', 0, 0),
+(3761277, 3, 2, 60000, '2023-12-09 00:00:00', '2023-12-08 02:22:55', 0, 0),
+(3790059, 3, 3, 90000, '2023-12-08 00:00:00', '2023-12-07 18:50:56', 0, 0),
+(3942741, 3, 2, 65000, '2023-12-08 00:00:00', '2023-12-07 18:51:31', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -550,9 +654,10 @@ CREATE TABLE `thucdon` (
 --
 
 INSERT INTO `thucdon` (`idthucdon`, `tenthucdon`, `ngaytao`) VALUES
-(1, 'Thực đơn buổi Sáng ', '2023-12-01'),
-(2, 'Thực đơn buổi Trưa ', '2023-12-02'),
-(3, 'Thực đơn buổi Chiều ', '2023-11-29');
+(1, 'Thực đơn thứ tư', '2023-12-06'),
+(2, 'Thực đơn thứ năm', '2023-12-07'),
+(3, 'Thực đơn thứ sáu', '2023-12-08'),
+(4, 'Thực đơn thứ bảy', '2023-12-09');
 
 -- --------------------------------------------------------
 
@@ -581,19 +686,33 @@ INSERT INTO `vaitro` (`idvaitro`, `tenvaitro`, `ngaytao`) VALUES
 --
 
 --
+-- Chỉ mục cho bảng `chitietgiohang`
+--
+ALTER TABLE `chitietgiohang`
+  ADD KEY `idtaikhoan` (`idtaikhoan`),
+  ADD KEY `idgiohang` (`idgiohang`),
+  ADD KEY `id_monan` (`id_monan`);
+
+--
 -- Chỉ mục cho bảng `chitietnguyenlieu`
 --
 ALTER TABLE `chitietnguyenlieu`
-  ADD PRIMARY KEY (`idchitietngl`),
-  ADD KEY `idnguyenlieu` (`idnguyenlieu`,`id_monan`);
+  ADD KEY `idnguyenlieu` (`idnguyenlieu`,`id_monan`),
+  ADD KEY `id_monan` (`id_monan`);
+
+--
+-- Chỉ mục cho bảng `chitietphieu`
+--
+ALTER TABLE `chitietphieu`
+  ADD KEY `idPhieu` (`idPhieu`,`id_monan`);
 
 --
 -- Chỉ mục cho bảng `chitietthucdon`
 --
 ALTER TABLE `chitietthucdon`
+  ADD PRIMARY KEY (`ichitietthucdon`),
   ADD KEY `id_monan` (`id_monan`),
-  ADD KEY `idthucdon` (`idthucdon`),
-  ADD KEY `idloaithucdon` (`idloaithucdon`);
+  ADD KEY `idthucdon` (`idthucdon`);
 
 --
 -- Chỉ mục cho bảng `giohang`
@@ -637,10 +756,8 @@ ALTER TABLE `phanhoi`
 -- Chỉ mục cho bảng `phieudatmon`
 --
 ALTER TABLE `phieudatmon`
-  ADD PRIMARY KEY (`idphieu`),
-  ADD KEY `idtaikhoan` (`idtaikhoan`),
-  ADD KEY `idgiohang` (`idgiohang`),
-  ADD KEY `id_monan` (`id_monan`);
+  ADD PRIMARY KEY (`idPhieu`),
+  ADD KEY `idtaikhoan` (`idtaikhoan`);
 
 --
 -- Chỉ mục cho bảng `taikhoan`
@@ -673,12 +790,6 @@ ALTER TABLE `vaitro`
 --
 
 --
--- AUTO_INCREMENT cho bảng `chitietnguyenlieu`
---
-ALTER TABLE `chitietnguyenlieu`
-  MODIFY `idchitietngl` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
-
---
 -- AUTO_INCREMENT cho bảng `loaimonan`
 --
 ALTER TABLE `loaimonan`
@@ -697,12 +808,6 @@ ALTER TABLE `nguyenlieu`
   MODIFY `idnguyenlieu` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT cho bảng `phieudatmon`
---
-ALTER TABLE `phieudatmon`
-  MODIFY `idphieu` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
@@ -713,10 +818,35 @@ ALTER TABLE `taikhoan`
 --
 
 --
+-- Các ràng buộc cho bảng `chitietgiohang`
+--
+ALTER TABLE `chitietgiohang`
+  ADD CONSTRAINT `chitietgiohang_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`),
+  ADD CONSTRAINT `chitietgiohang_ibfk_2` FOREIGN KEY (`idgiohang`) REFERENCES `giohang` (`idgiohang`);
+
+--
+-- Các ràng buộc cho bảng `chitietnguyenlieu`
+--
+ALTER TABLE `chitietnguyenlieu`
+  ADD CONSTRAINT `chitietnguyenlieu_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`);
+
+--
+-- Các ràng buộc cho bảng `chitietthucdon`
+--
+ALTER TABLE `chitietthucdon`
+  ADD CONSTRAINT `chitietthucdon_ibfk_1` FOREIGN KEY (`idthucdon`) REFERENCES `thucdon` (`idthucdon`);
+
+--
 -- Các ràng buộc cho bảng `monan`
 --
 ALTER TABLE `monan`
   ADD CONSTRAINT `monan_ibfk_1` FOREIGN KEY (`id_loaimonan`) REFERENCES `loaimonan` (`id_loaimonan`);
+
+--
+-- Các ràng buộc cho bảng `taikhoan`
+--
+ALTER TABLE `taikhoan`
+  ADD CONSTRAINT `taikhoan_ibfk_1` FOREIGN KEY (`vaitro`) REFERENCES `vaitro` (`idvaitro`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

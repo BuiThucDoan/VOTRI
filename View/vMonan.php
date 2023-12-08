@@ -25,6 +25,9 @@ elseif (isset($_REQUEST['date'])){
     $dish = $p->getAllMonAnThucdon();
 }
 
+if (isset($_GET['date'])) {
+    $_SESSION['ngaylenmon'] = $_GET['date'];
+}
 ?>
 <style>
     .txt{
@@ -83,7 +86,7 @@ elseif (isset($_REQUEST['date'])){
 </script>
 
 
-<section style="padding: 200px 0 100px; background-color: black;">
+<section style="padding: 100px 0 100px; background-color: #222227;">
   <div class="container">
     <div class="row">
     <div class="col-lg-3 col-md-5">
@@ -115,7 +118,6 @@ elseif (isset($_REQUEST['date'])){
             ?>
 
             <li><a class="text-warning" href="index.php?mod=menus&act=list&date=<?php echo $newDate[$index] ?>">Thứ <?php echo $index + 2 ?>, Ngày <?php echo $menu[$index];  ?></a></li>
-            
             <?php
 
             } ?>
@@ -173,7 +175,7 @@ elseif (isset($_REQUEST['date'])){
                 // If today is Saturday or Sunday, get the date for the next Monday
                 $tomorrow = $today->modify('next Monday')->format('Y-m-d');
             } else {
-                // Otherwise, add one day to the current date  P1D means a period of 1 day.
+                // Otherwise, add one day to the current date, P1D means a period of 1 day.
                 $tomorrow = $today->add(new DateInterval('P1D'))->format('Y-m-d');
             }
 
@@ -207,7 +209,7 @@ elseif (isset($_REQUEST['date'])){
         }
     ?>
         <div class="col-md-3 menu-item">
-            <a href="?mod=chitiet&id=<?php echo $row_tomorrow['id_monan']; ?>" onclick="showDetails(this)">
+            <a href="?mod=chitiet&id=<?php echo $row_tomorrow['id_monan']; ?>&date=<?php echo $_GET['date'] ?>" onclick="showDetails(this)">
                 <div class="thumbnail" style="cursor:pointer">
                     <div class="menu-image">
                         <div class="circular-image">
@@ -216,7 +218,9 @@ elseif (isset($_REQUEST['date'])){
                     </div>
                     <p class="text-white"><b><?php echo $row_tomorrow['tenmonan']; ?></b></p>
                     <p class="text-white"><?php echo number_format($row_tomorrow['gia'], 0, ',', '.'); ?> VND</p>
-                    <a href="index.php?mod=Cart&act=Add&idmonan=<?php echo $row_tomorrow['id_monan']; ?>&date=<?php echo $_GET['date']; ?>" class="btn btn-danger">Đặt món</a>
+                    <a href="index.php?mod=cart&act=Add&id_monan=<?php echo $row_tomorrow['id_monan']; ?>&date=<?php echo $_GET['date'] ?>" class="btn btn-danger">Đặt món</a>
+            
+
                 </div>
             </a>
         </div>
@@ -282,15 +286,7 @@ while ($row = $dish->fetch_assoc()) {
     echo '<div class="col-md-3 menu-item">';
 
     // Check if a date is provided and it's less than or equal to the current date
-    if ($selectedDate <= $today) {
-        // Display information for items that cannot be ordered
-        echo '<div style="position: relative;">';
-        echo '<img src="Design/image/' . $row['hinhanh'] . '" style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid orange;" />';
-        echo '<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: red; font-size: 18px; font-weight: bold;">Không thể đặt món</div>';
-        echo '</div>';
-        echo '<p class="text-white"><b>' . $row['tenmonan'] . '</b></p>';
-        echo '<p class="text-white">' . number_format($row['gia'], 0, ',', '.') . ' VND</p>';
-    } else {
+    if ($selectedDate > $today) {
         // Display information for items that can be ordered
         echo '<a href="?mod=chitiet&id=' . $row['id_monan'] . '" onclick="showDetails(this)">';
         echo '<div class="thumbnail" style="cursor:pointer">';
@@ -308,6 +304,14 @@ while ($row = $dish->fetch_assoc()) {
         echo '<div class="buttondatmon">';
         echo '<a href="index.php?mod=Cart&act=Add&idmonan=' . $row['id_monan'] . '&date=' . $_GET['date'] . '" class="btn btn-danger">Đặt món</a>';
         echo '</div>';
+    } else {
+             // Display information for items that cannot be ordered
+        echo '<div style="position: relative;">';
+        echo '<img src="Design/image/' . $row['hinhanh'] . '" style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid orange;" />';
+        echo '<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: red; font-size: 18px; font-weight: bold;">Không thể đặt món</div>';
+        echo '</div>';
+        echo '<p class="text-white"><b>' . $row['tenmonan'] . '</b></p>';
+        echo '<p class="text-white">' . number_format($row['gia'], 0, ',', '.') . ' VND</p>';
     }
 
     echo '</div>';
@@ -322,15 +326,6 @@ while ($row = $dish->fetch_assoc()) {
 
 echo '</div>';
 ?>
-
-
-
-
-
-
-
-
-
 
     </div>
   </div>

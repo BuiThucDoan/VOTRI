@@ -1,68 +1,109 @@
 <!-- START NAVBAR SECTION -->
 <header id="header" class="header-section" style="height: 100px;">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a href="index.php" class="navbar-brand text-white">
-                <img src="Design/images/Nhom_vo_tri_logos_white.png" alt="Restaurant Logo" style="width: 150px;">
-            </a>
-            <form action="" method="get" class="navbar-form ms-auto">
-                <div class="input-group">
-                    <input type="search" name="search" id="search" class="form-control" placeholder="Tìm kiếm...">
-                    <button type="submit" class="btn btn-primary" id="btn_search">Tìm kiếm</button>
-                </div>
-            </form>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="index.php">Trang chủ</a>
-                    </li>
-                    <?php  
-                        $ngay_hien_tai = date('Y-m-d');
+    <a href="index.php" class="navbar-brand text-white">
+        <img src="Design/images/Nhom_vo_tri_logos_white.png" alt="Restaurant Logo" style="width: 150px;">
+    </a>
+    <form action="index.php" method="get">
+        <input type="hidden" name="mod" value="search">
+        <input type="search" name="search" placeholder="search...">
+        <input type="submit" value="Search" name="btn_search">
+    </form>
 
-                        // Lấy mã số ngày trong tuần (1 là thứ 2, 7 là Chủ Nhật)
-                        $ngay_trong_tuan = date('N', strtotime($ngay_hien_tai));
-                    
-                        if ($ngay_trong_tuan >= 6) {
-                            // Nếu hôm nay là thứ 6, thứ 7 hoặc Chủ Nhật, lấy ngày của thứ 2 tuần tiếp theo
-                            $ngay_ngay_mai = date('Y-m-d', strtotime('next Monday', strtotime($ngay_hien_tai)));
-                        } else {
-                            // Ngược lại, lấy ngày tiếp theo sau 1 ngày
-                            $ngay_ngay_mai = date('Y-m-d', strtotime('+1 day', strtotime($ngay_hien_tai)));
-                        }
-                    ?>
-                    <li class="nav-item">
-                        <a href="index.php?mod=menus&act=list&date=<?php echo $ngay_ngay_mai ?>" class="navbar-link text-white" data-nav-link>Thực đơn</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="?mod=pay">Thanh toán</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="?mod=introduce">Giới thiệu</a>
-                    </li>
-                </ul>
-                
-                <ul class="navbar-nav ms-auto">
-                    <?php if (isset($_SESSION['is_login']['hoten'])): ?>
-                        <li class="nav-item">
-                            <a class="nav-link nav-profile d-flex align-items-center pe-0 text-white" href="index.php?mod=login" data-bs-toggle="dropdown">
-                                <img src="./Design/images/<?php echo $_SESSION['is_login']['hinhanh'] ?>" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">&nbsp;
-                                <span style="font-weight: 700;" class="d-none d-md-block dropdown-toggle ps-2"> <?php echo $_SESSION['is_login']['hoten']; ?> </span>
-                            </a>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="?mod=login" id="login">Đăng nhập</a>
-                        </li>
-                    <?php endif; ?>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">
-                            <img src="./Design/images/cart.png" alt="Giỏ hàng"> Giỏ hàng
-                        </a>
-                    </li>
-                </ul>
-               
-            </div>
-        </nav>
-    </div>
+
+    <!-- Make sure to include Bootstrap CSS and JS -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <ul class="navbar-nav">
+        <?php
+
+
+$ngay_hien_tai = date('Y-m-d');
+
+// Lấy mã số ngày trong tuần (1 là thứ 2, 7 là Chủ Nhật)
+$ngay_trong_tuan = date('N', strtotime($ngay_hien_tai));
+
+if ($ngay_trong_tuan >= 6) {
+  // Nếu hôm nay là  thứ 7 hoặc Chủ Nhật, lấy ngày của thứ 2 tuần tiếp theo
+  $ngay_mai = date('Y-m-d', strtotime('next Monday', strtotime($ngay_hien_tai)));
+} else {
+  // Ngược lại, lấy ngày tiếp theo sau 1 ngày
+  $ngay_mai = date('Y-m-d', strtotime('+1 day', strtotime($ngay_hien_tai)));
+}
+
+?>
+            <li class="navbar-item">
+                <a class="navbar-link text-white" href="index.php">Trang chủ</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+            <li class="navbar-item">
+                <a class="navbar-link text-white" href="?mod=menus&act=list&date=<?php echo $ngay_mai ?>">Thực đơn</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+            <li class="navbar-item">
+                <a class="navbar-link text-white" href="?mod=introduce">Giới thiệu</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+
+            
+            <li class="navbar-item dropdown pe-3 profile-user">
+    <?php if (isset($_SESSION['is_login']['hoten'])): ?>
+        <a class="navbar-link text-white navbar-profile d-flex align-items-center pe-0 profile-main" href="#" role="button" data-bs-toggle="dropdown">
+            <img src="./Design/images/<?php echo $_SESSION['is_login']['hinhanh'] ?>" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">&nbsp;
+            <?php if (isset($_SESSION['is_login']['hoten'])): ?>
+                <span style="font-family: sans-serif;" class="d-none d-md-block dropdown-toggle ps-2"> <?php echo $_SESSION['is_login']['hoten'] ?></span>
+            <?php endif; ?>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" style="background-color: #fff; box-shadow: 1px 2px 3px #000;">
+            <li class="dropdown-header">
+                <h6 class="text-center"><b><?php echo $_SESSION['is_login']['hoten'] ?></b></h6>
+                <p class="text-center"><?php echo $_SESSION['is_login']['tenvaitro']; ?></p>
+            </li>
+            <?php if (isset($_SESSION['login']) && $_SESSION['is_login']['vaitro'] != 4): ?>
+                <li>
+                    <a class="dropdown-item" href="admin.php">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="ml-2">Vào trang quản lý</span>
+                    </a>
+                </li>
+            <?php endif; ?>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <a class="dropdown-item" href="?mod=Profile">
+                    <i class="bi bi-person"></i>
+                    <span class="ml-2">Thông tin tài khoản</span>
+                </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <a class="dropdown-item" href="pages-faq.html">
+                    <i class="bi bi-question-circle"></i>
+                    <span class="ml-2">Trợ giúp?</span>
+                </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <a class="dropdown-item" href="index.php?mod=logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span class="ml-2">Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+    <?php else: ?>
+        <li class="navbar-item">
+            <a class="navbar-link text-white" href="?mod=login" id="login">Đăng nhập</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+    <?php endif; ?>
+</li>
+
+
+        <li class="navbar-item">
+            <a style="color: white;" href="index.php?mod=cart">
+                <i style="font-size: 24px; position: relative;" class="fas fa-shopping-cart"></i>
+                giỏ hàng
+            </a>
+        </li>
+
+
+
+
+
+        </ul>
+    </nav>
 </header>
 <!-- END NAVBAR SECTION -->

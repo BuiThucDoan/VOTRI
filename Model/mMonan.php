@@ -223,7 +223,7 @@ class modelMonan
         $con;
         
         if ($p->moKetNoi($con)) {
-            $query = "SELECT * FROM monan where tenMon LIKE '%$search%' OR gia like '%$search%' OR Mota like '%$search%' ORDER BY gia ASC";
+            $query = "SELECT * FROM monan where tenmonan LIKE '%$search%' OR gia like '%$search%' ORDER BY gia ASC";
             $result = $con->query($query);
 
             if ($result) {

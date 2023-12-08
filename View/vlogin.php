@@ -12,18 +12,8 @@
 
 <body>
     <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form action="#">
-                <h1>Quên mật khẩu</h1>
-                <input type="text" placeholder="Họ và tên" />
-                <input type="text" placeholder="Mã nhân viên" />
-                <input type="email" placeholder="Email" />
-                <input type="text" placeholder="số điện thoại" />
-                <input type="submit" value="Gửi yêu cầu" class="form-submit">
-            </form>
-        </div>
         <div class="form-container sign-in-container">
-            <form action="#" id="form-login" method="post">
+            <form action="" id="form-login" method="post">
                 <h1 class="form-heading">ĐĂNG NHẬP</h1>
                 <div class="form-group">
                     <i class="far fa-user"></i>
@@ -57,31 +47,46 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script type="text/javascript" src="Design/js/login.js"></script>
+    
 </body>
 
 </html>
 <?php
 include_once("Controller/clogin.php");
-
 if (isset($_REQUEST['btn_login'])) {
-    $username = $_REQUEST['username'];
-    $password = $_REQUEST['password'];
+    $username = trim($_REQUEST['username']);
+    $password = trim($_REQUEST['password']);
 
-    $p = new controllogin();
-    $tblUser = $p->getAllLogin($username, $password);
-
-    if ($_SESSION['is_login']['vaitro'] == 1 || $_SESSION['is_login']['vaitro'] == 2 || $_SESSION['is_login']['vaitro'] == 3) {
-        header("Location: admin.php");
-        exit();
-    } elseif ($_SESSION['is_login']['vaitro'] == 4) {
-        header("Location: index.php");
-        exit();
-    } else {
-        echo "<script>alert('Error: Invalid role!')</script>";
+    // Check if either username or password is empty
+    if (empty($username) || empty($password)) {
+        echo "<script>alert('Vui lòng nhập cả tên đăng nhập và mật khẩu.');</script>";
         // Optionally, you can redirect to the login page or perform other actions here
+    } else {
+        $p = new controllogin();
+        $tblUser = $p->getAllLogin($username, $password);
+
+        // Check if $tblUser is empty or the login attempt is unsuccessful
+        if (empty($tblUser)) {
+            echo "<script>alert('Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng kiểm tra lại và thử lại.');</script>";
+            // Optionally, you can redirect to the login page or perform other actions here
+        } else {
+            // Assuming the login is successful, you can proceed with role-based redirection
+            if ($_SESSION['is_login']['vaitro'] == 1 || $_SESSION['is_login']['vaitro'] == 2 || $_SESSION['is_login']['vaitro'] == 3) {
+                header("Location: admin.php");
+                exit();
+            } elseif ($_SESSION['is_login']['vaitro'] == 4) {
+                header("Location: index.php");
+                exit();
+            } else {
+                echo "<script>alert('Error: Bạn không có quyền truy cập trang web');</script>";
+                // Optionally, you can redirect to the login page or perform other actions here
+            }
+        }
     }
-    
 }
+
+
+
 ?>
 
 

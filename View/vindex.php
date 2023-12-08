@@ -1,8 +1,38 @@
 
+<?php
+
+include("Controller/cMonan.php");
+$p = new controlMonan();
+$loaimon = $p->getAllLoaiMonAn();
+$loaithucdon = $p->getAllLoaiThucDon();
+
+if (isset($_REQUEST['idloai'])) {
+    $cate = $_REQUEST['idloai'];
+    $dish = $p->getAllMonanbyLoai($cate);
+} elseif (isset($_REQUEST['search'])) {
+    $search = $_REQUEST['search'];
+    $dish = $p->getSearch($search);
+}elseif(isset($_REQUEST['cm'])){
+    $cm = $_REQUEST['cm'];
+    $dish = $p->getAllMonAnLoaiThucdon($cm);
+}
+elseif (isset($_REQUEST['date'])){
+    $ngay = $_REQUEST['date'];
+    $dish = $p->getAllMonAnThucdonbyDate($ngay);
+}
+ else {
+    $dish = $p->getAllMonAnThucdon();
+}
+
+if (isset($_GET['date'])) {
+    $_SESSION['ngaylenmon'] = $_GET['date'];
+}
+
+?>
 
 	<!-- HOME SECTION -->
 
-	<section class="home-section" id="home">
+	<section class="home-section" id="home" style="padding:100px 0px;">
 		<div class="container">
 			<div class="row" style="flex-wrap: nowrap;">
 				<div class="col-md-6 home-left-section">
@@ -16,11 +46,7 @@
 						</h5>
                         <hr>
 						<div style="display: flex;">
-							<a href="./order_food.php" target="_blank" class="bttn_style_1" style="margin-right: 10px; display: flex;justify-content: center;align-items: center;">
-								Đặt món 
-								<i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i>
-							</a>
-							<a href="?act=menus" class="bttn_style_2" style="display: flex;justify-content: center;align-items: center;">
+							<a href="?mod=menus&act=list&date" class="bttn_style_2" style="display: flex;justify-content: center;align-items: center;">
 								Xem Thực đơn
 								<i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i>
 							</a>
@@ -111,6 +137,7 @@
 							
 								$x++;
 							}
+							
 						?>
 					</ul>
 				</div>
@@ -162,17 +189,11 @@
 	                                                        <h3>
 	                                                            <?php echo $menu['tenmonan'];?>
 	                                                        </h3>
-	                                                        <p>
-	                                                            <?php echo $menu['mota']; ?>
-	                                                        </p>
+
 	                                                        <span class="menu_price text-warning" >
 	                                                        	<?php echo number_format($menu['gia'], 0, ',', '.') . " VND"; ?>
 	                                                        </span>
-                                                            <div class="buttondatmon">
-																<a href="../order_food.php">
-																	<button class="btn btn-danger btn-icon" style="margin: 5px 0;" type="button">Đặt món</button>	
-																</a>
-															</div>
+                                                           
 	                                                    </div>
 														
 													</div>
@@ -225,11 +246,7 @@
 	                                                       <span class="menu_price text-warning" >
 	                                                        	<?php echo number_format($menu['gia'], 0, ',', '.') . " VND"; ?>
 	                                                        </span>
-                                                            <div class="buttondatmon">
-																<a href="../order_food.php">
-																	<button class="btn btn-danger btn-icon" style="margin: 5px 0;" type="button">Đặt món</button>	
-																</a>
-															</div>
+                                                           
 	                                                    </div>
 	                                                </div>
 	                                            </div>
@@ -252,7 +269,7 @@
 				</div>
 			</div>
 		</div>
-          <a href="?mod=menus" style="color: black;">
+          <a href="?mod=menus&act=list&date=<?php echo $ngay_mai ?>" style="color: black;">
             <button class="btn btn-primary btn-icon" style="margin-left: 700px ;background-color: #F3D302">
               <img src="./Design/images/menu.svg" alt="menu icon">
               Xem thêm
