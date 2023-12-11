@@ -80,19 +80,6 @@ $total = $p->getSumbyidtaikhoan($idtaikhoan);
                         <li class="nav-item ">
                             <a class="nav-link  active" href="index.php?mod=Order&act=ListOrderUser">Tất cả</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?mod=Order&act=ListOrderUser&duyetMon=0">Chờ nhận món</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?mod=Order&act=ListOrderUser&duyetMon=1">Đã nhận món</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="index.php?mod=Order&act=ListOrderUser&trangThaiTT=0">Chưa thanh toán</a>
-                        </li>
-                        <li class="nav-item mr-3">
-                            <a class="nav-link" href="index.php?mod=Order&act=ListOrderUser&trangThaiTT=1">Đã thanh toán</a>
-                        </li>
-
 
                         <li class="nav-item mt-2" style="margin-left: 500px; width: 300px;">
 

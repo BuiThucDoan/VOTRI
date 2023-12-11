@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2023 at 07:28 AM
+-- Generation Time: Dec 11, 2023 at 04:14 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -418,29 +418,6 @@ INSERT INTO `loaimonan` (`id_loaimonan`, `tenloaimonan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loai_thucdon`
---
-
-CREATE TABLE `loai_thucdon` (
-  `idloaithucdon` int(2) NOT NULL,
-  `tenloaithucdon` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `loai_thucdon`
---
-
-INSERT INTO `loai_thucdon` (`idloaithucdon`, `tenloaithucdon`) VALUES
-(1, 'Thứ Hai'),
-(2, 'Thứ Ba'),
-(3, 'Thứ Tư'),
-(4, 'Thứ Năm'),
-(5, 'Thứ Sáu'),
-(6, 'Thứ Bảy');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `monan`
 --
 
@@ -743,7 +720,8 @@ ALTER TABLE `chitietnguyenlieu`
 -- Indexes for table `chitietphieu`
 --
 ALTER TABLE `chitietphieu`
-  ADD KEY `idPhieu` (`idPhieu`,`id_monan`);
+  ADD KEY `idPhieu` (`idPhieu`,`id_monan`),
+  ADD KEY `id_monan` (`id_monan`);
 
 --
 -- Indexes for table `chitietthucdon`
@@ -763,12 +741,6 @@ ALTER TABLE `giohang`
 --
 ALTER TABLE `loaimonan`
   ADD PRIMARY KEY (`id_loaimonan`);
-
---
--- Indexes for table `loai_thucdon`
---
-ALTER TABLE `loai_thucdon`
-  ADD PRIMARY KEY (`idloaithucdon`);
 
 --
 -- Indexes for table `monan`
@@ -875,10 +847,22 @@ ALTER TABLE `chitietnguyenlieu`
   ADD CONSTRAINT `chitietnguyenlieu_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`);
 
 --
+-- Constraints for table `chitietphieu`
+--
+ALTER TABLE `chitietphieu`
+  ADD CONSTRAINT `chitietphieu_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`) ON DELETE NO ACTION;
+
+--
 -- Constraints for table `monan`
 --
 ALTER TABLE `monan`
   ADD CONSTRAINT `monan_ibfk_1` FOREIGN KEY (`id_loaimonan`) REFERENCES `loaimonan` (`id_loaimonan`);
+
+--
+-- Constraints for table `phieudatmon`
+--
+ALTER TABLE `phieudatmon`
+  ADD CONSTRAINT `phieudatmon_ibfk_1` FOREIGN KEY (`idtaikhoan`) REFERENCES `taikhoan` (`idtaikhoan`);
 
 --
 -- Constraints for table `taikhoan`
