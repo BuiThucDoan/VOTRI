@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
     </style>
 </head>
 <body>
-<section style="padding: 100px 0 100px; background-color: black;">
+<section style="padding: 100px 0 100px; background-color: #222227;">
 <div class="container mt-5 ">
     <div class="row">
         <div class="col-md-8">
@@ -97,7 +97,7 @@ if (isset($_GET['id'])) {
     }
     ?>
 
-        <a href="index.php?mod=cart&act=Add&id_monan=<?php echo $monan['monan']['id_monan']; ?>&date=<?php echo $_GET['date'] ?>" class="btn btn-danger">Đặt món</a>
+        <a href="index.php?mod=cart&act=Add&id_monan=<?php echo $monan['monan']['id_monan']; ?>&date=<?php echo $_GET['date'] ?>" class="btn btn-danger">Thêm vào giỏ hàng</a>
  
 </div>
 
@@ -140,7 +140,7 @@ if (isset($_GET['id'])) {
 </div>
 </section>
 
-<section class="widget_section" style="background-color: #222227;padding: 100px 0;">
+<section class="widget_section" style="background-color: black;padding: 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6">

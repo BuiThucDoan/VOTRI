@@ -1,14 +1,14 @@
 <?php
-session_start();
+
 
 include 'Includes/functions/functions.php'; 
 include 'Includes/templates/adminHeader.php';
-include 'Includes/templates/adminNavbar.php';
+
 
 ?>
 <main id="main" class="main">
 
-  <div class="pagetitle">
+  <div class="" >
     <h1>Hồ sơ</h1>
   </div><!-- End Page Title -->
 
@@ -18,7 +18,7 @@ include 'Includes/templates/adminNavbar.php';
 
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-            <img src="Design/images/<?php echo $_SESSION['is_login']['hinhanh'] ?>" alt="Profile" class="rounded-circle">
+            <img src="Design/images/<?php echo $_SESSION['is_login']['hinhanh'] ?>" alt="Profile" class="rounded-circle" style="width: 100px; height: 100px;">
             <?php if (isset($_SESSION['is_login']['hoten'])) { ?>
               <h2><?php echo $_SESSION['is_login']['hoten']; ?></h2>
               <h3><?php echo $_SESSION['is_login']['tenvaitro']; ?></h3>
@@ -53,6 +53,7 @@ include 'Includes/templates/adminNavbar.php';
             <div class="tab-content pt-2">
               <div class="tab-pane fade show active profile-overview" id="profile-overview">
                 <h5 class="card-title">Chi tiết hồ sơ</h5>
+                
                 <!-- Add your profile details here -->
               </div>
 

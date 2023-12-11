@@ -240,9 +240,6 @@ if (isset($_GET['date'])) {
 	                                                       <h3>
 	                                                            <?php echo $menu['tenmonan'];?>
 	                                                        </h3>
-	                                                        <p>
-	                                                            <?php echo $menu['mota']; ?>
-	                                                        </p>
 	                                                       <span class="menu_price text-warning" >
 	                                                        	<?php echo number_format($menu['gia'], 0, ',', '.') . " VND"; ?>
 	                                                        </span>

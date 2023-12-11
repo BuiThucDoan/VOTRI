@@ -102,8 +102,86 @@ class modelPhieu
             return false;
         }
     }
-    
 
+    function selectPhieuByidTaiKhoan($idtaikhoan){
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+        $tbl = "SELECT * FROM taikhoan JOIN phieudatmon ON taikhoan.idtaikhoan = phieudatmon.idtaikhoan JOIN chitietphieu 
+        ON phieudatmon.idPhieu = chitietphieu.idPhieu JOIN monan ON chitietphieu.id_monan = monan.id_monan 
+        WHERE taikhoan.idtaikhoan = '$idtaikhoan'  ORDER BY phieudatmon.ngaydat DESC;";
+        $table = mysqli_query($con, $tbl);
+        $list_users = array();
+        if (mysqli_num_rows($table) > 0) {
+            while ($row = mysqli_fetch_assoc($table)) {
+                $list_users[] = $row;
+            }
+            return $list_users;
+        }
+        $p->dongKetNoi($con);
+    }
+    
+    function SelectPhieuByidTaiKhoanFind($idtaikhoan, $trangthai, $duyetdon)
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+
+        $find = '';
+        if ($trangthai != '') {
+            $find = " AND phieudatmon.trangthai = $trangthai";
+        }
+        if ($duyetdon != '') {
+            $find = "AND duyetdon= $duyetdon";
+        }
+        $tbl = "SELECT * FROM taikhoan JOIN phieudatmon ON taikhoan.idtaikhoan = phieudatmon.idtaikhoan JOIN chitietphieu 
+        ON phieudatmon.idPhieu = chitietphieu.idPhieu JOIN monan ON chitietphieu.id_monan = monan.id_monan 
+        WHERE taikhoan.idtaikhoan = '$idtaikhoan' $find ORDER BY phieudatmon.ngaydat DESC;";
+        $table = mysqli_query($con, $tbl);
+        $list_users = array();
+        if (mysqli_num_rows($table) > 0) {
+            while ($row = mysqli_fetch_assoc($table)) {
+                $list_users[] = $row;
+            }
+            return $list_users;
+        }
+        $p->dongKetNoi($con);
+    }
+
+    function selectSumbyidtaikhoan($idtaikhoan){
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+        $tbl = "SELECT Sum(tongtien) as tongtien FROM phieudatmon WHERE idtaikhoan = '$idtaikhoan' AND trangthai = 0 GROUP BY idtaikhoan";
+        $table = mysqli_query($con, $tbl);
+        $list_users = array();
+        if (mysqli_num_rows($table) > 0) {
+            while ($row = mysqli_fetch_assoc($table)) {
+                $list_users[] = $row;
+            }
+            return $list_users;
+        }
+        $p->dongKetNoi($con);
+    }
+
+    function UpdateTongAndSoluongPhieu($totalByPhieuId)
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+
+        if (is_array($totalByPhieuId) && count($totalByPhieuId) > 0) {
+            $update = '';
+            foreach ($totalByPhieuId as $idPhieu => $item) {
+                $total = $item['tongtien'];
+                $soluong = $item['soluong'];
+                $update .= "UPDATE phieudatmon SET `tongtien` = $total, tongsoluong = $soluong WHERE idPhieu = $idPhieu; ";
+            }
+            $kq = mysqli_multi_query($con, $update);
+            $p->dongKetNoi($con);
+            return $kq;
+        } else {
+            // Trả về false hoặc thực hiện các xử lý khác tùy vào logic ứng dụng của bạn
+            $p->dongKetNoi($con);
+            return false;
+        }
+    }
     function InsertChiTietPhieu($dsgio, $dsphieu)
     {
         $p = new KetNoiDB();
@@ -155,10 +233,162 @@ class modelPhieu
         return $kq;
     }
     
+    function deleteIdPhieu($idPhieu){
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
 
+        $delete = "DELETE FROM phieudatmon WHERE idPhieu = $idPhieu";
+        $kq = mysqli_query($con, $delete);
+        $p->dongKetNoi($con);
+        return $kq;
+    }
 
+    function SelectOrderByNgayLenMon($ngaylenmon)
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+        $tbl = "SELECT * FROM taikhoan 
+        JOIN  phieudatmon ON taikhoan.idtaikhoan =  phieudatmon.idtaikhoan        
+        JOIN chitietphieu ON phieudatmon.idPhieu = chitietphieu.idPhieu 
+        JOIN monan ON chitietphieu.id_monan = monan.id_monan WHERE chitietphieu.ngaylenmon = '$ngaylenmon'";
+        $table = mysqli_query($con, $tbl);
+        $list_users = array();
+        if (mysqli_num_rows($table) > 0) {
+            while ($row = mysqli_fetch_assoc($table)) {
+                $list_users[] = $row;
+            }
+            return $list_users;
+        }
+        $p->dongketnoi($con);
+    }
+    function DuyetPhieu($approve, $ngaylenmon)
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
     
+        $update = '';
+        foreach ($approve as $item) {
+            $idtaikhoan =  $item['idtaikhoan'];
+            $duyetdon =  $item['duyetdon'];
+            $update .= "UPDATE phieudatmon SET duyetdon = $duyetdon WHERE idtaikhoan = $idtaikhoan and ngaylenmon = '$ngaylenmon'; ";
+        }
+    
+        $kq = mysqli_multi_query($con, $update);
+    
+        if ($kq === false) {
+            // Print the error details
+            echo 'Error: ' . mysqli_error($con);
+        } else {
+            echo 'Update successful!';
+        }
+    
+        $p->dongketnoi($con);
+        return $kq;
+    }
+    
+    function SelectSumOrder()
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+        $tbl = "SELECT taikhoan.idtaikhoan, taikhoan.maNV, taikhoan.hoten, taikhoan.sdt, taikhoan.email, Sum(tongtien) as TongTien, COUNT(idPhieu) as TongSoPhieu
+         FROM phieudatmon INNER JOIN taikhoan ON phieudatmon.idtaikhoan = taikhoan.idtaikhoan WHERE thanhtoan = 0 GROUP BY phieudatmon.idtaikhoan";
 
+        $table = mysqli_query($con, $tbl);
+        $list_users = array();
+        if (mysqli_num_rows($table) > 0) {
+            while ($row = mysqli_fetch_assoc($table)) {
+                $list_users[] = $row;
+            }
+            return $list_users;
+        }
+        $p->dongketnoi($con);
+    }
+
+    function SelectPhieuNoPay()
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+        $tbl = "SELECT * FROM  phieudatmon
+         WHERE  thanhtoan = 0";
+
+        $table = mysqli_query($con, $tbl);
+        $list_users = array();
+        if (mysqli_num_rows($table) > 0) {
+            while ($row = mysqli_fetch_assoc($table)) {
+                $list_users[] = $row;
+            }
+            return $list_users;
+        }
+        $p->dongketnoi($con);
+    }
+    function XacNhanPhieu($trangthai, $ngaylenmon)
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+    
+        $update = '';
+        foreach ($trangthai as $item) {
+            $idtaikhoan =  $item['idtaikhoan'];
+            $trangthai =  $item['trangthai'];
+            $update .= "UPDATE phieudatmon SET trangthai = $trangthai WHERE idtaikhoan = $idtaikhoan and ngaylenmon = '$ngaylenmon'; ";
+        }
+    
+        $kq = mysqli_multi_query($con, $update);
+    
+        if ($kq === false) {
+            // Print the error details
+            echo 'Error: ' . mysqli_error($con);
+        } else {
+            echo 'Update successful!';
+        }
+    
+        $p->dongketnoi($con);
+        return $kq;
+    }
+
+    function ThanhToanPhieu($thanhtoan, $ngaylenmon)
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+    
+        $update = '';
+        foreach ($thanhtoan as $item) {
+            $idtaikhoan =  $item['idtaikhoan'];
+            $thanhtoan =  $item['thanhtoan'];
+            $update .= "UPDATE phieudatmon SET thanhtoan = $thanhtoan WHERE idtaikhoan = $idtaikhoan and ngaylenmon = '$ngaylenmon'; ";
+        }
+    
+        $kq = mysqli_multi_query($con, $update);
+    
+        if ($kq === false) {
+            // Print the error details
+            echo 'Error: ' . mysqli_error($con);
+        } else {
+            echo 'Update successful!';
+        }
+    
+        $p->dongketnoi($con);
+        return $kq;
+    }
+    function SelectPayByIdTaiKhoan($idtaikhoan)
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+        $tbl = "SELECT chitietphieu.id_monan ,SUM(chitietphieu.soluong) as soluong, monan.tenmonan, monan.gia FROM phieudatmon 
+        INNER JOIN chitietphieu ON phieudatmon.idPhieu=chitietphieu.idPhieu
+        INNER JOIN monan ON chitietphieu.id_monan = monan.id_monan WHERE phieudatmon.idtaikhoan = '$idtaikhoan' AND phieudatmon.thanhtoan = 0
+        GROUP BY chitietphieu.id_monan";
+        $table = mysqli_query($con, $tbl);
+        $list_users = array();
+        if (mysqli_num_rows($table) > 0) {
+            while ($row = mysqli_fetch_assoc($table)) {
+                $list_users[] = $row;
+            }
+            return $list_users;
+        }
+        $p->dongKetNoi($con);
+    
+    }
 
 
 

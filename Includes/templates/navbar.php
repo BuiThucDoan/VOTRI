@@ -34,7 +34,7 @@ if ($ngay_trong_tuan >= 6) {
                 <a class="navbar-link text-white" href="index.php">Trang chủ</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </li>
             <li class="navbar-item">
-                <a class="navbar-link text-white" href="?mod=menus&act=list&date=<?php echo $ngay_mai ?>">Thực đơn</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="navbar-link text-white" href="?mod=menus&date=<?php echo $ngay_mai ?>">Thực đơn</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </li>
             <li class="navbar-item">
                 <a class="navbar-link text-white" href="?mod=introduce">Giới thiệu</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -46,7 +46,7 @@ if ($ngay_trong_tuan >= 6) {
         <a class="navbar-link text-white navbar-profile d-flex align-items-center pe-0 profile-main" href="#" role="button" data-bs-toggle="dropdown">
             <img src="./Design/images/<?php echo $_SESSION['is_login']['hinhanh'] ?>" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">&nbsp;
             <?php if (isset($_SESSION['is_login']['hoten'])): ?>
-                <span style="font-family: sans-serif;" class="d-none d-md-block dropdown-toggle ps-2"> <?php echo $_SESSION['is_login']['hoten'] ?></span>
+                <span class="d-none d-md-block  ps-2"> <?php echo $_SESSION['is_login']['hoten'] ?></span>
             <?php endif; ?>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" style="background-color: #fff; box-shadow: 1px 2px 3px #000;">
@@ -66,14 +66,14 @@ if ($ngay_trong_tuan >= 6) {
             <li>
                 <a class="dropdown-item" href="?mod=Profile">
                     <i class="bi bi-person"></i>
-                    <span class="ml-2">Thông tin tài khoản</span>
+                    <span class="ml-2">Hồ sơ người dùng</span>
                 </a>
             </li>
             <li><hr class="dropdown-divider"></li>
             <li>
-                <a class="dropdown-item" href="pages-faq.html">
+                <a class="dropdown-item" href="?mod=Order&act=dsphieu">
                     <i class="bi bi-question-circle"></i>
-                    <span class="ml-2">Trợ giúp?</span>
+                    <span class="ml-2">Xem phiếu đặt món</span>
                 </a>
             </li>
             <li><hr class="dropdown-divider"></li>

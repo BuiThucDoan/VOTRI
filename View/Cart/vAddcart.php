@@ -39,6 +39,9 @@ function createOrUpdateCart($p, $idtaikhoan) {
 }
 
 // Hàm xử lý thêm món vào giỏ hàng
+function displayMessage($message) {
+    echo "<div class='alert alert-success'>$message</div>";
+}
 function processFoodOrder($p, $idgiohang, $idtaikhoan) {
     $id_monan = isset($_GET['id_monan']) ? $_GET['id_monan'] : null;
     $gia = isset($_GET['gia']) ? $_GET['gia'] : null;
@@ -62,13 +65,15 @@ function processFoodOrder($p, $idgiohang, $idtaikhoan) {
 
         $date = isset($_GET['date']) ? $_GET['date'] : null;
         if ($date) {
-            // Hiển thị JavaScript alert trước khi chuyển hướng
-            echo "<script>
-                    alert('Món đã được thêm vào giỏ hàng thành công!');
-                    setTimeout(function(){
-                        window.location.href = 'index.php?mod=cart&act=Update&date=$date';
-                    }, 0);
-                  </script>";
+           // Hiển thị thông báo thành công
+    
+           // Chuyển hướng sau một khoảng thời gian
+           echo "<script>
+                   setTimeout(function(){
+                       window.location.href = 'index.php?mod=cart&act=Update&date=$date';
+                   }, 2000);
+                 </script>";
+
         }
     }
 }
@@ -81,3 +86,7 @@ $idgiohang = createOrUpdateCart($p, $idtaikhoan);
 
 processFoodOrder($p, $idgiohang, $idtaikhoan);
 ?>
+
+<section style="padding: 150px 0 100px; ">
+<?php displayMessage('Món đã được thêm vào giỏ hàng thành công!'); ?>
+</section>

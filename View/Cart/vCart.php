@@ -108,10 +108,9 @@ $p->DeleteMonanCartDate($ngayHomNay);
                                                                 <td class="shoping__cart__quantity">
 
                                                                     <form id="myForm" action="" method="post">
-                                                                        <input type="number" name="slcart" min='1' value="<?php echo $item['soluong']; ?>" id="slcart<?php echo $item['id_monan'] . $timestamp; ?>">
+                                                                        <input type="number" name="slcart" min='1' max="5" value="<?php echo $item['soluong']; ?>" id="slcart<?php echo $item['id_monan'] . $timestamp; ?>">
                                                                         <input type="hidden" name="id_monan" value="<?php echo $item['id_monan']; ?>">
                                                                         <input type="hidden" name="ngaylenmon" value="<?php echo $item['ngaylenmon']; ?>">
-
                                                                         <input style="display: none;" type="submit" value="Submit" id="btn_sl<?php echo $item['id_monan'] . $timestamp; ?>" name="btn_sl<?php echo $item['id_monan'] . $timestamp; ?>">
                                                                     </form>
                                                                 </td>
@@ -144,9 +143,31 @@ $p->DeleteMonanCartDate($ngayHomNay);
                                                 </tbody>                                                
                                             </table> <br>
                                             <div style="margin-left: 650px;">
-                                                <a style="border-radius:10px; background-color: steelblue; padding: 10px 10px; color: #fff;" href="index.php?mod=Order&act=OrderDate&ngaylenmon=<?php echo $item['ngaylenmon'] ?>"><b>Đặt món</b></a>
-                                                <a style="border-radius:10px; background-color: red;  padding: 10px 10px; color: #fff;" href="index.php?mod=cart&act=DeleteGioHang&idgiohang=<?php echo $item['idgiohang'] ?>"><b>Hủy đơn</b></a>
+                                                <a style="border-radius:10px; background-color: steelblue; padding: 10px 10px; color: #fff;" href="#" onclick="confirmOrder('<?php echo $item['ngaylenmon']; ?>')"><b>Đặt món</b></a>
+                                                <a style="border-radius:10px; background-color: red;  padding: 10px 10px; color: #fff;" href="#" onclick="confirmCancel('<?php echo $item['idgiohang']; ?>')"><b>Hủy món</b></a>
                                             </div>
+
+                                            <script>
+                                            function confirmOrder(ngaylenmon) {
+                                                var result = confirm("Bạn có chắc chắn muốn đặt món này không?");
+                                                if (result) {
+                                                    // Nếu người dùng chấp nhận, chuyển hướng đến trang xử lý đặt món
+                                                    window.location.href = "index.php?mod=Order&act=OrderDate&ngaylenmon=" + ngaylenmon;
+                                                } else {
+                                                    // Người dùng không chấp nhận, không làm gì cả hoặc thực hiện các xử lý khác
+                                                }
+                                            }
+
+                                            function confirmCancel(idgiohang) {
+                                                var result = confirm("Bạn có chắc chắn muốn hủy món này không?");
+                                                if (result) {
+                                                    // Nếu người dùng chấp nhận, chuyển hướng đến trang xử lý hủy món
+                                                    window.location.href = "index.php?mod=cart&act=DeleteGioHang&idgiohang=" + idgiohang;
+                                                } else {
+                                                    // Người dùng không chấp nhận, không làm gì cả hoặc thực hiện các xử lý khác
+                                                }
+                                            }
+                                            </script>
                                         </div>
                                     </div>
                             <?php
@@ -161,7 +182,12 @@ $p->DeleteMonanCartDate($ngayHomNay);
                     </div>
 
                 <?php } else { ?>
-                    <h1 style="text-align:center; margin-top: 10%; margin-bottom: 10%;">Không có món ăn nào !</h1>
+                    <div >
+                        <h3 style="text-align:center;">Bạn không có món ăn nào trong giỏ hàng!!!</h3>
+                        <h3 style="text-align:center;">Xin hãy thêm món ăn vào để đặt món!!!</h3><br>
+                        <a style="margin-left: 600px; border-radius:10px;" class="btn btn-danger" href="index.php?mod=menus&date=<?php echo $ngayHomNay ?>"><b>Quay lại trang Thực đơn</b></a>
+
+                    </div>
                 <?php } ?>
 
             </div>

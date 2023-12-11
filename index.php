@@ -25,7 +25,7 @@ if (isset($_GET['mod'])) {
                 include "Includes/templates/header.php";
                 include "Includes/templates/navbar.php";
                 include_once('View/cart/vAddcart.php');
-                include_once("Includes/templates/footer.php");
+                
             }elseif($_GET['act'] == 'Update'){
                 include 'Includes/functions/functions.php';
                 include "Includes/templates/header.php";
@@ -74,10 +74,34 @@ if (isset($_GET['mod'])) {
                 include "Includes/templates/navbar.php";
                 include_once('View/PhieuDat/vAddPhieudat.php');
                 include_once("Includes/templates/footer.php");
+			}elseif($_GET['act'] == 'dsphieu'){
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
+                include "Includes/templates/navbar.php";
+                include_once('View/PhieuDat/vPhieudat.php');
+                include_once("Includes/templates/footer.php");
+			}elseif($_GET['act'] == 'DeletePhieu'){
+
+                include_once('View/PhieuDat/vDeletePhieu.php');
+
+			}elseif($_GET['act'] == 'ThanhToan'){
+
+                include_once('View/Thanhtoan/TrangThanhToan.php');
+
+			}elseif($_GET['act'] == 'CongThanhToanMoMo_QR'){
+
+                include_once('View/Thanhtoan/CongThanhToanMoMo.php');
+			}elseif($_GET['act'] == 'CongThanhToanMoMo_ATM'){
+
+                include_once('View/Thanhtoan/CongThanhToanMoMo_ATM.php');
 			}
             break;    
+            
         case 'introduce':
             include_once('gioithieu.php');
+            break;
+        case 'Profile':
+            include_once('View/Admin/vHoso.php');
             break;
         case 'pay':
             include_once('thanhtoan.php');

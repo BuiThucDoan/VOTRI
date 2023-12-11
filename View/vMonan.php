@@ -218,8 +218,8 @@ if (isset($_GET['date'])) {
                     </div>
                     <p class="text-white"><b><?php echo $row_tomorrow['tenmonan']; ?></b></p>
                     <p class="text-white"><?php echo number_format($row_tomorrow['gia'], 0, ',', '.'); ?> VND</p>
-                    <a href="index.php?mod=cart&act=Add&id_monan=<?php echo $row_tomorrow['id_monan']; ?>&date=<?php echo $_GET['date'] ?>" class="btn btn-danger">Đặt món</a>
-            
+                    <a href="index.php?mod=cart&act=Add&id_monan=<?php echo $row_tomorrow['id_monan']; ?>&date=<?php echo $_GET['date'] ?>" class="btn btn-danger">Thêm vào giỏ hàng</a>
+
 
                 </div>
             </a>
@@ -288,7 +288,7 @@ while ($row = $dish->fetch_assoc()) {
     // Check if a date is provided and it's less than or equal to the current date
     if ($selectedDate > $today) {
         // Display information for items that can be ordered
-        echo '<a href="?mod=chitiet&id=' . $row['id_monan'] . '" onclick="showDetails(this)">';
+        echo '<a href="?mod=chitiet&id='. $row['id_monan']. '&date='. $_GET['date'].'" onclick="showDetails(this)">';
         echo '<div class="thumbnail" style="cursor:pointer">';
         echo '<div class="menu-image">';
         echo '<div class="circular-image">';
@@ -302,7 +302,8 @@ while ($row = $dish->fetch_assoc()) {
         
         // Add the "Đặt món" button
         echo '<div class="buttondatmon">';
-        echo '<a href="index.php?mod=Cart&act=Add&idmonan=' . $row['id_monan'] . '&date=' . $_GET['date'] . '" class="btn btn-danger">Đặt món</a>';
+        echo '<a href="index.php?mod=cart&act=Add&id_monan=' . $row['id_monan'] . '&date=' . $_GET['date'] . '" class="btn btn-danger">Thêm vào giỏ hàng</a>';
+
         echo '</div>';
     } else {
              // Display information for items that cannot be ordered
@@ -332,7 +333,7 @@ echo '</div>';
 </section>
 
 
-<section class="widget_section" style="background-color: #222227;padding: 100px 0;">
+<section class="widget_section" style="background-color: black;padding: 100px 0;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6">

@@ -4,7 +4,7 @@ $p = new controlCart();
 
 function deleteDuplicateAndRedirect($p, $date) {
     $p->DeleteDuplicate();
-    header("refresh: 0; url='index.php?mod=menus&act=list&date=$date'");
+    header("refresh: 0; url='index.php?mod=menus&date=$date'");
     exit;
 }
 

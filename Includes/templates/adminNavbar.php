@@ -1,8 +1,35 @@
-<!-- TRANG CHU NAVBAR HEADER -->
 
+
+<style>
+    .nav-header img {
+        width: 50px; 
+        height: auto;
+        margin-right: 10px; 
+    }
+    .navbar-brand b {
+        font-weight: bold; 
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    }
+    #vertical-menu {
+    color: black; 
+}
+
+
+
+#vertical-menu .nav-link {
+    color: black ; 
+}
+
+#vertical-menu .nav-link:hover {
+    background-color: rgba(6,173,239,255); /* Hiệu ứng khi di chuột qua */
+}
+
+</style>
+<!-- TRANG CHU NAVBAR HEADER -->
 <header class="headerMenu сlearfix sb-page-header">   
     <div class="nav-header">
-        <a class="navbar-brand" href="admin.php">Admin</a> 
+        <img src="Design/images/icon.jpg" alt="">
+        <a class="navbar-brand" href="admin.php"><b>VÔ TRI</b></a> 
     </div>
 
     <div class="nav-controls top-nav">
@@ -12,7 +39,7 @@
                     <a class="navbar-link  navbar-profile d-flex align-items-center pe-0 profile-main" style="color: black;" href="#" role="button" data-bs-toggle="dropdown">
                         <img src="./Design/images/<?php echo $_SESSION['is_login']['hinhanh'] ?>" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">&nbsp;
                         <?php if (isset($_SESSION['is_login']['hoten'])): ?>
-                            <span style="font-family: sans-serif;" class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION['is_login']['hoten'] ?></span>
+                            <span  class="d-none d-md-block ps-2"><b><?php echo $_SESSION['is_login']['hoten'] ?></b></span>
                         <?php endif; ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" style="background-color: #fff; box-shadow: 1px 2px 3px #000;">
@@ -32,14 +59,14 @@
                         <li>
                             <a class="dropdown-item" href="admin.php?mod=Profile">
                                 <i class="bi bi-person"></i>
-                                <span class="ml-2">Thông tin tài khoản</span>
+                                <span class="ml-2">Hồ sơ người dùng</span>
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item" href="pages-faq.html">
+                            <a class="dropdown-item" href="index.php?mod=Order&act=dsphieu">
                                 <i class="bi bi-question-circle"></i>
-                                <span class="ml-2">Trợ giúp?</span>
+                                <span class="ml-2">Xem phiếu đặt món</span>
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
@@ -69,40 +96,184 @@
 
 <!-- VERTICAL NAVBAR -->
 
-<aside class="vertical-menu" id="vertical-menu">
+<aside class="vertical-menu" style="padding-left: 30px; padding-top: 100px;" id="vertical-menu">
     <div>
-        <ul class="menu-bar">
-            <div class="dropdown-divider"></div>
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+    <a class="nav-link " href="admin.php">
+       
+        <span>Trang chủ</span>
+    </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-heading">Chức năng</li>
+    <?php
+
+    if (isset($_SESSION['login'])) {
+    if ($_SESSION['is_login']['vaitro'] == 1) {
+    ?>
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <span>Quản lý người dùng</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-                <a href="admin.php" class="a-verMenu dashboard_link">
-                    <i class="fas fa-tachometer-alt icon-ver"></i>
-                    <span style="padding-left:6px;">Trang chủ</span>
-                </a>
+            <a href="admin.php?mod=NhanVienBep">
+                <span>Danh sách nhân viên bếp</span>
+            </a>
             </li>
-            <div class="dropdown-divider"></div> 
+
             <li>
-                <a href="View/vadminThucdon.php" class="a-verMenu menus_link">
-                    <i class="fas fa-utensils icon-ver"></i>
-                    <span style="padding-left:6px;">Thực đơn</span>
-                </a>
+            <a href="admin.php?mod=NhanVienCongTy">
+                <span>Danh sách nhân viên công ty</span>
+            </a>
             </li>
-            <div class="dropdown-divider"></div>
-            <!-- Add other menu items as needed -->
+
+            <li>
+            <a href="admin.php?mod=addUser">
+                <span>Thêm người dùng</span>
+            </a>
+            </li>
+
         </ul>
+        </li>
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <span>Quản lý món ăn</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+            <li>
+            <a href="admin.php?mod=DSMonAn">
+                <span>Danh Sách món ăn</span>
+            </a>
+            </li>
+            <li>
+            <a href="admin.php?mod=addMonan">
+                </i><span>Thêm món ăn mới</span>
+            </a>
+            </li>
+        </ul>
+        </li>
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+            <span>Thực đơn</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+            <li>
+            <a href="admin.php?mod=listMenu">
+                <span>Danh sách thực đơn</span>
+            </a>
+            </li>
+            <li>
+            <a href="admin.php?mod=addMenu">
+                <span>Thêm thực đơn mới</span>
+            </a>
+            </li>
+
+        </ul>
+        </li>
+
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+            <span>Quản lý nguyên liệu</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+            <li>
+            <a href="admin.php?mod=Nguyenlieu">
+                <span>Thực đơn nguyên liệu cần nấu</span>
+            </a>
+            </li>
+        
+                <a href="admin.php?mod=DsNguyenLieu">
+                <span>Danh sách nguyên liệu</span>
+                </a>
+            </li>
+            <li>
+                <a href="admin.php?mod=addNguyenLieu">
+                <span>Thêm nguyên liệu</span>
+                </a>
+            </li>
+
+        
+        </ul>
+        </li>
+
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+            <span>Quản lý phiếu</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+            <a href="admin.php?mod=DSPhieu">
+                <span>Danh sách phiếu đặt món</span>
+            </a>
+            </li>
+
+            <li>
+            <a href="admin.php?mod=XacNhanPhieu">
+            <i class="bi bi-circle"></i><span>Xác nhận phiếu</span>
+            </a>
+            </li>
+            <li>
+            <a href="admin.php?mod=DuyetPhieu">
+            <i class="bi bi-circle"></i><span>Duyệt phiếu đặt</span>
+            </a>
+            </li>
+            
+            </li>
+            <li>
+            <a href="admin.php?mod=XacNhanThanhToan">
+                <span>Xác nhận thanh toán</span>
+            </a>
+            </li>
+        </ul>
+        </li>
+    <?php }
+    } ?>
+
+
+
+
+    <?php
+    if (isset($_SESSION['login'])) {
+    if ($_SESSION['is_login']['vaitro'] == 2) {
+    ?>
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="admin.php?mod=DSPhieu">
+            
+            <span>Xem phiếu đặt món</span>
+        </a>
+        </li>
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="admin.php?mod=DuyetPhieu">
+            
+            <span>Duyệt phiếu đặt món</span>
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="admin.php?mod=listMenu">
+        
+            <span>Xem thực đơn cần nấu</span>
+        </a>
+        </li>
+
+    
+    <?php }
+    } ?>
+
+
+    </ul>
     </div>
 </aside>
 
-<!-- START BODY CONTENT -->
 
-<div id="content" style="margin-left:240px;"> 
-    <section class="content-wrapper" style="width: 100%;padding: 70px 0 0;">
-        <div class="inside-page" style="padding:20px">
-            <div class="page_title_top" style="margin-bottom: 1.5rem!important;">
-                <h1 style="color: #5a5c69!important;font-size: 1.75rem;font-weight: 400;line-height: 1.2;">
-                    <?php echo $pageTitle; ?>
-                </h1>
-            </div>
-            <!-- Add your page content here -->
-        </div>
-    </section>
-</div>
+

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 08, 2023 lúc 02:33 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Dec 11, 2023 at 07:28 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `bepan_votri`
+-- Database: `bepan_votri`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitietgiohang`
+-- Table structure for table `chitietgiohang`
 --
 
 CREATE TABLE `chitietgiohang` (
@@ -36,10 +36,17 @@ CREATE TABLE `chitietgiohang` (
   `idgiohang` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `chitietgiohang`
+--
+
+INSERT INTO `chitietgiohang` (`id_monan`, `ngaydat`, `ngaylenmon`, `soluong`, `idtaikhoan`, `idgiohang`) VALUES
+(7, '2023-12-11 13:02:27', '2023-12-12 00:00:00', 1, 1, 1195072);
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitietnguyenlieu`
+-- Table structure for table `chitietnguyenlieu`
 --
 
 CREATE TABLE `chitietnguyenlieu` (
@@ -50,22 +57,10 @@ CREATE TABLE `chitietnguyenlieu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `chitietnguyenlieu`
+-- Dumping data for table `chitietnguyenlieu`
 --
 
 INSERT INTO `chitietnguyenlieu` (`idnguyenlieu`, `id_monan`, `soluongsudung`, `donvitinh`) VALUES
-(2, 1, 200, 'gram'),
-(3, 1, 2, 'quả'),
-(4, 1, 100, 'gram'),
-(27, 1, 1, 'quả'),
-(5, 1, 100, 'gram'),
-(6, 1, 100, 'gram'),
-(9, 1, 10, 'gram'),
-(7, 2, 250, 'gram'),
-(8, 2, 200, 'gram'),
-(29, 2, 100, 'gram'),
-(1, 3, 250, 'gram'),
-(10, 3, 200, 'gram'),
 (11, 4, 1, 'trái'),
 (12, 4, 200, 'gram'),
 (13, 5, 200, 'gram'),
@@ -216,12 +211,14 @@ INSERT INTO `chitietnguyenlieu` (`idnguyenlieu`, `id_monan`, `soluongsudung`, `d
 (67, 49, 150, 'gram'),
 (68, 49, 150, 'gram'),
 (69, 50, 150, 'gram'),
-(12, 50, 100, 'gram');
+(12, 50, 100, 'gram'),
+(1, 3, 200, 'gram'),
+(10, 3, 200, 'gram');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitietphieu`
+-- Table structure for table `chitietphieu`
 --
 
 CREATE TABLE `chitietphieu` (
@@ -232,51 +229,60 @@ CREATE TABLE `chitietphieu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `chitietphieu`
+-- Dumping data for table `chitietphieu`
 --
 
 INSERT INTO `chitietphieu` (`idPhieu`, `id_monan`, `soluong`, `ngaylenmon`) VALUES
-(3130188, 8, 1, '2023-12-08 00:00:00'),
-(3790059, 13, 2, '2023-12-08 00:00:00'),
-(3790059, 3, 1, '2023-12-08 00:00:00'),
-(3942741, 3, 1, '2023-12-08 00:00:00'),
-(3942741, 8, 1, '2023-12-08 00:00:00'),
-(3761277, 17, 2, '2023-12-09 00:00:00');
+(1350707, 17, 1, '2023-12-09 00:00:00'),
+(1965085, 4, 1, '2023-12-09 00:00:00'),
+(1512062, 17, 1, '2023-12-09 00:00:00'),
+(1688586, 17, 1, '2023-12-09 00:00:00'),
+(1757785, 17, 1, '2023-12-09 00:00:00'),
+(1736688, 17, 1, '2023-12-09 00:00:00'),
+(1947298, 9, 1, '2023-12-09 00:00:00'),
+(1749424, 17, 1, '2023-12-09 00:00:00'),
+(1279165, 3, 1, '2023-12-13 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitietthucdon`
+-- Table structure for table `chitietthucdon`
 --
 
 CREATE TABLE `chitietthucdon` (
-  `ichitietthucdon` int(2) NOT NULL,
   `idthucdon` int(2) NOT NULL,
   `id_monan` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `chitietthucdon`
+-- Dumping data for table `chitietthucdon`
 --
 
-INSERT INTO `chitietthucdon` (`ichitietthucdon`, `idthucdon`, `id_monan`) VALUES
-(1, 1, 1),
-(2, 1, 6),
-(3, 1, 11),
-(4, 2, 2),
-(5, 2, 7),
-(6, 2, 12),
-(7, 3, 3),
-(8, 3, 8),
-(9, 3, 13),
-(10, 4, 4),
-(11, 4, 9),
-(12, 4, 17);
+INSERT INTO `chitietthucdon` (`idthucdon`, `id_monan`) VALUES
+(1, 1),
+(1, 6),
+(1, 11),
+(2, 2),
+(2, 7),
+(2, 12),
+(3, 8),
+(3, 13),
+(4, 4),
+(4, 9),
+(4, 17),
+(4, 2),
+(5, 8),
+(1, 43),
+(3, 5),
+(31, 4),
+(31, 5),
+(31, 4),
+(31, 5);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giohang`
+-- Table structure for table `giohang`
 --
 
 CREATE TABLE `giohang` (
@@ -286,10 +292,13 @@ CREATE TABLE `giohang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `giohang`
+-- Dumping data for table `giohang`
 --
 
 INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
+(124282, '2023-12-08 11:56:23', 0),
+(192991, '2023-12-08 11:24:03', 0),
+(194913, '2023-12-08 19:30:46', 0),
 (328763, '2023-12-07 22:51:13', 0),
 (336551, '2023-12-07 23:11:43', 0),
 (338708, '2023-12-08 00:51:23', 0),
@@ -300,6 +309,29 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (385158, '2023-12-07 22:58:46', 0),
 (390905, '2023-12-06 23:14:10', 0),
 (397339, '2023-12-07 10:21:33', 0),
+(1154455, '2023-12-08 11:25:06', 0),
+(1195072, '2023-12-11 13:02:27', 0),
+(1205825, '2023-12-09 10:33:55', 0),
+(1207308, '2023-12-09 10:22:06', 0),
+(1288307, '2023-12-08 20:10:26', 0),
+(1299996, '2023-12-08 19:42:53', 0),
+(1304936, '2023-12-08 20:10:16', 0),
+(1419793, '2023-12-08 19:42:27', 0),
+(1445590, '2023-12-08 11:35:12', 0),
+(1481294, '2023-12-08 19:29:19', 0),
+(1489603, '2023-12-08 20:12:10', 0),
+(1503561, '2023-12-08 19:33:52', 0),
+(1548078, '2023-12-08 12:03:24', 0),
+(1602788, '2023-12-08 11:28:10', 0),
+(1635997, '2023-12-09 10:22:27', 0),
+(1668785, '2023-12-08 19:27:07', 0),
+(1698596, '2023-12-08 11:34:14', 0),
+(1737773, '2023-12-08 19:36:49', 0),
+(1807473, '2023-12-08 11:30:31', 0),
+(1810130, '2023-12-08 12:02:43', 0),
+(1890076, '2023-12-08 19:37:16', 0),
+(1914881, '2023-12-08 19:31:18', 0),
+(1933988, '2023-12-08 12:08:50', 0),
 (3120502, '2023-12-07 23:21:46', 0),
 (3127435, '2023-12-07 10:28:49', 0),
 (3131152, '2023-12-07 23:09:50', 0),
@@ -308,6 +340,7 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (3196967, '2023-12-07 10:34:09', 0),
 (3222057, '2023-12-07 10:45:40', 0),
 (3229311, '2023-12-07 22:48:48', 0),
+(3243132, '2023-12-08 09:02:30', 0),
 (3244975, '2023-12-07 10:33:12', 0),
 (3264812, '2023-12-07 22:52:07', 0),
 (3267224, '2023-12-07 23:20:29', 0),
@@ -317,13 +350,16 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (3312210, '2023-12-07 10:18:13', 0),
 (3315222, '2023-12-07 11:08:44', 0),
 (3328573, '2023-12-07 10:19:13', 0),
+(3351823, '2023-12-08 10:50:58', 0),
 (3362707, '2023-12-07 23:13:14', 0),
+(3380455, '2023-12-08 10:19:30', 0),
 (3389769, '2023-12-06 21:35:13', 0),
 (3431203, '2023-12-07 23:43:44', 0),
 (3433513, '2023-12-06 23:01:39', 0),
 (3514118, '2023-12-07 10:47:42', 0),
 (3547795, '2023-12-07 23:11:17', 0),
 (3620117, '2023-12-06 23:15:12', 0),
+(3648455, '2023-12-08 10:58:16', 0),
 (3655015, '2023-12-07 23:41:27', 0),
 (3656668, '2023-12-07 22:53:52', 0),
 (3657623, '2023-12-07 23:06:05', 0),
@@ -331,16 +367,21 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (3709054, '2023-12-07 11:09:07', 0),
 (3740617, '2023-12-07 23:36:26', 0),
 (3753170, '2023-12-07 23:40:05', 0),
+(3758417, '2023-12-08 10:46:53', 0),
+(3775880, '2023-12-08 10:03:40', 0),
 (3781061, '2023-12-07 11:24:56', 0),
 (3782188, '2023-12-07 23:15:55', 0),
 (3787646, '2023-12-07 22:51:56', 0),
 (3800194, '2023-12-06 23:11:10', 0),
+(3800207, '2023-12-08 09:02:57', 0),
 (3811561, '2023-12-07 22:45:33', 0),
 (3815748, '2023-12-07 11:26:54', 0),
 (3840280, '2023-12-07 22:58:13', 0),
 (3853969, '2023-12-06 22:59:17', 0),
 (3866374, '2023-12-07 23:18:20', 0),
 (3876428, '2023-12-08 00:50:48', 0),
+(3915284, '2023-12-08 10:52:19', 0),
+(3922897, '2023-12-08 10:45:39', 0),
 (3923684, '2023-12-07 23:07:47', 0),
 (3931301, '2023-12-08 08:20:11', 0),
 (3932052, '2023-12-08 00:50:33', 0),
@@ -352,7 +393,7 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `loaimonan`
+-- Table structure for table `loaimonan`
 --
 
 CREATE TABLE `loaimonan` (
@@ -361,7 +402,7 @@ CREATE TABLE `loaimonan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `loaimonan`
+-- Dumping data for table `loaimonan`
 --
 
 INSERT INTO `loaimonan` (`id_loaimonan`, `tenloaimonan`) VALUES
@@ -377,7 +418,7 @@ INSERT INTO `loaimonan` (`id_loaimonan`, `tenloaimonan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `loai_thucdon`
+-- Table structure for table `loai_thucdon`
 --
 
 CREATE TABLE `loai_thucdon` (
@@ -386,7 +427,7 @@ CREATE TABLE `loai_thucdon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `loai_thucdon`
+-- Dumping data for table `loai_thucdon`
 --
 
 INSERT INTO `loai_thucdon` (`idloaithucdon`, `tenloaithucdon`) VALUES
@@ -400,7 +441,7 @@ INSERT INTO `loai_thucdon` (`idloaithucdon`, `tenloaithucdon`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `monan`
+-- Table structure for table `monan`
 --
 
 CREATE TABLE `monan` (
@@ -409,70 +450,68 @@ CREATE TABLE `monan` (
   `mota` varchar(300) NOT NULL,
   `hinhanh` varchar(150) NOT NULL,
   `gia` int(11) NOT NULL,
-  `id_loaimonan` int(2) NOT NULL,
-  `trangthai` int(2) NOT NULL
+  `id_loaimonan` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `monan`
+-- Dumping data for table `monan`
 --
 
-INSERT INTO `monan` (`id_monan`, `tenmonan`, `mota`, `hinhanh`, `gia`, `id_loaimonan`, `trangthai`) VALUES
-(1, 'Canh chua cá lóc', 'Canh chua cá lóc là một món ăn dân dã của Việt Nam, được nhiều người yêu thích. Món canh này có vị chua thanh của me, vị ngọt của cá lóc, vị cay của ớt và mùi thơm của các loại rau. Nguyên liệu chính của món canh này là cá lóc, me, cà chua, mồng tơi, dứa, giá đỗ, ớt. ', 'canhchuacaloc.jpg', 20000, 1, 0),
-(2, 'Canh cua mồng tơi', 'Canh cua mồng tơi là một món canh ngon và bổ dưỡng, đặc biệt là vào mùa hè. Món canh này có vị ngọt thanh của cua đồng, vị mát của mồng tơi và mùi thơm của hành lá. Nguyên liệu chính của món canh này là cua đồng, mồng tơi, hành lá. ', 'canhcuamongtoi.jpg', 20000, 1, 0),
-(3, 'Canh gà lá giang', 'Canh gà lá giang là một món ăn đặc sản của miền Tây Nam Bộ. Món canh này có vị chua cay của lá giang, vị ngọt của thịt gà và mùi thơm của hành lá. Nguyên liệu chính của món canh này là thịt gà, lá giang, hành lá. ', 'canhgalagiang.jpg', 20000, 1, 0),
-(4, 'Canh khổ qua', 'Canh khổ qua là một món ăn thanh mát, giải nhiệt cho cơ thể. Món canh này có vị đắng của khổ qua, vị ngọt của thịt băm và mùi thơm của hành lá. Nguyên liệu chính của món canh này là khổ qua, thịt băm, hành lá.', 'canhkhoqua.jpg', 20000, 1, 0),
-(5, 'Canh bí đỏ', 'Canh bí đỏ là một món ăn bổ dưỡng, tốt cho sức khỏe. Món canh này có vị ngọt của bí đỏ, vị bùi của đậu phộng và mùi thơm của hành lá. Nguyên liệu chính của món canh này là bí đỏ, đậu phộng, hành lá. ', 'canhbido.jpg', 20000, 1, 0),
-(6, 'Canh bí đao', 'Canh bí đao là một món ăn thanh mát, giải nhiệt cho cơ thể. Món canh này có vị ngọt của bí đao, vị thanh của nước dừa và mùi thơm của hành lá. Nguyên liệu chính của món canh này là bí đao, nước dừa, hành lá.', 'canhbidao.jpg', 20000, 1, 0),
-(7, 'Canh rau củ', 'Canh rau củ là một món ăn tổng hợp, có thể dùng kèm với nhiều loại rau củ khác nhau. Món canh này có vị ngọt của rau củ, vị đậm đà của gia vị và mùi thơm của hành lá. Nguyên liệu chính của món canh này là các loại rau củ tùy chọn.', 'canhraucu.jpg', 20000, 1, 0),
-(8, 'Sườn xào chua ngọt', 'Sườn xào chua ngọt là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị chua ngọt của nước sốt, vị thơm của sườn và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là sườn, cà chua, nước sốt chua ngọt, rau thơm.', 'suonxaochuangot.jpg', 45000, 2, 0),
-(9, 'Rau muống xào', 'Rau muống xào là một món ăn dân dã, dễ làm nhưng rất ngon miệng. Món ăn này có vị ngọt của rau muống, vị thơm của tỏi và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là rau muống, tỏi, rau thơm. ', 'rmx.jpg', 30000, 2, 0),
-(10, 'Bắp cải xào trứng', 'Bắp cải xào trứng là một món ăn đơn giản, dễ làm nhưng rất ngon miệng. Món ăn này có vị ngọt của bắp cải, vị thơm của trứng và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là bắp cải, trứng, hành lá. ', 'bcxt.jpg', 30000, 2, 0),
-(11, 'Bông bí xào thịt bò', 'Bông bí xào thịt bò là một món ăn dân dã, dễ làm nhưng rất ngon miệng. Món ăn này có vị ngọt của bông bí, vị thơm của thịt bò và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là bông bí, thịt bò, hành lá. ', 'bbxtb.jpg', 30000, 2, 0),
-(12, 'Khổ qua xào trứng', 'Khổ qua xào trứng là một món ăn thanh mát, giải nhiệt cho cơ thể. Món ăn này có vị đắng của khổ qua, vị thơm của trứng và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là khổ qua, trứng, hành lá. ', 'kqxt.jpg', 30000, 2, 0),
-(13, 'Mực xào dứa', 'Mực xào dứa là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị ngọt của mực, vị chua thanh của dứa và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là mực, dứa, hành lá. ', 'mxd.jpg', 35000, 2, 0),
-(14, 'Lòng gà xào mướp', 'Lòng gà xào mướp là một món ăn có vị béo ngậy của lòng gà, vị ngọt của mướp và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là lòng gà, mướp, hành lá.', 'lgxm.jpg', 30000, 2, 0),
-(15, 'Cá lóc kho', 'Cá lóc kho là một món ăn dân dã, đậm đà hương vị, được nhiều người yêu thích. Món ăn này có vị ngọt của cá lóc, vị thơm của sả, ớt và mùi thơm của gia vị. Nguyên liệu chính của món ăn này là cá lóc, sả, ớt, gia vị. ', 'clk.jpg', 30000, 3, 0),
-(16, 'Thịt kho tàu', 'Thịt kho tàu là một món ăn truyền thống của Việt Nam, được nhiều người yêu thích. Món ăn này có vị ngọt của thịt, vị béo của nước dừa và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là thịt ba chỉ, nước dừa, hành lá. ', 'tkt.jpg', 30000, 3, 0),
-(17, 'Gà xào xả ớt', 'Gà xào xả ớt là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị thơm của xả, vị cay của ớt và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt gà, sả, ớt, rau thơm.', 'gktc.jpg', 30000, 3, 0),
-(18, 'Thịt kho trứng cút', 'Thịt kho trứng cút là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị ngọt của thịt, vị béo của trứng cút và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là thịt ba chỉ, trứng cút, hành lá.', 'tktc.jpg', 30000, 3, 0),
-(19, 'Cá ngừ kho măng', 'Cá ngừ kho măng là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị ngọt của cá ngừ, vị giòn của măng và mùi thơm của gia vị. Nguyên liệu chính của món ăn này là cá ngừ, măng, gia vị. ', 'cnkm.jpg', 30000, 3, 0),
-(20, 'Cá bống kho', 'Cá bống kho tộ là một món ăn dân dã, đậm đà hương vị, được nhiều người yêu thích. Món ăn này có vị ngọt của cá bống, vị thơm của nước mắm và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là cá bống, nước mắm, hành lá. ', 'cbkt.jpg', 30000, 3, 0),
-(21, 'Vịt kho gừng', 'Vịt kho gừng là một món ăn dân dã, đậm đà hương vị, được nhiều người yêu thích. Món ăn này có vị ngọt của thịt vịt, vị thơm của gừng và mùi thơm của gia vị. Nguyên liệu chính của món ăn này là thịt vịt, gừng, gia vị. ', 'vkg.jpg', 30000, 3, 0),
-(22, 'Gà chiên mắm', 'Gà chiên mắm là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị đậm đà của nước mắm, vị thơm của thịt gà và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt gà, nước mắm, rau thơm. ', 'gcm.jpg', 30000, 6, 0),
-(23, 'Trứng chiên', 'Trứng chiên là một món ăn đơn giản, dễ làm nhưng rất ngon miệng. Món ăn này có vị béo ngậy của trứng, vị thơm của hành lá và mùi thơm của gia vị. Nguyên liệu chính của món ăn này là trứng, hành lá, gia vị. ', 'tc.jpg', 30000, 4, 0),
-(24, 'Sườn chiên xả ớt', 'Sườn chiên xả ớt là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị thơm của sả, vị cay của ớt và mùi thơm của thịt sườn. Nguyên liệu chính của món ăn này là sườn, sả, ớt. ', 'scxo.jpg', 30000, 4, 0),
-(25, 'Cá diêu hồng chiên', 'Cá diêu hồng chiên là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị ngọt của cá diêu hồng, vị thơm của hành lá và mùi thơm của gia vị. Nguyên liệu chính của món ăn này là cá diêu hồng, hành lá, gia vị. ', 'cdhc.jpg', 30000, 4, 0),
-(26, 'Đậu hủ chiên giòn', 'Đậu hủ chiên giòn là một món ăn đơn giản, dễ làm nhưng rất ngon miệng. Món ăn này có vị béo ngậy của đậu hủ, vị thơm của dầu ăn và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là đậu hủ, dầu ăn, hành lá. ', 'dhc.jpg', 30000, 4, 0),
-(27, 'Cá linh chiên bột', 'Cá linh chiên bột là một món ăn đặc sản của miền Tây Nam Bộ. Món ăn này có vị ngọt của cá linh, vị giòn của bột và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là cá linh, bột chiên, hành lá.', 'clc.jpg', 30000, 4, 0),
-(28, 'Gà viên chiên', 'Gà viên chiên là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị đậm đà của gia vị, vị thơm của thịt gà và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt gà, gia vị, rau thơm. ', 'gcg.jpg', 30000, 4, 0),
-(29, 'Thịt luộc mắm tôm', 'Thịt luộc mắm tôm là một món ăn dân dã, đậm đà hương vị, được nhiều người yêu thích. Món ăn này có vị mặn ngọt của mắm tôm, vị thơm của thịt lợn và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt lợn, mắm tôm, rau thơm. ', 'tlmt.jpg', 30000, 6, 0),
-(30, 'Gà luộc', 'Gà luộc là một món ăn truyền thống của Việt Nam, được nhiều người yêu thích. Món ăn này có vị ngọt của thịt gà, vị thơm của lá chanh và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt gà, lá chanh, rau thơm.', 'gl.jpg', 30000, 6, 0),
-(31, 'Gà hấp muối', 'Gà hấp muối là một món ăn dân dã, thơm ngon, hấp dẫn. Món ăn này có vị ngọt của thịt gà, vị mặn của muối và mùi thơm của lá chanh. Nguyên liệu chính của món ăn này là thịt gà, muối, lá chanh. ', 'ghm.jpg', 30000, 6, 0),
-(32, 'Tôm hấp xả chanh', 'Tôm hấp xả chanh là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị ngọt của tôm, vị thơm của xả và mùi thơm của chanh. Nguyên liệu chính của món ăn này là tôm, xả, chanh. ', 'thxc.jpg', 30000, 6, 0),
-(33, 'Bánh mỳ thịt', 'Bánh mỳ thịt là một món ăn phổ biến ở Việt Nam. Món ăn này có vị thơm của bánh mỳ, vị đậm đà của thịt và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bánh mỳ, thịt, rau thơm. ', 'banhmy.jpg', 15000, 5, 0),
-(34, 'Bún thịt nướng', 'Bún thịt nướng là một món ăn đặc sản của Hà Nội. Món ăn này có vị thơm của thịt nướng, vị đậm đà của nước chấm và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt lợn, bún, nước chấm, rau thơm.', 'bunthitnuong.jpg', 25000, 8, 0),
-(35, 'Cơm tấm', 'Cơm tấm là một món ăn đặc sản của Sài Gòn. Món ăn này có vị ngọt của cơm tấm, vị đậm đà của sườn nướng và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là cơm tấm, sườn nướng, rau thơm. ', 'comtam.jpg', 30000, 7, 0),
-(36, 'Bún bò', 'Bún bò Huế là một món ăn đặc sản của Huế. Món ăn này có vị ngọt của nước dùng, vị thơm của thịt bò và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bún, thịt bò, nước dùng, rau thơm. ', 'bunbo.jpg', 30000, 8, 0),
-(37, 'Phở', 'Phở là một món ăn truyền thống của Việt Nam, được nhiều người yêu thích. Món ăn này có vị ngọt của nước dùng, vị thơm của thịt bò và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là phở, thịt bò, nước dùng, rau thơm. ', 'pho.jpg', 30000, 8, 0),
-(38, 'Bún riêu', 'Bún riêu là một món ăn dân dã, thơm ngon, hấp dẫn. Món ăn này có vị ngọt của nước dùng, vị chua của cà chua và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bún, cua đồng, cà chua, rau thơm. ', 'bunrieu.jpg', 30000, 8, 0),
-(39, 'Hủ tiếu', 'Hủ tiếu là một món ăn phổ biến ở Việt Nam. Món ăn này có vị ngọt của nước dùng, vị thơm của thịt và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là hủ tiếu, thịt, nước dùng, rau thơm. ', 'hutieu.jpg', 25000, 8, 0),
-(40, 'Bánh bao', 'Bánh bao là một món ăn phổ biến ở Việt Nam. Món ăn này có vị thơm của vỏ bánh, vị đậm đà của nhân và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là bột mì, nhân thịt, hành lá. ', 'banhbao.jpg', 20000, 5, 0),
-(41, 'Bò kho', 'Bò kho là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị đậm đà của thịt bò, vị béo ngậy của nước cốt dừa và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt bò, nước cốt dừa, rau thơm.', 'bokho.jpg', 30000, 3, 0),
-(42, 'Bún mộc', 'Bún mộc là một món ăn đặc sản của Nam Định. Món ăn này có vị ngọt của nước dùng, vị thơm của thịt và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bún, thịt, nước dùng, rau thơm.', 'bunmoc.jpg', 25000, 8, 0),
-(43, 'Bánh hỏi thịt nướng', 'Bánh hỏi thịt nướng là một món ăn đặc sản của Bình Định. Món ăn này có vị thơm của thịt nướng, vị đậm đà của nước chấm và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bánh hỏi, thịt nướng, nước chấm, rau thơm. ', 'bhtn.jpg', 25000, 8, 0),
-(44, 'Bún xiêm lo', 'Bún xiêm lo là một món ăn đặc sản của miền Tây Nam Bộ. Món ăn này có vị ngọt của nước dùng, vị thơm của thịt và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bún, thịt, nước dùng, rau thơm.', 'bxl.jpg', 25000, 8, 0),
-(45, 'Canh trứng cà chua', 'Canh trứng cà chua là một món ăn đơn giản, dễ làm nhưng rất ngon miệng. Món ăn này có vị ngọt của cà chua, vị béo ngậy của trứng và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là cà chua, trứng, hành lá. ', 'canhtrungcachua.jpg', 20000, 1, 0),
-(46, 'Canh chua chả cá ', 'Canh chua chả cá là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị chua thanh của me, vị ngọt của chả cá và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là chả cá, me, cà chua, rau thơm. ', 'canhchuachaca.jpg', 20000, 1, 0),
-(47, 'Canh dưa chua sườn heo', 'Canh dưa chua sườn heo là một món ăn dân dã, đậm đà hương vị, được nhiều người yêu thích. Món ăn này có vị chua của dưa chua, vị ngọt của sườn heo và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là dưa chua, sườn heo, rau thơm. ', 'canhduachua.jpg', 20000, 1, 0),
-(48, 'Canh hến nấu khế chua', 'Canh hến nấu khế chua là một món ăn đặc sản của miền Tây Nam Bộ. Món ăn này có vị chua thanh của khế, vị ngọt của hến và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là hến, khế, hành lá. ', 'canhhen.jpg', 20000, 1, 0),
-(49, 'Canh rau dền thịt băm', 'Canh rau dền thịt băm là một món ăn dân dã, dễ làm nhưng rất ngon miệng. Món ăn này có vị ngọt của rau dền, vị thơm của thịt băm và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là rau dền, thịt băm, hành lá. ', 'canhrauden.jpg', 20000, 1, 0),
-(50, 'Canh bầu', 'Canh bầu là một món ăn dân dã, thanh mát, giải nhiệt cho cơ thể. Món ăn này có vị ngọt của bầu, vị thơm của hành lá. Nguyên liệu chính của món ăn này là bầu, hành lá', 'canhbau.jpg', 20000, 1, 0);
+INSERT INTO `monan` (`id_monan`, `tenmonan`, `mota`, `hinhanh`, `gia`, `id_loaimonan`) VALUES
+(2, 'Canh cua mồng tơi', 'Canh cua mồng tơi là một món canh ngon và bổ dưỡng, đặc biệt là vào mùa hè. Món canh này có vị ngọt thanh của cua đồng, vị mát của mồng tơi và mùi thơm của hành lá. Nguyên liệu chính của món canh này là cua đồng, mồng tơi, hành lá. ', 'canhcuamongtoi.jpg', 200001, 1),
+(3, 'Canh gà lá giang', 'Canh gà lá giang là một món ăn đặc sản của miền Tây Nam Bộ. Món canh này có vị chua cay của lá giang, vị ngọt của thịt gà và mùi thơm của hành lá. Nguyên liệu chính của món canh này là thịt gà, lá giang, hành lá. ', 'canhgalagiang.jpg', 20000, 1),
+(4, 'Canh khổ qua', 'Canh khổ qua là một món ăn thanh mát, giải nhiệt cho cơ thể. Món canh này có vị đắng của khổ qua, vị ngọt của thịt băm và mùi thơm của hành lá. Nguyên liệu chính của món canh này là khổ qua, thịt băm, hành lá.', 'canhkhoqua.jpg', 20000, 1),
+(5, 'Canh bí đỏ', 'Canh bí đỏ là một món ăn bổ dưỡng, tốt cho sức khỏe. Món canh này có vị ngọt của bí đỏ, vị bùi của đậu phộng và mùi thơm của hành lá. Nguyên liệu chính của món canh này là bí đỏ, đậu phộng, hành lá. ', 'canhbido.jpg', 20000, 1),
+(6, 'Canh bí đao', 'Canh bí đao là một món ăn thanh mát, giải nhiệt cho cơ thể. Món canh này có vị ngọt của bí đao, vị thanh của nước dừa và mùi thơm của hành lá. Nguyên liệu chính của món canh này là bí đao, nước dừa, hành lá.', 'canhbidao.jpg', 20000, 1),
+(7, 'Canh rau củ', 'Canh rau củ là một món ăn tổng hợp, có thể dùng kèm với nhiều loại rau củ khác nhau. Món canh này có vị ngọt của rau củ, vị đậm đà của gia vị và mùi thơm của hành lá. Nguyên liệu chính của món canh này là các loại rau củ tùy chọn.', 'canhraucu.jpg', 20000, 1),
+(8, 'Sườn xào chua ngọt', 'Sườn xào chua ngọt là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị chua ngọt của nước sốt, vị thơm của sườn và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là sườn, cà chua, nước sốt chua ngọt, rau thơm.', 'suonxaochuangot.jpg', 45000, 2),
+(9, 'Rau muống xào', 'Rau muống xào là một món ăn dân dã, dễ làm nhưng rất ngon miệng. Món ăn này có vị ngọt của rau muống, vị thơm của tỏi và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là rau muống, tỏi, rau thơm. ', 'rmx.jpg', 30000, 2),
+(10, 'Bắp cải xào trứng', 'Bắp cải xào trứng là một món ăn đơn giản, dễ làm nhưng rất ngon miệng. Món ăn này có vị ngọt của bắp cải, vị thơm của trứng và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là bắp cải, trứng, hành lá. ', 'bcxt.jpg', 30000, 2),
+(11, 'Bông bí xào thịt bò', 'Bông bí xào thịt bò là một món ăn dân dã, dễ làm nhưng rất ngon miệng. Món ăn này có vị ngọt của bông bí, vị thơm của thịt bò và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là bông bí, thịt bò, hành lá. ', 'bbxtb.jpg', 30000, 2),
+(12, 'Khổ qua xào trứng', 'Khổ qua xào trứng là một món ăn thanh mát, giải nhiệt cho cơ thể. Món ăn này có vị đắng của khổ qua, vị thơm của trứng và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là khổ qua, trứng, hành lá. ', 'kqxt.jpg', 30000, 2),
+(13, 'Mực xào dứa', 'Mực xào dứa là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị ngọt của mực, vị chua thanh của dứa và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là mực, dứa, hành lá. ', 'mxd.jpg', 35000, 2),
+(14, 'Lòng gà xào mướp', 'Lòng gà xào mướp là một món ăn có vị béo ngậy của lòng gà, vị ngọt của mướp và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là lòng gà, mướp, hành lá.', 'lgxm.jpg', 30000, 2),
+(15, 'Cá lóc kho', 'Cá lóc kho là một món ăn dân dã, đậm đà hương vị, được nhiều người yêu thích. Món ăn này có vị ngọt của cá lóc, vị thơm của sả, ớt và mùi thơm của gia vị. Nguyên liệu chính của món ăn này là cá lóc, sả, ớt, gia vị. ', 'clk.jpg', 30000, 3),
+(16, 'Thịt kho tàu', 'Thịt kho tàu là một món ăn truyền thống của Việt Nam, được nhiều người yêu thích. Món ăn này có vị ngọt của thịt, vị béo của nước dừa và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là thịt ba chỉ, nước dừa, hành lá. ', 'tkt.jpg', 30000, 3),
+(17, 'Gà xào xả ớt', 'Gà xào xả ớt là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị thơm của xả, vị cay của ớt và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt gà, sả, ớt, rau thơm.', 'gktc.jpg', 30000, 3),
+(18, 'Thịt kho trứng cút', 'Thịt kho trứng cút là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị ngọt của thịt, vị béo của trứng cút và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là thịt ba chỉ, trứng cút, hành lá.', 'tktc.jpg', 30000, 3),
+(19, 'Cá ngừ kho măng', 'Cá ngừ kho măng là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị ngọt của cá ngừ, vị giòn của măng và mùi thơm của gia vị. Nguyên liệu chính của món ăn này là cá ngừ, măng, gia vị. ', 'cnkm.jpg', 30000, 3),
+(20, 'Cá bống kho', 'Cá bống kho tộ là một món ăn dân dã, đậm đà hương vị, được nhiều người yêu thích. Món ăn này có vị ngọt của cá bống, vị thơm của nước mắm và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là cá bống, nước mắm, hành lá. ', 'cbkt.jpg', 30000, 3),
+(21, 'Vịt kho gừng', 'Vịt kho gừng là một món ăn dân dã, đậm đà hương vị, được nhiều người yêu thích. Món ăn này có vị ngọt của thịt vịt, vị thơm của gừng và mùi thơm của gia vị. Nguyên liệu chính của món ăn này là thịt vịt, gừng, gia vị. ', 'vkg.jpg', 30000, 3),
+(22, 'Gà chiên mắm', 'Gà chiên mắm là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị đậm đà của nước mắm, vị thơm của thịt gà và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt gà, nước mắm, rau thơm. ', 'gcm.jpg', 30000, 6),
+(23, 'Trứng chiên', 'Trứng chiên là một món ăn đơn giản, dễ làm nhưng rất ngon miệng. Món ăn này có vị béo ngậy của trứng, vị thơm của hành lá và mùi thơm của gia vị. Nguyên liệu chính của món ăn này là trứng, hành lá, gia vị. ', 'tc.jpg', 30000, 4),
+(24, 'Sườn chiên xả ớt', 'Sườn chiên xả ớt là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị thơm của sả, vị cay của ớt và mùi thơm của thịt sườn. Nguyên liệu chính của món ăn này là sườn, sả, ớt. ', 'scxo.jpg', 30000, 4),
+(25, 'Cá diêu hồng chiên', 'Cá diêu hồng chiên là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị ngọt của cá diêu hồng, vị thơm của hành lá và mùi thơm của gia vị. Nguyên liệu chính của món ăn này là cá diêu hồng, hành lá, gia vị. ', 'cdhc.jpg', 30000, 4),
+(26, 'Đậu hủ chiên giòn', 'Đậu hủ chiên giòn là một món ăn đơn giản, dễ làm nhưng rất ngon miệng. Món ăn này có vị béo ngậy của đậu hủ, vị thơm của dầu ăn và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là đậu hủ, dầu ăn, hành lá. ', 'dhc.jpg', 30000, 4),
+(27, 'Cá linh chiên bột', 'Cá linh chiên bột là một món ăn đặc sản của miền Tây Nam Bộ. Món ăn này có vị ngọt của cá linh, vị giòn của bột và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là cá linh, bột chiên, hành lá.', 'clc.jpg', 30000, 4),
+(28, 'Gà viên chiên', 'Gà viên chiên là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị đậm đà của gia vị, vị thơm của thịt gà và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt gà, gia vị, rau thơm. ', 'gcg.jpg', 30000, 4),
+(29, 'Thịt luộc mắm tôm', 'Thịt luộc mắm tôm là một món ăn dân dã, đậm đà hương vị, được nhiều người yêu thích. Món ăn này có vị mặn ngọt của mắm tôm, vị thơm của thịt lợn và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt lợn, mắm tôm, rau thơm. ', 'tlmt.jpg', 30000, 6),
+(30, 'Gà luộc', 'Gà luộc là một món ăn truyền thống của Việt Nam, được nhiều người yêu thích. Món ăn này có vị ngọt của thịt gà, vị thơm của lá chanh và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt gà, lá chanh, rau thơm.', 'gl.jpg', 30000, 6),
+(31, 'Gà hấp muối', 'Gà hấp muối là một món ăn dân dã, thơm ngon, hấp dẫn. Món ăn này có vị ngọt của thịt gà, vị mặn của muối và mùi thơm của lá chanh. Nguyên liệu chính của món ăn này là thịt gà, muối, lá chanh. ', 'ghm.jpg', 30000, 6),
+(32, 'Tôm hấp xả chanh', 'Tôm hấp xả chanh là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị ngọt của tôm, vị thơm của xả và mùi thơm của chanh. Nguyên liệu chính của món ăn này là tôm, xả, chanh. ', 'thxc.jpg', 30000, 6),
+(33, 'Bánh mỳ thịt', 'Bánh mỳ thịt là một món ăn phổ biến ở Việt Nam. Món ăn này có vị thơm của bánh mỳ, vị đậm đà của thịt và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bánh mỳ, thịt, rau thơm. ', 'banhmy.jpg', 15000, 5),
+(34, 'Bún thịt nướng', 'Bún thịt nướng là một món ăn đặc sản của Hà Nội. Món ăn này có vị thơm của thịt nướng, vị đậm đà của nước chấm và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt lợn, bún, nước chấm, rau thơm.', 'bunthitnuong.jpg', 25000, 8),
+(35, 'Cơm tấm', 'Cơm tấm là một món ăn đặc sản của Sài Gòn. Món ăn này có vị ngọt của cơm tấm, vị đậm đà của sườn nướng và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là cơm tấm, sườn nướng, rau thơm. ', 'comtam.jpg', 30000, 7),
+(36, 'Bún bò', 'Bún bò Huế là một món ăn đặc sản của Huế. Món ăn này có vị ngọt của nước dùng, vị thơm của thịt bò và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bún, thịt bò, nước dùng, rau thơm. ', 'bunbo.jpg', 30000, 8),
+(37, 'Phở', 'Phở là một món ăn truyền thống của Việt Nam, được nhiều người yêu thích. Món ăn này có vị ngọt của nước dùng, vị thơm của thịt bò và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là phở, thịt bò, nước dùng, rau thơm. ', 'pho.jpg', 30000, 8),
+(38, 'Bún riêu', 'Bún riêu là một món ăn dân dã, thơm ngon, hấp dẫn. Món ăn này có vị ngọt của nước dùng, vị chua của cà chua và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bún, cua đồng, cà chua, rau thơm. ', 'bunrieu.jpg', 30000, 8),
+(39, 'Hủ tiếu', 'Hủ tiếu là một món ăn phổ biến ở Việt Nam. Món ăn này có vị ngọt của nước dùng, vị thơm của thịt và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là hủ tiếu, thịt, nước dùng, rau thơm. ', 'hutieu.jpg', 25000, 8),
+(40, 'Bánh bao', 'Bánh bao là một món ăn phổ biến ở Việt Nam. Món ăn này có vị thơm của vỏ bánh, vị đậm đà của nhân và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là bột mì, nhân thịt, hành lá. ', 'banhbao.jpg', 20000, 5),
+(41, 'Bò kho', 'Bò kho là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị đậm đà của thịt bò, vị béo ngậy của nước cốt dừa và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là thịt bò, nước cốt dừa, rau thơm.', 'bokho.jpg', 30000, 3),
+(42, 'Bún mộc', 'Bún mộc là một món ăn đặc sản của Nam Định. Món ăn này có vị ngọt của nước dùng, vị thơm của thịt và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bún, thịt, nước dùng, rau thơm.', 'bunmoc.jpg', 25000, 8),
+(43, 'Bánh hỏi thịt nướng', 'Bánh hỏi thịt nướng là một món ăn đặc sản của Bình Định. Món ăn này có vị thơm của thịt nướng, vị đậm đà của nước chấm và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bánh hỏi, thịt nướng, nước chấm, rau thơm. ', 'bhtn.jpg', 25000, 8),
+(44, 'Bún xiêm lo', 'Bún xiêm lo là một món ăn đặc sản của miền Tây Nam Bộ. Món ăn này có vị ngọt của nước dùng, vị thơm của thịt và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là bún, thịt, nước dùng, rau thơm.', 'bxl.jpg', 25000, 8),
+(45, 'Canh trứng cà chua', 'Canh trứng cà chua là một món ăn đơn giản, dễ làm nhưng rất ngon miệng. Món ăn này có vị ngọt của cà chua, vị béo ngậy của trứng và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là cà chua, trứng, hành lá. ', 'canhtrungcachua.jpg', 20000, 1),
+(46, 'Canh chua chả cá ', 'Canh chua chả cá là một món ăn thơm ngon, hấp dẫn, được nhiều người yêu thích. Món ăn này có vị chua thanh của me, vị ngọt của chả cá và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là chả cá, me, cà chua, rau thơm. ', 'canhchuachaca.jpg', 20000, 1),
+(47, 'Canh dưa chua sườn heo', 'Canh dưa chua sườn heo là một món ăn dân dã, đậm đà hương vị, được nhiều người yêu thích. Món ăn này có vị chua của dưa chua, vị ngọt của sườn heo và mùi thơm của rau thơm. Nguyên liệu chính của món ăn này là dưa chua, sườn heo, rau thơm. ', 'canhduachua.jpg', 20000, 1),
+(48, 'Canh hến nấu khế chua', 'Canh hến nấu khế chua là một món ăn đặc sản của miền Tây Nam Bộ. Món ăn này có vị chua thanh của khế, vị ngọt của hến và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là hến, khế, hành lá. ', 'canhhen.jpg', 20000, 1),
+(49, 'Canh rau dền thịt băm', 'Canh rau dền thịt băm là một món ăn dân dã, dễ làm nhưng rất ngon miệng. Món ăn này có vị ngọt của rau dền, vị thơm của thịt băm và mùi thơm của hành lá. Nguyên liệu chính của món ăn này là rau dền, thịt băm, hành lá. ', 'canhrauden.jpg', 20000, 1),
+(50, 'Canh bầu', 'Canh bầu là một món ăn dân dã, thanh mát, giải nhiệt cho cơ thể. Món ăn này có vị ngọt của bầu, vị thơm của hành lá. Nguyên liệu chính của món ăn này là bầu, hành lá', 'canhbau.jpg', 20000, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nguyenlieu`
+-- Table structure for table `nguyenlieu`
 --
 
 CREATE TABLE `nguyenlieu` (
@@ -481,7 +520,7 @@ CREATE TABLE `nguyenlieu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `nguyenlieu`
+-- Dumping data for table `nguyenlieu`
 --
 
 INSERT INTO `nguyenlieu` (`idnguyenlieu`, `tennguyenlieu`) VALUES
@@ -556,7 +595,7 @@ INSERT INTO `nguyenlieu` (`idnguyenlieu`, `tennguyenlieu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phanhoi`
+-- Table structure for table `phanhoi`
 --
 
 CREATE TABLE `phanhoi` (
@@ -569,7 +608,7 @@ CREATE TABLE `phanhoi` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phieudatmon`
+-- Table structure for table `phieudatmon`
 --
 
 CREATE TABLE `phieudatmon` (
@@ -580,23 +619,23 @@ CREATE TABLE `phieudatmon` (
   `ngaylenmon` datetime DEFAULT NULL,
   `ngaydat` datetime NOT NULL,
   `trangthai` int(11) NOT NULL DEFAULT 0,
-  `duyetdon` int(11) NOT NULL DEFAULT 0
+  `duyetdon` int(11) NOT NULL DEFAULT 0,
+  `thanhtoan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `phieudatmon`
+-- Dumping data for table `phieudatmon`
 --
 
-INSERT INTO `phieudatmon` (`idPhieu`, `idtaikhoan`, `tongsoluong`, `tongtien`, `ngaylenmon`, `ngaydat`, `trangthai`, `duyetdon`) VALUES
-(3130188, 3, 1, 45000, '2023-12-08 00:00:00', '2023-12-07 18:50:37', 0, 0),
-(3761277, 3, 2, 60000, '2023-12-09 00:00:00', '2023-12-08 02:22:55', 0, 0),
-(3790059, 3, 3, 90000, '2023-12-08 00:00:00', '2023-12-07 18:50:56', 0, 0),
-(3942741, 3, 2, 65000, '2023-12-08 00:00:00', '2023-12-07 18:51:31', 0, 0);
+INSERT INTO `phieudatmon` (`idPhieu`, `idtaikhoan`, `tongsoluong`, `tongtien`, `ngaylenmon`, `ngaydat`, `trangthai`, `duyetdon`, `thanhtoan`) VALUES
+(1279165, 1, 1, 20000, '2023-12-13 00:00:00', '2023-12-09 04:22:35', 0, 0, 0),
+(1749424, 1, 1, 30000, '2023-12-09 00:00:00', '2023-12-08 14:12:14', 1, 1, 1),
+(1947298, 1, 1, 30000, '2023-12-09 00:00:00', '2023-12-08 12:18:36', 1, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `taikhoan`
+-- Table structure for table `taikhoan`
 --
 
 CREATE TABLE `taikhoan` (
@@ -613,20 +652,19 @@ CREATE TABLE `taikhoan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `taikhoan`
+-- Dumping data for table `taikhoan`
 --
 
 INSERT INTO `taikhoan` (`idtaikhoan`, `tendangnhap`, `matkhau`, `maNV`, `hoten`, `sdt`, `email`, `hinhanh`, `ngaytao`, `vaitro`) VALUES
-(1, 'quanlybep', '123456', 'QL001', 'Bùi Thục Đoan', '0123456789', 'doan123@gmail.com', 'doan.jpg', '2023-11-09 17:26:16', 1),
-(2, 'nhanvienbep', '123456', 'NVB002', 'Đặng Ngọc Hiếu', '9876543210', 'hieu123@gmail.com', 'hieu.jpg', '2023-11-09 17:27:54', 2),
-(3, 'nhanvienct', '123456', 'NV003', 'Nguyễn Thanh Vũ', '7894560123', 'thanhvu102030@gmail.com', 'vu.jpg', '2023-11-10 17:29:43', 4),
-(4, 'nhanvienct2', '123456', 'NV002', 'Nguyễn Hoàng Hưng', '0123789654', 'hungxx@gmail.com', 'hung.jpg', '2023-11-23 14:49:04', 4),
-(5, 'nhanvienct3', '123456', 'NV004', 'Dương Công Hiếu', '0147852963', 'hieuduong@gmail.com', 'hieuduong.jpg', '2023-11-23 14:57:21', 4);
+(1, 'quanlybep', '123456', 'QL001', 'Bùi Thục Đoan', '0123556789', 'doan123@gmail.com', 'doan.jpg', '2023-11-09 17:26:16', 1),
+(2, 'thanhvu', '123456', '20010591', 'Nguyễn Thanh Vũ', '0944753646', 'thanhvu123@gmail.com', 'vu.jpg', '2023-12-09 12:28:28', 4),
+(3, 'nhanvienbep', '123456', '123456789', 'Đặng Ngọc Hiếu', '0123456789', 'hieu123@gmail.com', 'hieu.jpg', '2023-12-09 12:30:19', 2),
+(6, 'nhanvienphucvu', '123456', '111111', 'Dương Công Hiếu', '0987456123', 'hiueduong@gmail.com', 'user.jpg', '2023-12-09 19:54:54', 3);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thanhtoan`
+-- Table structure for table `thanhtoan`
 --
 
 CREATE TABLE `thanhtoan` (
@@ -640,7 +678,7 @@ CREATE TABLE `thanhtoan` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thucdon`
+-- Table structure for table `thucdon`
 --
 
 CREATE TABLE `thucdon` (
@@ -650,19 +688,20 @@ CREATE TABLE `thucdon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `thucdon`
+-- Dumping data for table `thucdon`
 --
 
 INSERT INTO `thucdon` (`idthucdon`, `tenthucdon`, `ngaytao`) VALUES
-(1, 'Thực đơn thứ tư', '2023-12-06'),
-(2, 'Thực đơn thứ năm', '2023-12-07'),
-(3, 'Thực đơn thứ sáu', '2023-12-08'),
-(4, 'Thực đơn thứ bảy', '2023-12-09');
+(1, 'Thực đơn thứ tư', '2023-12-11'),
+(2, 'Thực đơn thứ năm', '2023-12-12'),
+(3, 'Thực đơn thứ sáu', '2023-12-13'),
+(4, 'Thực đơn thứ bảy', '2023-12-14'),
+(31, '', '2023-12-15');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vaitro`
+-- Table structure for table `vaitro`
 --
 
 CREATE TABLE `vaitro` (
@@ -672,7 +711,7 @@ CREATE TABLE `vaitro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `vaitro`
+-- Dumping data for table `vaitro`
 --
 
 INSERT INTO `vaitro` (`idvaitro`, `tenvaitro`, `ngaytao`) VALUES
@@ -682,11 +721,11 @@ INSERT INTO `vaitro` (`idvaitro`, `tenvaitro`, `ngaytao`) VALUES
 (4, 'Nhân viên công ty', '2023-11-09 17:18:31');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `chitietgiohang`
+-- Indexes for table `chitietgiohang`
 --
 ALTER TABLE `chitietgiohang`
   ADD KEY `idtaikhoan` (`idtaikhoan`),
@@ -694,156 +733,155 @@ ALTER TABLE `chitietgiohang`
   ADD KEY `id_monan` (`id_monan`);
 
 --
--- Chỉ mục cho bảng `chitietnguyenlieu`
+-- Indexes for table `chitietnguyenlieu`
 --
 ALTER TABLE `chitietnguyenlieu`
   ADD KEY `idnguyenlieu` (`idnguyenlieu`,`id_monan`),
   ADD KEY `id_monan` (`id_monan`);
 
 --
--- Chỉ mục cho bảng `chitietphieu`
+-- Indexes for table `chitietphieu`
 --
 ALTER TABLE `chitietphieu`
   ADD KEY `idPhieu` (`idPhieu`,`id_monan`);
 
 --
--- Chỉ mục cho bảng `chitietthucdon`
+-- Indexes for table `chitietthucdon`
 --
 ALTER TABLE `chitietthucdon`
-  ADD PRIMARY KEY (`ichitietthucdon`),
   ADD KEY `id_monan` (`id_monan`),
   ADD KEY `idthucdon` (`idthucdon`);
 
 --
--- Chỉ mục cho bảng `giohang`
+-- Indexes for table `giohang`
 --
 ALTER TABLE `giohang`
   ADD PRIMARY KEY (`idgiohang`);
 
 --
--- Chỉ mục cho bảng `loaimonan`
+-- Indexes for table `loaimonan`
 --
 ALTER TABLE `loaimonan`
   ADD PRIMARY KEY (`id_loaimonan`);
 
 --
--- Chỉ mục cho bảng `loai_thucdon`
+-- Indexes for table `loai_thucdon`
 --
 ALTER TABLE `loai_thucdon`
   ADD PRIMARY KEY (`idloaithucdon`);
 
 --
--- Chỉ mục cho bảng `monan`
+-- Indexes for table `monan`
 --
 ALTER TABLE `monan`
   ADD PRIMARY KEY (`id_monan`),
   ADD KEY `id_loaimonan` (`id_loaimonan`);
 
 --
--- Chỉ mục cho bảng `nguyenlieu`
+-- Indexes for table `nguyenlieu`
 --
 ALTER TABLE `nguyenlieu`
   ADD PRIMARY KEY (`idnguyenlieu`);
 
 --
--- Chỉ mục cho bảng `phanhoi`
+-- Indexes for table `phanhoi`
 --
 ALTER TABLE `phanhoi`
   ADD PRIMARY KEY (`idphanhoi`),
   ADD KEY `idnhanvien` (`idnhanvien`);
 
 --
--- Chỉ mục cho bảng `phieudatmon`
+-- Indexes for table `phieudatmon`
 --
 ALTER TABLE `phieudatmon`
   ADD PRIMARY KEY (`idPhieu`),
   ADD KEY `idtaikhoan` (`idtaikhoan`);
 
 --
--- Chỉ mục cho bảng `taikhoan`
+-- Indexes for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
   ADD PRIMARY KEY (`idtaikhoan`),
   ADD KEY `idvaitro` (`vaitro`);
 
 --
--- Chỉ mục cho bảng `thanhtoan`
+-- Indexes for table `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
   ADD PRIMARY KEY (`idthanhtoan`),
   ADD KEY `idphieudatmon` (`idphieudatmon`,`idnhanvien`);
 
 --
--- Chỉ mục cho bảng `thucdon`
+-- Indexes for table `thucdon`
 --
 ALTER TABLE `thucdon`
   ADD PRIMARY KEY (`idthucdon`);
 
 --
--- Chỉ mục cho bảng `vaitro`
+-- Indexes for table `vaitro`
 --
 ALTER TABLE `vaitro`
   ADD PRIMARY KEY (`idvaitro`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `loaimonan`
+-- AUTO_INCREMENT for table `loaimonan`
 --
 ALTER TABLE `loaimonan`
   MODIFY `id_loaimonan` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `monan`
+-- AUTO_INCREMENT for table `monan`
 --
 ALTER TABLE `monan`
-  MODIFY `id_monan` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_monan` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
--- AUTO_INCREMENT cho bảng `nguyenlieu`
+-- AUTO_INCREMENT for table `nguyenlieu`
 --
 ALTER TABLE `nguyenlieu`
-  MODIFY `idnguyenlieu` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `idnguyenlieu` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
--- AUTO_INCREMENT cho bảng `taikhoan`
+-- AUTO_INCREMENT for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `idtaikhoan` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idtaikhoan` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- AUTO_INCREMENT for table `thucdon`
+--
+ALTER TABLE `thucdon`
+  MODIFY `idthucdon` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `chitietgiohang`
+-- Constraints for table `chitietgiohang`
 --
 ALTER TABLE `chitietgiohang`
   ADD CONSTRAINT `chitietgiohang_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`),
   ADD CONSTRAINT `chitietgiohang_ibfk_2` FOREIGN KEY (`idgiohang`) REFERENCES `giohang` (`idgiohang`);
 
 --
--- Các ràng buộc cho bảng `chitietnguyenlieu`
+-- Constraints for table `chitietnguyenlieu`
 --
 ALTER TABLE `chitietnguyenlieu`
   ADD CONSTRAINT `chitietnguyenlieu_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`);
 
 --
--- Các ràng buộc cho bảng `chitietthucdon`
---
-ALTER TABLE `chitietthucdon`
-  ADD CONSTRAINT `chitietthucdon_ibfk_1` FOREIGN KEY (`idthucdon`) REFERENCES `thucdon` (`idthucdon`);
-
---
--- Các ràng buộc cho bảng `monan`
+-- Constraints for table `monan`
 --
 ALTER TABLE `monan`
   ADD CONSTRAINT `monan_ibfk_1` FOREIGN KEY (`id_loaimonan`) REFERENCES `loaimonan` (`id_loaimonan`);
 
 --
--- Các ràng buộc cho bảng `taikhoan`
+-- Constraints for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
   ADD CONSTRAINT `taikhoan_ibfk_1` FOREIGN KEY (`vaitro`) REFERENCES `vaitro` (`idvaitro`);
