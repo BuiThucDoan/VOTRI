@@ -3,6 +3,7 @@ include 'Includes/functions/functions.php';
 include "Includes/templates/header.php";
 include "Includes/templates/navbar.php";
 include("Controller/cMonan.php");
+
 $p = new controlMonan();
 $loaimon = $p->getAllLoaiMonAn();
 $loaithucdon = $p->getAllLoaiThucDon();

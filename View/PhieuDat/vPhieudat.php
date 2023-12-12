@@ -74,34 +74,32 @@ $total = $p->getSumbyidtaikhoan($idtaikhoan);
 
 
         <div class="col-lg-12 col-md-12 ">
-            <nav class="navbar navbar-expand-sm bg-light navbar-light  shadow-lg p-3 mb-5 bg-body rounded  position-fixed" style="top: 100px; z-index: 10; margin-left: -15px; width: 100%;">
+            <nav class="navbar navbar-expand-sm bg-light shadow-lg p-3 mb-5 bg-body rounded-  position-fixed" style="top: 100px; z-index: 10; margin-left: -15px; width: 100%;">
                 <div class="container-fluid">
                     <ul class="navbar-nav">
-                        <li class="nav-item ">
-                            <a class="nav-link  active" href="index.php?mod=Order&act=ListOrderUser">Tất cả</a>
-                        </li>
+                        
 
-                        <li class="nav-item mt-2" style="margin-left: 500px; width: 300px;">
-
-                            <h5 class="text-dark     float-right mb-3"><i class="bi bi-coin"></i> Tổng tiền cần thanh toán: <span class="text-danger "><b><?php if (!empty($total[0]['tongtien'])) {
-                                                                                                                                                                echo number_format($total[0]['tongtien']);
-                                                                                                                                                            } else {
-                                                                                                                                                                $total[0]['tongtien'] = 0;
-                                                                                                                                                                echo  number_format($total[0]['tongtien']);
-                                                                                                                                                            }
-                                                                                                                                                            ?></span></b></h5>
-
-                            <?php if (!empty($total[0]['tongtien'])) {
-                                $total = $total[0]['tongtien'];
-                            } else {
-                                $total = 0;
-                            }
+                        <li class="nav-item mt-2" style="margin-left: 1000px; width: 300px;">
+                            <?php
+                            $totalAmount = !empty($total[0]['tongtien']) ? number_format($total[0]['tongtien']) : 0;
+                            $total = !empty($total[0]['tongtien']) ? $total[0]['tongtien'] : 0;
                             $user = $user['hoten'] . '-' . $user['maNV'];
                             ?>
-                            <?php if ($total != 0) { ?>
-                                <button class="btn btn-danger mt-3" style="float: right;"><a class="text-light" href="index.php?mod=Order&act=ThanhToan&total=<?php echo $total ?>&user=<?php echo $user ?>">Thanh toán</a></button>
-                            <?php } ?>
+
+                            <h5 class="text-dark float-right mb-3">
+                                Tổng tiền cần thanh toán: 
+                                <span class="text-danger"><b><?php echo $totalAmount; ?> VND</b></span>
+                            </h5>
+
+                            <?php if ($total != 0): ?>
+                                <button class="btn btn-danger mt-2" style="float: right; margin-bottom: 10px">
+                                    <a class="text-light" href="index.php?mod=Order&act=ThanhToan&total=<?php echo $total ?>&user=<?php echo $user ?>">
+                                        Thanh toán
+                                    </a>
+                                </button>
+                            <?php endif; ?>
                         </li>
+
 
 
                     </ul>
@@ -147,85 +145,97 @@ $total = $p->getSumbyidtaikhoan($idtaikhoan);
 }
 
 </style>
-            <div style="margin-top: 150px; padding-left: 150px;">
-                <?php foreach ($resultArray as $index => $order) {
+<div style="margin-top: 150px; padding-left: 150px;">
 
-                ?>
-                    <div class="container m-3 shadow-lg p-3 mb-5 bg-body rounded">
-                        <?php
-                        foreach ($order as $item) {
-                            if ($item['duyetdon'] == 0) { ?>
-                                <span class="badge bg-warning noOrder mb-3 p-1"><i class="bi bi-exclamation-triangle m-1"></i>Chưa nhận món</span>
-                            <?php } else { ?>
-                                <span class="badge bg-success   mb-3 p-1"><i class="bi bi-check-circle m-1"></i>Đã nhận món</span>
-                            <?php }
+<?php foreach ($resultArray as $index => $order): ?>
+    <div class="container m-3 shadow-lg p-3 mb-5 bg-body rounded">
+    <?php $isFirstIteration = true; ?>
 
-                            if ($item['trangthai'] == 0) { ?>
-                                <span class="badge bg-danger noOrder mb-3 p-1"><i class="bi bi-exclamation-triangle m-1"></i>Chưa thanh toán</span>
-                            <?php } else { ?>
-                                <span class="badge bg-success mb-3 p-1"><i class="bi bi-check-circle m-1"></i>Đã Thanh Toán</span>
-                        <?php }
-                            break;
-                        } ?>
+        <?php foreach ($order as $item): ?>
+            <?php if ($isFirstIteration): ?>
+                <?php if ($item['trangthai'] == 0): ?>
+                    <h5><span class="badge bg-warning  mb-3 p-2"></i>Chưa nhận món</span></h5>
+                <?php else: ?>
+                    <h5><span class="badge bg-success mb-3 p-2"></i>Đã nhận món</span></h5>
+                <?php endif; ?>
+                <?php if ($item['duyetdon'] == 0): ?>
+                    <h5><span class="badge bg-primary  mb-3 p-2"></i>Phiếu chưa được duyệt</span></h5>
+                <?php else: ?>
+                    <h5><span class="badge bg-success mb-3 p-2"></i>Phiếu đã được duyệt</span></h5>
+                <?php endif; ?>
+                <?php if ($item['thanhtoan'] == 0): ?>
+                    <h5><span class="badge bg-danger  mb-3 p-2"></i>Chưa thanh toán</span></h5>
+                <?php else: ?>
+                    <h5><span class="badge bg-success mb-3 p-2"></i>Đã Thanh Toán</span></h5>
+                <?php endif; ?>
 
-                        <?php foreach ($order as $item) { ?>
-
-                            <div class="row border-top border-bottom">
-                                <div class="col-md-1 p-2">
-                                    <img src="Design/image/<?php echo $item['hinhanh'] ?>" class="img-fluid img-thumbnail" alt="Không có hình">
-                                </div>
-
-                                <div class="col-md-8 d-flex flex-column ">
-                                    <h5 class="name-product mt-3 mb-2"><b><?php echo $item['tenmonan'] ?></b></h5>
-                                    <p class="mb-2">x<?php echo $item['soluong'] ?></p>
-                                </div>
-
-                                <div class="col-md-3 d-flex flex-column align-items-end justify-content-center p-2">
-                                    <span class="text-danger"><?php echo number_format($item['gia'] * $item['soluong']) ?></span>
-                                </div>
-                            </div>
-
-                        <?php }
-
-                        $totalPrice = 0;
-                        foreach ($order as $item) {
-                            $totalPrice += $item['gia'] * $item['soluong'];
-                        }
-                        ?>
+                <?php $isFirstIteration = false; ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
 
 
-                        <div class="row mt-3">
-                            <div class="col-md-3 d-flex flex-column align-items-start justify-content-start p-2">
-                                <span>Ngày nhận: <?php $ngaynhan = (new DateTime($item['ngaylenmon']))->format("d/m/Y");
-                                                    echo $ngaynhan;
-                                                    ?></span>
-                            </div>
-                            <div class="col-md-9 d-flex flex-column align-items-end justify-content-end p-2">
-                                <h5>Thành tiền: <span class="text-danger"><?php echo number_format($totalPrice) ?></span></h5>
-                            </div>
-                       
-                            <div style="margin-left: 1000px;">
-                                <a class="btn btn-danger" href="#" onclick="confirmDelete('<?php echo $item['idPhieu']; ?>')"><b>Hủy phiếu</b></a>
-                            </div>
+        <?php foreach ($order as $item): ?>
+            <div class="row border-top border-bottom">
+                <div class="col-md-1 p-2">
+                    <img src="Design/image/<?php echo $item['hinhanh'] ?>" class="img-fluid img-thumbnail" alt="Không có hình">
+                </div>
 
-                            <script>
-                            function confirmDelete(idPhieu) {
-                                var result = confirm("Bạn có chắc chắn muốn hủy phiếu này không?");
-                                if (result) {
-                                    // Nếu người dùng chấp nhận, chuyển hướng đến trang xử lý hủy phiếu
-                                    window.location.href = "index.php?mod=Order&act=DeletePhieu&idPhieu=" + idPhieu;
-                                } else {
-                                    // Người dùng không chấp nhận, không làm gì cả hoặc thực hiện các xử lý khác
-                                }
-                            }
-                            </script>
-                        </div>
-                    </div>
+                <div class="col-md-8 d-flex flex-column ">
+                    <h5 class="name-product mt-3 mb-2"><b><?php echo $item['tenmonan'] ?></b></h5>
+                    <p class="mb-2">x<?php echo $item['soluong'] ?></p>
+                </div>
 
-                <?php } ?>
+                <div class="col-md-3 d-flex flex-column align-items-end justify-content-center p-2">
+                    <span class="text-danger"><?php echo number_format($item['gia'] * $item['soluong']) ?> VND</span>
+                </div>
+                                     <!-- ... (Các phần còn lại của mã HTML) ... -->
+            </div>
+        <?php endforeach; ?>
 
+        <?php
+       $prices = array_column($order, 'gia');
+       $quantities = array_column($order, 'soluong');
+       $totalPrice = array_sum(array_map(function ($price, $quantity) {
+           return $price * $quantity;
+       }, $prices, $quantities));
+       
+        $ngaynhan = (new DateTime($item['ngaylenmon']))->format("d/m/Y");
+        ?>
+
+        <div class="row mt-3">
+            <div class="col-md-3 d-flex flex-column align-items-start justify-content-start p-2">
+                <span>Ngày nhận: <?php echo $ngaynhan; ?></span>
+            </div>
+            <div class="col-md-9 d-flex flex-column align-items-end justify-content-end p-2">
+                <h5>Thành tiền: <span class="text-danger"><?php echo number_format($totalPrice) ?> VND</span></h5>
+            </div>
+
+            <div style="margin-left: 1000px;">
+            <?php foreach ($order as $item): ?>
+                <?php if ($item['thanhtoan'] == 0): ?>
+                    <a class="btn btn-danger" href="#" onclick="confirmDelete('<?php echo $item['idPhieu']; ?>')"><b>Hủy phiếu</b></a>
+                    <?php break; ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
 
             </div>
+
+            <script>
+                function confirmDelete(idPhieu) {
+                    var result = confirm("Bạn có chắc chắn muốn hủy phiếu này không?");
+                    if (result) {
+                        window.location.href = "index.php?mod=Order&act=DeletePhieu&idPhieu=" + idPhieu;
+                    } else {
+                        // Người dùng không chấp nhận, không làm gì cả hoặc thực hiện các xử lý khác
+                    }
+                }
+            </script>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+</div>
+
         </div>
     </div>
 

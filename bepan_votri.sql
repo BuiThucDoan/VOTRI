@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2023 at 04:14 PM
+-- Generation Time: Dec 12, 2023 at 07:00 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,13 +35,6 @@ CREATE TABLE `chitietgiohang` (
   `idtaikhoan` int(2) NOT NULL,
   `idgiohang` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `chitietgiohang`
---
-
-INSERT INTO `chitietgiohang` (`id_monan`, `ngaydat`, `ngaylenmon`, `soluong`, `idtaikhoan`, `idgiohang`) VALUES
-(7, '2023-12-11 13:02:27', '2023-12-12 00:00:00', 1, 1, 1195072);
 
 -- --------------------------------------------------------
 
@@ -241,7 +234,10 @@ INSERT INTO `chitietphieu` (`idPhieu`, `id_monan`, `soluong`, `ngaylenmon`) VALU
 (1736688, 17, 1, '2023-12-09 00:00:00'),
 (1947298, 9, 1, '2023-12-09 00:00:00'),
 (1749424, 17, 1, '2023-12-09 00:00:00'),
-(1279165, 3, 1, '2023-12-13 00:00:00');
+(1279165, 3, 1, '2023-12-13 00:00:00'),
+(2760157, 8, 1, '2023-12-13 00:00:00'),
+(2783083, 13, 1, '2023-12-13 00:00:00'),
+(2436989, 5, 1, '2023-12-13 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -296,9 +292,11 @@ CREATE TABLE `giohang` (
 --
 
 INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
+(27757, '2023-12-12 10:40:06', 0),
 (124282, '2023-12-08 11:56:23', 0),
 (192991, '2023-12-08 11:24:03', 0),
 (194913, '2023-12-08 19:30:46', 0),
+(280836, '2023-12-12 10:38:05', 0),
 (328763, '2023-12-07 22:51:13', 0),
 (336551, '2023-12-07 23:11:43', 0),
 (338708, '2023-12-08 00:51:23', 0),
@@ -332,6 +330,8 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (1890076, '2023-12-08 19:37:16', 0),
 (1914881, '2023-12-08 19:31:18', 0),
 (1933988, '2023-12-08 12:08:50', 0),
+(2100120, '2023-12-12 12:24:38', 0),
+(2459749, '2023-12-12 10:31:53', 0),
 (3120502, '2023-12-07 23:21:46', 0),
 (3127435, '2023-12-07 10:28:49', 0),
 (3131152, '2023-12-07 23:09:50', 0),
@@ -414,6 +414,29 @@ INSERT INTO `loaimonan` (`id_loaimonan`, `tenloaimonan`) VALUES
 (6, 'Món hấp/luộc'),
 (7, 'Món cơm'),
 (8, 'Món Bún');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loai_thucdon`
+--
+
+CREATE TABLE `loai_thucdon` (
+  `idloaithucdon` int(2) NOT NULL,
+  `tenloaithucdon` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `loai_thucdon`
+--
+
+INSERT INTO `loai_thucdon` (`idloaithucdon`, `tenloaithucdon`) VALUES
+(1, 'Thứ Hai'),
+(2, 'Thứ Ba'),
+(3, 'Thứ Tư'),
+(4, 'Thứ Năm'),
+(5, 'Thứ Sáu'),
+(6, 'Thứ Bảy');
 
 -- --------------------------------------------------------
 
@@ -607,7 +630,9 @@ CREATE TABLE `phieudatmon` (
 INSERT INTO `phieudatmon` (`idPhieu`, `idtaikhoan`, `tongsoluong`, `tongtien`, `ngaylenmon`, `ngaydat`, `trangthai`, `duyetdon`, `thanhtoan`) VALUES
 (1279165, 1, 1, 20000, '2023-12-13 00:00:00', '2023-12-09 04:22:35', 0, 0, 0),
 (1749424, 1, 1, 30000, '2023-12-09 00:00:00', '2023-12-08 14:12:14', 1, 1, 1),
-(1947298, 1, 1, 30000, '2023-12-09 00:00:00', '2023-12-08 12:18:36', 1, 1, 1);
+(1947298, 1, 1, 30000, '2023-12-09 00:00:00', '2023-12-08 12:18:36', 1, 1, 1),
+(2760157, 2, 1, 45000, '2023-12-13 00:00:00', '2023-12-12 04:32:00', 1, 1, 1),
+(2783083, 2, 1, 35000, '2023-12-13 00:00:00', '2023-12-12 04:38:08', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -741,6 +766,12 @@ ALTER TABLE `giohang`
 --
 ALTER TABLE `loaimonan`
   ADD PRIMARY KEY (`id_loaimonan`);
+
+--
+-- Indexes for table `loai_thucdon`
+--
+ALTER TABLE `loai_thucdon`
+  ADD PRIMARY KEY (`idloaithucdon`);
 
 --
 -- Indexes for table `monan`

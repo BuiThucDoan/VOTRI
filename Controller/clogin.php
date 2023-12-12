@@ -25,6 +25,8 @@ class controllogin
                         $_SESSION['is_login']['email'] = $item['email'];
                         $_SESSION['is_login']['ngaytao'] = $item['ngaytao'];
                         $_SESSION['is_login']['hinhanh'] = $item['hinhanh'];
+                        $_SESSION['is_login']['idtaikhoan'] = $item['idtaikhoan']; 
+                        $_SESSION['is_login']['matkhau'] = $item['matkhau']; 
                         return 1;
                     }
                 }

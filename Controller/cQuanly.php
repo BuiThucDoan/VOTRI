@@ -92,7 +92,11 @@ function  UpdateUser($idtaikhoan, $matkhau, $maNV, $hoten, $sdt, $email, $hinhan
         return 0;
     }
 }
-
+function DoiMatKhau($idtaikhoan, $matkhau){
+    $p = new modelQuanly();
+    $tbl =$p->DoiMatKhau($idtaikhoan, $matkhau);
+    return  $tbl;
+}
 
 function getUsers(){
     $p = new modelQuanly();

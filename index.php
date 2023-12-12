@@ -101,7 +101,11 @@ if (isset($_GET['mod'])) {
             include_once('gioithieu.php');
             break;
         case 'Profile':
+            include 'Includes/functions/functions.php';
+            include "Includes/templates/header.php";
+            include "Includes/templates/navbar.php";
             include_once('View/Admin/vHoso.php');
+            include_once("Includes/templates/footer.php");
             break;
         case 'pay':
             include_once('thanhtoan.php');

@@ -234,12 +234,40 @@ function SelectUsers()
         
         $p = new KetNoiDB();
         $con = $p->moKetNoi($con);
-        $update = "UPDATE taikhoan SET   matKhau = '$matkhau', maNV= '$maNV', hoten='$hoten', sdt = '$sdt',
+        $update = "UPDATE taikhoan SET   matkhau = '$matkhau', maNV= '$maNV', hoten='$hoten', sdt = '$sdt',
         email = '$email', hinhanh = '$hinhanh', `vaitro` = '$vaitro'
          WHERE idtaikhoan = $idtaikhoan";
         $kq = mysqli_query($con, $update);
         $p->dongKetNoi($con);
         return $kq;
     }
+
+    function DoiMatKhau($idtaikhoan, $matkhau) {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+    
+        // Use prepared statements to prevent SQL injection
+        $update = "UPDATE taikhoan SET matKhau = ? WHERE idtaikhoan = ?";
+        $stmt = mysqli_prepare($con, $update);
+    
+        if ($stmt) {
+            // Bind parameters
+            mysqli_stmt_bind_param($stmt, "si", $matkhau, $idtaikhoan);
+    
+            // Execute the statement
+            $kq = mysqli_stmt_execute($stmt);
+    
+            // Close the statement
+            mysqli_stmt_close($stmt);
+        } else {
+            // Handle the error if preparing the statement fails
+            echo "Error in preparing the statement: " . mysqli_error($con);
+            $kq = false;
+        }
+    
+        $p->dongketnoi($con);
+        return $kq;
+    }
+    
 }
 ?>
