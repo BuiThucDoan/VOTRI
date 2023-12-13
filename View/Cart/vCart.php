@@ -5,7 +5,7 @@ include_once("Controller/cCart.php");
 
 $p = new controlCart();
 
-$idtaikhoan = $_SESSION['is_login']['idtaikhoan'];
+
 
 $list_buy = $p->getAllCartByIdTaiKhoan($idtaikhoan);
 

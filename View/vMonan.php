@@ -210,7 +210,7 @@ if (isset($_GET['date'])) {
         }
     ?>
         <div class="col-md-3 menu-item">
-            <a href="?mod=chitiet&id=<?php echo $row_tomorrow['id_monan']; ?>&date=<?php echo $_GET['date'] ?>" onclick="showDetails(this)">
+            <a href="?mod=chitiet&id_monan=<?php echo $row_tomorrow['id_monan']; ?>&date=<?php echo $_GET['date'] ?>" onclick="showDetails(this)">
                 <div class="thumbnail" style="cursor:pointer">
                     <div class="menu-image">
                         <div class="circular-image">
@@ -289,7 +289,7 @@ while ($row = $dish->fetch_assoc()) {
     // Check if a date is provided and it's less than or equal to the current date
     if ($selectedDate > $today) {
         // Display information for items that can be ordered
-        echo '<a href="?mod=chitiet&id='. $row['id_monan']. '&date='. $_GET['date'].'" onclick="showDetails(this)">';
+        echo '<a href="?mod=chitiet&id_monan='. $row['id_monan']. '&date='. $_GET['date'].'" onclick="showDetails(this)">';
         echo '<div class="thumbnail" style="cursor:pointer">';
         echo '<div class="menu-image">';
         echo '<div class="circular-image">';

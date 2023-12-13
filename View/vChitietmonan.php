@@ -4,10 +4,11 @@ include_once("Controller/cMonan.php");
 
 $p = new controlMonan();
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $monan = $p->getShowchitiet($id);
 
+if (isset($_GET['id_monan'])) {
+    $id_monan = $_GET['id_monan'];
+    $monan = $p->getShowchitiet($id_monan);
+    
     if (!$monan) {
         echo "Không có món ăn nào được tìm thấy với ID này.";
         exit; // Stop execution if no menu item is found
@@ -17,7 +18,35 @@ if (isset($_GET['id'])) {
     exit; // Stop execution if no ID is provided
 }
 
+if (isset($_POST['btn'])) {
+    // Check if the user is logged in
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+}
+// In ra giá trị của biến session
+if (isset($_SESSION['is_login']) && is_array($_SESSION['is_login'])) {
+    // Kiểm tra xem 'idtaikhoan' có tồn tại trong 'is_login' không
+    if (isset($_SESSION['is_login']['idtaikhoan'])) {
+        // Lấy giá trị 'idtaikhoan'
+        $idtaikhoan = $_SESSION['is_login']['idtaikhoan'];
 
+        // Tiếp tục xử lý
+        // ...
+
+    } else {
+        // Xử lý khi 'idtaikhoan' không tồn tại trong 'is_login'
+        echo 'Không có ID tài khoản.';
+        exit;
+    }
+} else {
+    // Xử lý khi 'is_login' không tồn tại
+    echo 'Không có thông tin đăng nhập.';
+    exit;
+}
+
+
+$comment = $p->getBinhluanByIdMonAn($id_monan);
 ?>
 
 
@@ -76,11 +105,22 @@ if (isset($_GET['id'])) {
                 <img src="Design/image/<?php echo $monan['monan']['hinhanh']; ?>" alt="<?php echo $monan['monan']['tenmonan']; ?>">
             </div>
         </div>
-
         <div class="col-md-4">
         <div class="info">
     <div class="name"><h2><?php echo $monan['monan']['tenmonan']; ?></h2></div>
-
+    <div class="product__details__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <span>(<?php if (!empty($comment)) {
+                                            echo count($comment);
+                                        } else {
+                                            echo 0;
+                                        } ?> nhận xét)</span>
+                            </div>
     <div class="price"><?php echo number_format($monan['monan']['gia'], 0, ',', '.') ?> VNĐ</div>
     <div><h3>Nguyên liệu bao gồm:</h3></div>
 
@@ -96,7 +136,6 @@ if (isset($_GET['id'])) {
         echo 'Không có nguyên liệu.';
     }
     ?>
-
         <a href="index.php?mod=cart&act=Add&id_monan=<?php echo $monan['monan']['id_monan']; ?>&date=<?php echo $_GET['date'] ?>" class="btn btn-danger">Thêm vào giỏ hàng</a>
  
 </div>
@@ -119,22 +158,146 @@ if (isset($_GET['id'])) {
                     <p><?php echo $monan['monan']['mota']; ?></p>
                 </div>
                 <div class="tab-pane fade" id="danhGia">
-                <div class="product__details__text">
-                            <h3><?php echo  $monan['monan']['tenmonan'] ?></h3>
-                            <div class="product__details__rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <span>(<?php if (!empty($phanhoi)) {
-                                            echo count($phanhoi);
-                                        } else {
-                                            echo 0;
-                                        } ?> nhận xét)</span>
+                <div class="upload">
+                    <h2 class="mt-4 m-3">Bình luận</h2>
+                    <form action="#" enctype="multipart/form-data" method="post">
+                        <table class="admin_upload">
+
+                            <tr>
+                                <th><textarea name="noidung" id="" cols="100" rows="5"></textarea></th>
+                            </tr>
+                            <div id="rating" class="rating">
+                                <input type="radio" name="danhgia" id="star5" value="5" />
+                                <label for="star5" class="star" data-value="5">
+                                    <div class="stas"><span class="sta text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</span>&nbsp;&nbsp;(Xuất
+                                        sắc)
+                                    </div>
+                                </label><br>
+                                <input type="radio" name="danhgia" id="star4" value="4" />
+                                <label for="star4" class="star" data-value="4">
+                                    <div class="stas"><span class="sta text-warning">&#9733;&#9733;&#9733;&#9733;</span>&nbsp;&nbsp;(Tốt)
+                                    </div>
+                                </label><br>
+                                <input type="radio" name="danhgia" id="star3" value="3" />
+                                <label for="star3" class="star" data-value="3">
+                                    <div class="stas "><span class="sta text-warning">&#9733;&#9733;&#9733;</span>&nbsp;&nbsp;(Tạm
+                                        được)</div>
+                                </label><br>
+                                <input type="radio" name="danhgia" id="star2" value="2" />
+                                <label for="star2" class="star" data-value="2">
+                                    <div class="stas "><span class="sta text-warning">&#9733;&#9733;</span>&nbsp;&nbsp;(Tệ)</div>
+                                </label><br>
+                                <input type="radio" name="danhgia" id="star1" value="1" />
+                                <label for="star1" class="star" data-value="1">
+                                    <div class="stas "><span class="sta text-warning">&#9733;</span>&nbsp;&nbsp;(Rất
+                                        tệ)</div>
+                                </label>
                             </div>
+                            <tr>
+                                <td>
+                                    <input type="submit" name="btn" class="btn btn-primary" value="Gửi">
+                                </td>
+                            </tr>
+
+                            <?php
+                                if (isset($_POST['btn'])) {
+                                    // Check if the user is logged in
+                                    if (session_status() == PHP_SESSION_NONE) {
+                                        session_start();
+                                    }
+                                
+                                    // In ra giá trị của biến session
+                                    if (isset($_SESSION['is_login']) && is_array($_SESSION['is_login'])) {
+                                        // Kiểm tra xem 'idtaikhoan' có tồn tại trong 'is_login' không
+                                        if (isset($_SESSION['is_login']['idtaikhoan'])) {
+                                            // Lấy giá trị 'idtaikhoan'
+                                            $idtaikhoan = $_SESSION['is_login']['idtaikhoan'];
+                                
+                                            // Tiếp tục xử lý
+                                            // ...
+                                
+                                            // Comment processing logic here
+                                            if (isset($_POST['btn'])) {
+                                                $idtaikhoan = $_SESSION['is_login']['idtaikhoan'];
+                                                if (!$idtaikhoan) {
+                                                    echo '<script>alert("Vui lòng đăng nhập trước khi bình luận.")</script>';
+                                                } else {
+                                                    // Sanitize and validate input
+                                                    $noidung = isset($_POST['noidung']) ? htmlspecialchars($_POST['noidung']) : '';
+                                                    $danhgia = isset($_POST['danhgia']) ? intval($_POST['danhgia']) : 0;
+                                                    $id_monan = isset($_GET['id_monan']) ? intval($_GET['id_monan']) : 0;
+                                                    $ngaygui = date("Y-m-d H:i:s");
+                                
+                                                    // Insert comment using a prepared statement
+                                                    $kq = $p->InsertBinhluan($idtaikhoan, $id_monan, $noidung, $danhgia, $ngaygui);
+                                
+                                                    if ($kq) {
+                                                        echo '<script>alert("Bình luận thành công")</script>';
+                                                    } else {
+                                                        echo '<script>alert("Có lỗi xảy ra. Vui lòng thử lại sau.")</script>';
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            // Xử lý khi 'idtaikhoan' không tồn tại trong 'is_login'
+                                            echo 'Không có ID tài khoản.';
+                                            exit;
+                                        }
+                                    } else {
+                                        // Xử lý khi 'is_login' không tồn tại
+                                        echo 'Không có thông tin đăng nhập.';
+                                        exit;
+                                    }
+                                }
+                                ?>
+                        </table>
+                    </form>
                 </div>
-            </div>
+
+
+                    <div class="product__details__text">
+                        <div class="tab-pane <?php echo (!empty($comment)) ? 'tab-pane-show' : ''; ?>" id="tabs-3" role="tabpanel">
+                            <div class="container" style="border-radius: 14px; background-color: #222227; width: 100%;">
+                                <div class="cmt border-top border-bottom mb-4" style="margin-top: 140px;">
+
+                                <?php if (!empty($comment)) : ?>
+                                    <?php foreach ($comment as $item) : ?>
+                                        <div class="comment shadow-lg p-3 mb-5 bg-dark" style="border-radius: 20px; position: relative;" id="<?= $item['idBinhluan'] ?>">
+
+                                            <div class="row">
+                                                <div class="col-md-12" style="display: flex; align-items: center;">
+                                                    <span class="name" style="font-weight: bold;"><?= $item['hoten'] ?></span>&nbsp;
+                                                    <span class="date ml-1"><?= date(" H:i d/m/Y", strtotime($item['ngaygui'])); ?></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row ml-3">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-4 rating">
+                                                    <?php for ($i = 0; $i < $item['danhgia']; $i++) : ?>
+                                                        <span class="star text-warning">&#9733;</i></span>
+                                                    <?php endfor; ?>
+                                                </div>
+                                            </div>
+
+                                            <div class="row ml-3">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-8">
+                                                    <p class="message"><?= $item['noidung'] ?></p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php else : ?>
+                                    <h4 class="text-center">Chưa có đánh giá nào</h4>
+                                <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
         </div>
     </div>
 </div>

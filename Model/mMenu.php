@@ -36,40 +36,50 @@ class modelMenu{
 
 
     
-function InsertMenuDetails($idthucdon, $id_monan)
-{
-    $p = new KetNoiDB();
-    $con = $p->moKetNoi($con);
+    function InsertMenuDetails($idthucdon, $id_monan)
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+    
+        // Check if $idthucdon is not NULL
+        if ($idthucdon !== null) {
+            if (!empty($id_monan)) { // <-- Check if $id_monan is not empty
+                $insert = "INSERT INTO chitietthucdon (`idthucdon`, `id_monan`)
+                    VALUES ";
+    
+                foreach ($id_monan as $item) {
+                    $insert .= "('$idthucdon', '$item'), ";
+                }
+    
+                $insert = rtrim($insert, ", ");
 
-    // Check if $idthucdon is not NULL
-    if ($idthucdon !== null) {
-        $insert = "INSERT INTO chitietthucdon (`idthucdon`, `id_monan`)
-            VALUES ";
-
-        foreach ($id_monan as $item) {
-            $insert .= "('$idthucdon', '$item'), ";
+                if (!empty($insert)) {
+                    $kq = mysqli_query($con, $insert);
+                } else {
+                    // Handle the case when $insert is empty
+                    echo 'Error: $insert is empty.';
+                    $kq = false;
+                }
+                $p->dongketnoi($con);
+    
+                return $kq;
+            } else {
+                // Handle the case when $id_monan is empty
+                echo 'Error: $id_monan is empty.';
+    
+                // You might want to log this error or display a user-friendly message.
+                // For now, returning false.
+                return false;
+            }
+        } else {
+            // Handle the case when $idthucdon is NULL
+            echo 'Error: $idthucdon is NULL.';
+    
+            // You might want to log this error or display a user-friendly message.
+            // For now, returning false.
+            return false;
         }
-
-        $insert = rtrim($insert, ", ");
-
-        $kq = mysqli_query($con, $insert);
-
-        if (!$kq) {
-            echo 'MySQL Error: ' . mysqli_error($con);
-        }
-
-        $p->dongketnoi($con);
-
-        return $kq;
-    } else {
-        // Handle the case when $idthucdon is NULL
-        echo 'Error: $idthucdon is NULL.';
-
-        // You might want to log this error or display a user-friendly message.
-        // For now, returning false.
-        return false;
     }
-}
 
     
 
@@ -90,7 +100,6 @@ function InsertMenu($ngaytao)
     $p->dongketnoi($con);
     return $kq;
 }
-
 
 
 

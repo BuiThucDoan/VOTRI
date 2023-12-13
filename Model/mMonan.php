@@ -55,6 +55,34 @@ class modelMonan
         }
     }
     
+    function SelectBinhluanByIdMonAn($id_monan)
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+        $tbl = "SELECT * FROM binhluan INNER JOIN taikhoan ON binhluan.idtaikhoan = taikhoan.idtaikhoan WHERE binhluan.id_monan = $id_monan ORDER BY ngaygui DESC";
+        $table = mysqli_query($con, $tbl);
+        $list_users = array();
+        if (mysqli_num_rows($table) > 0) {
+            while ($row = mysqli_fetch_assoc($table)) {
+                $list_users[] = $row;
+            }
+            return $list_users;
+        }
+        $p->dongketnoi($con);
+    }
+
+
+    
+    function InsertBinhluan($idtaikhoan,$id_monan,$noidung,$danhgia, $ngaygui)
+    {
+        $p = new KetNoiDB();
+        $con = $p->moKetNoi($con);
+        $insert = "INSERT INTO binhluan (idtaikhoan, id_monan, noidung, danhgia, ngaygui)
+        VALUES  ('$idtaikhoan','$id_monan','$noidung','$danhgia','$ngaygui')";
+        $kq = mysqli_query($con,  $insert);
+        $p->dongketnoi($con);
+        return $kq;
+    }
     
     function SelectOrderbyDate($ngaylenmon)
     {
@@ -280,7 +308,7 @@ class modelMonan
     
 
 
-    function Showchitiet($id)
+    function Showchitiet($id_monan)
 {
     $p = new KetNoiDB();
     $con;
@@ -290,7 +318,7 @@ class modelMonan
         FROM monan
         INNER JOIN chitietnguyenlieu ON monan.id_monan = chitietnguyenlieu.id_monan
         INNER JOIN nguyenlieu ON nguyenlieu.idnguyenlieu = chitietnguyenlieu.idnguyenlieu
-        WHERE monan.id_monan =" . $id;
+        WHERE monan.id_monan =" . $id_monan;
         $result = $con->query($query);
     
         if ($result) {

@@ -27,6 +27,7 @@ $list_menu = $menu->getAllMenu();
                     <th>Chọn ngày lên món:</th>
                     <th><input type="date" name="date" id="date" value="<?php if (isset($_POST['date'])) echo $_POST['date'] ?>" required>
                         <input style="display: none;" type="submit" value="Submit" id="submitBtn" name="sub_date">
+                        <input type="submit" value="Submit" id="submitBtn" name="sub_date" class="btn btn-primary">
                     </th>
                 </tr>
                 <tr>
@@ -34,76 +35,53 @@ $list_menu = $menu->getAllMenu();
                     <th>
                         <div style="display: flex; flex-wrap:wrap">
 
-                            <?php
-
+                        <?php
                             if (isset($_POST['date'])) {
                                 $ngay = $_POST['date'];
-                                $date =  new DateTime($ngay);
-                                $date = $date->format('Y-m-d H:i:s');
-
+                                $date = new DateTime($ngay);
+                                $dateFormatted = $date->format('Y-m-d H:i:s');
 
                                 $ngaymoi = (new DateTime($ngay))->modify('+1 day')->format('Y-m-d');
-                                $thu = date('l', strtotime($date));
-
-                                if ($thu == 'Monday') {
-                                    $ngaycu = (new DateTime($ngay))->modify('-3 day')->format('Y-m-d');
-                                } else {
-                                    $ngaycu = (new DateTime($ngay))->modify('-1 day')->format('Y-m-d');
-                                }
+                                $thu = date('l', strtotime($dateFormatted));
 
                                 $menu = new controlMenu();
-                                $cu = $menu->getMenuByDate($ngaycu);
+                                $cu = $menu->getMenuByDate($thu == 'Monday' ? (new DateTime($ngay))->modify('-3 day')->format('Y-m-d') : (new DateTime($ngay))->modify('-1 day')->format('Y-m-d'));
                                 $moi = $menu->getMenuByDate($ngaymoi);
-                                $today = $menu->getMenuByDate($date);
+                                $today = $menu->getMenuByDate($dateFormatted);
 
-                                $mon = array();
-
-
-                                $ngayHientai =  (new DateTime())->format('Y-m-d H:i:s');
-
+                                $ngayHientai = (new DateTime())->format('Y-m-d H:i:s');
 
                                 if ($thu == 'Sunday') {
-                                    echo "<script>alert('không được lên lịch cuối tuần ')</script>";
-                                } elseif ($date <= $ngayHientai) {
+                                    echo "<script>alert('Không được lên lịch cuối tuần.')</script>";
+                                } elseif ($dateFormatted <= $ngayHientai) {
                                     echo "<script>alert('Chỉ được phép lên lịch cho thời gian sau ngày hôm nay!')</script>";
                                 } else {
-
                                     foreach ($list_loai as $index => $monan) {
                                         $found = true;
 
-                                        if (!empty($cu)) {
-                                            foreach ($cu as $item) {
-                                                if ($monan['id_monan'] == $item['id_monan']) {
-                                                    $found = false;
+                                        foreach ([$cu, $moi, $today] as $menuItems) {
+                                            if (!empty($menuItems)) {
+                                                foreach ($menuItems as $item) {
+                                                    if ($monan['id_monan'] == $item['id_monan']) {
+                                                        $found = false;
+                                                    }
                                                 }
                                             }
                                         }
 
-                                        if (!empty($moi)) {
-                                            foreach ($moi as $item) {
-                                                if ($monan['id_monan'] == $item['id_monan']) {
-                                                    $found = false;
-                                                }
-                                            }
-                                        }
-                                        if (!empty($today)) {
-                                            foreach ($today as $item) {
-                                                if ($monan['id_monan'] == $item['id_monan']) {
-                                                    $found = false;
-                                                }
-                                            }
-                                        }
-
-                                        if ($found == true) { ?>
+                                        if ($found) {
+                                            ?>
                                             <div style="border-radius: 5px; padding:5px; margin: 5px 5px; border:1px solid; width:150px" class="dish_mon">
                                                 <label for="checkbox<?php echo $index ?>"><?php echo $monan['tenmonan'] ?></label>
                                                 <input type="checkbox" class="show-form" data-form="form<?php echo $index ?>" id="checkbox<?php echo $index ?>" style="margin-right:20px; float: right; margin-top: 5px;" name="monan[]" id="" value="<?php echo $monan['id_monan'] ?>">
                                             </div>
-                            <?php      }
+                            <?php
+                                        }
                                     }
                                 }
                             }
                             ?>
+
                         </div>
                     </th>
                 </tr>
@@ -168,8 +146,6 @@ if (isset($_POST['sub_date'])) {
 
 </html>
 <?php
-//Thêm món ăn và idThucDon và chitietthucdon
-
 
 // Thêm món ăn và idThucDon và chitietthucdon
 if (isset($_POST['btn_addmenu'])) {
@@ -179,20 +155,15 @@ if (isset($_POST['btn_addmenu'])) {
     $menu = new controlMenu();
     $ThucDon = $menu->getoneMenuByDate($ngaytao);
 
-    var_dump($ThucDon); // In ra giá trị để kiểm tra
-
     if ($ThucDon !== null && isset($ThucDon['idthucdon'])) {
         $idthucdon = $ThucDon['idthucdon'];
         $ins = $menu->InsertMenuDetails($idthucdon, $id_monan);
-        
-        if ($ins === true) {
             echo '<script>alert("Thêm món thành công")</script>';
             echo header("refresh: 0; url='admin.php?mod=addMenu'");
-        } else {
-            echo '<script>alert("Thêm món thất bại")</script>';
-        }
+       
     } else {
-        echo '<script>alert("Không tìm thấy thông tin thực đơn cho ngày đã chọn")</script>';
+        echo '<script>alert("Thêm món thất bại")</script>';
     }
 }
+
 ?>

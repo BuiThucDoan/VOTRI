@@ -111,7 +111,7 @@ if (isset($_GET['mod'])) {
             include_once('thanhtoan.php');
             break;
         case 'chitiet':
-            if (isset($_GET['id'])) {
+            if (isset($_GET['id_monan'])) {
                 include 'Includes/functions/functions.php';
                 include "Includes/templates/header.php";
                 include "Includes/templates/navbar.php";

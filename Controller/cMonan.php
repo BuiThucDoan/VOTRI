@@ -25,6 +25,12 @@ class controlMonan
         $tbl = $p->SelectNguyenLieu();
         return $tbl;
     }
+
+    function getBinhluanByIdMonAn($id_monan){
+        $p = new modelMonan();
+        $tbl = $p->SelectBinhluanByIdMonAn($id_monan);
+        return $tbl;
+    }
     function InsertNguyenLieuMoi($tennguyenlieu){
         $p = new modelMonan();
         $tbl = $p->InsertNguyenLieuMoi($tennguyenlieu);
@@ -86,12 +92,20 @@ class controlMonan
         $ins = $p->InsertChiTietNguyenLieuMonAn($dsSLNL, $id_monan);
         return $ins;
     }
-    function getShowchitiet($id)
+    function getShowchitiet($id_monan)
     {
         $p = new modelMonan();
-        $tbl = $p->Showchitiet($id);
+        $tbl = $p->Showchitiet($id_monan);
         return $tbl;
     }
+
+    function InsertBinhluan($idtaikhoan,$id_monan,$noidung,$danhgia, $ngaygui)
+    {
+        $p = new modelMonan();
+        $tbl = $p->InsertBinhluan($idtaikhoan,$id_monan,$noidung,$danhgia, $ngaygui);
+        return $tbl;
+    }
+    
     function getAllMonAnThucdon()
     {
         $p = new modelMonan();
