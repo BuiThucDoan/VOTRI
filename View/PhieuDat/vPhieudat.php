@@ -83,7 +83,7 @@ $total = $p->getSumbyidtaikhoan($idtaikhoan);
                             <?php
                             $totalAmount = !empty($total[0]['tongtien']) ? number_format($total[0]['tongtien']) : 0;
                             $total = !empty($total[0]['tongtien']) ? $total[0]['tongtien'] : 0;
-                            $user = $user['hoten'] . '-' . $user['maNV'];
+                            $user = $user['hoten'] ;
                             ?>
 
                             <h5 class="text-dark float-right mb-3">
@@ -211,12 +211,14 @@ $total = $p->getSumbyidtaikhoan($idtaikhoan);
             </div>
 
             <div style="margin-left: 1000px;">
-            <?php foreach ($order as $item): ?>
-                <?php if ($item['thanhtoan'] == 0): ?>
-                    <a class="btn btn-danger" href="#" onclick="confirmDelete('<?php echo $item['idPhieu']; ?>')"><b>Hủy phiếu</b></a>
-                    <?php break; ?>
-                <?php endif; ?>
-            <?php endforeach; ?>
+            <?php $cancelButtonDisplayed = false; ?>
+<?php foreach ($order as $item): ?>
+    <?php if ($item['thanhtoan'] == 0 && !$cancelButtonDisplayed): ?>
+        <a class="btn btn-danger" href="#" onclick="confirmDelete('<?php echo $item['idPhieu']; ?>')"><b>Hủy phiếu</b></a>
+        <?php $cancelButtonDisplayed = true; ?>
+    <?php endif; ?>
+<?php endforeach; ?>
+
 
             </div>
 

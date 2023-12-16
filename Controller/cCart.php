@@ -19,10 +19,9 @@ class controlCart
 
     function getAllCartByIdTaiKhoan($idTK){
         $p = new modelCart();
-        
-        // Assuming SelectAllCartByIdTaiKhoan returns a mysqli_result
+
         $result = $p->SelectAllCartByIdTaiKhoan($idTK);
-        // Fetch the data from the result as an array
+        // Lấy dữ liệu từ kết quả dưới dạng mảng
         $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
     
         return $data;

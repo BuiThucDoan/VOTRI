@@ -35,8 +35,8 @@ $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 $orderInfo = "$infor THANH TOAN MON AN - MOMO";
 $amount = "$total";
 $orderId = time() ."";
-$redirectUrl = "http://localhost/VoTRI/index.php?mod=Order&act=dsphieu";
-$ipnUrl = "http://localhost/VoTRI/index.php?mod=Order&act=dsphieu";
+$redirectUrl = "http://localhost:8080/VoTRI/index.php?mod=Order&act=dsphieu";
+$ipnUrl = "http://localhost:8080/VoTRI/index.php?mod=Order&act=dsphieu";
 $extraData = "";
 
 

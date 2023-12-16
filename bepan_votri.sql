@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2023 at 07:00 AM
+-- Generation Time: Dec 16, 2023 at 05:32 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `bepan_votri`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `binhluan`
+--
+
+CREATE TABLE `binhluan` (
+  `idBinhluan` int(11) NOT NULL,
+  `idtaikhoan` int(11) NOT NULL,
+  `id_monan` int(11) NOT NULL,
+  `noidung` text NOT NULL,
+  `ngaygui` datetime NOT NULL,
+  `danhgia` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `binhluan`
+--
+
+INSERT INTO `binhluan` (`idBinhluan`, `idtaikhoan`, `id_monan`, `noidung`, `ngaygui`, `danhgia`) VALUES
+(12, 2, 4, 'Ngon Tuyệt', '2023-12-13 07:22:51', 5),
+(14, 2, 32, 'ngon ', '2023-12-16 03:42:10', 4),
+(15, 1, 32, 'dở', '2023-12-16 04:16:28', 1),
+(16, 1, 32, 'cũng ngon', '2023-12-16 04:26:58', 3);
 
 -- --------------------------------------------------------
 
@@ -237,7 +262,8 @@ INSERT INTO `chitietphieu` (`idPhieu`, `id_monan`, `soluong`, `ngaylenmon`) VALU
 (1279165, 3, 1, '2023-12-13 00:00:00'),
 (2760157, 8, 1, '2023-12-13 00:00:00'),
 (2783083, 13, 1, '2023-12-13 00:00:00'),
-(2436989, 5, 1, '2023-12-13 00:00:00');
+(2436989, 5, 1, '2023-12-13 00:00:00'),
+(1928101, 32, 2, '2023-12-18 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -270,10 +296,12 @@ INSERT INTO `chitietthucdon` (`idthucdon`, `id_monan`) VALUES
 (5, 8),
 (1, 43),
 (3, 5),
-(31, 4),
-(31, 5),
-(31, 4),
-(31, 5);
+(34, 37),
+(33, 4),
+(32, 5),
+(35, 50),
+(36, 29),
+(36, 32);
 
 -- --------------------------------------------------------
 
@@ -294,6 +322,7 @@ CREATE TABLE `giohang` (
 INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (27757, '2023-12-12 10:40:06', 0),
 (124282, '2023-12-08 11:56:23', 0),
+(161975, '2023-12-16 11:11:16', 0),
 (192991, '2023-12-08 11:24:03', 0),
 (194913, '2023-12-08 19:30:46', 0),
 (280836, '2023-12-12 10:38:05', 0),
@@ -308,6 +337,7 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (390905, '2023-12-06 23:14:10', 0),
 (397339, '2023-12-07 10:21:33', 0),
 (1154455, '2023-12-08 11:25:06', 0),
+(1156981, '2023-12-16 11:05:51', 0),
 (1195072, '2023-12-11 13:02:27', 0),
 (1205825, '2023-12-09 10:33:55', 0),
 (1207308, '2023-12-09 10:22:06', 0),
@@ -331,7 +361,15 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (1914881, '2023-12-08 19:31:18', 0),
 (1933988, '2023-12-08 12:08:50', 0),
 (2100120, '2023-12-12 12:24:38', 0),
+(2317398, '2023-12-13 09:34:49', 0),
+(2431212, '2023-12-16 09:32:43', 0),
 (2459749, '2023-12-12 10:31:53', 0),
+(2510879, '2023-12-16 09:58:34', 0),
+(2538844, '2023-12-16 09:38:02', 0),
+(2638588, '2023-12-16 09:37:42', 0),
+(2692396, '2023-12-16 09:58:05', 0),
+(2794419, '2023-12-16 09:56:12', 0),
+(2934152, '2023-12-16 09:14:23', 0),
 (3120502, '2023-12-07 23:21:46', 0),
 (3127435, '2023-12-07 10:28:49', 0),
 (3131152, '2023-12-07 23:09:50', 0),
@@ -458,7 +496,7 @@ CREATE TABLE `monan` (
 --
 
 INSERT INTO `monan` (`id_monan`, `tenmonan`, `mota`, `hinhanh`, `gia`, `id_loaimonan`) VALUES
-(2, 'Canh cua mồng tơi', 'Canh cua mồng tơi là một món canh ngon và bổ dưỡng, đặc biệt là vào mùa hè. Món canh này có vị ngọt thanh của cua đồng, vị mát của mồng tơi và mùi thơm của hành lá. Nguyên liệu chính của món canh này là cua đồng, mồng tơi, hành lá. ', 'canhcuamongtoi.jpg', 200001, 1),
+(2, 'Canh cua mồng tơi', 'Canh cua mồng tơi là một món canh ngon và bổ dưỡng, đặc biệt là vào mùa hè. Món canh này có vị ngọt thanh của cua đồng, vị mát của mồng tơi và mùi thơm của hành lá. Nguyên liệu chính của món canh này là cua đồng, mồng tơi, hành lá. ', 'canhcuamongtoi.jpg', 20000, 1),
 (3, 'Canh gà lá giang', 'Canh gà lá giang là một món ăn đặc sản của miền Tây Nam Bộ. Món canh này có vị chua cay của lá giang, vị ngọt của thịt gà và mùi thơm của hành lá. Nguyên liệu chính của món canh này là thịt gà, lá giang, hành lá. ', 'canhgalagiang.jpg', 20000, 1),
 (4, 'Canh khổ qua', 'Canh khổ qua là một món ăn thanh mát, giải nhiệt cho cơ thể. Món canh này có vị đắng của khổ qua, vị ngọt của thịt băm và mùi thơm của hành lá. Nguyên liệu chính của món canh này là khổ qua, thịt băm, hành lá.', 'canhkhoqua.jpg', 20000, 1),
 (5, 'Canh bí đỏ', 'Canh bí đỏ là một món ăn bổ dưỡng, tốt cho sức khỏe. Món canh này có vị ngọt của bí đỏ, vị bùi của đậu phộng và mùi thơm của hành lá. Nguyên liệu chính của món canh này là bí đỏ, đậu phộng, hành lá. ', 'canhbido.jpg', 20000, 1),
@@ -630,6 +668,7 @@ CREATE TABLE `phieudatmon` (
 INSERT INTO `phieudatmon` (`idPhieu`, `idtaikhoan`, `tongsoluong`, `tongtien`, `ngaylenmon`, `ngaydat`, `trangthai`, `duyetdon`, `thanhtoan`) VALUES
 (1279165, 1, 1, 20000, '2023-12-13 00:00:00', '2023-12-09 04:22:35', 0, 0, 0),
 (1749424, 1, 1, 30000, '2023-12-09 00:00:00', '2023-12-08 14:12:14', 1, 1, 1),
+(1928101, 1, 2, 60000, '2023-12-18 00:00:00', '2023-12-16 05:14:28', 1, 1, 1),
 (1947298, 1, 1, 30000, '2023-12-09 00:00:00', '2023-12-08 12:18:36', 1, 1, 1),
 (2760157, 2, 1, 45000, '2023-12-13 00:00:00', '2023-12-12 04:32:00', 1, 1, 1),
 (2783083, 2, 1, 35000, '2023-12-13 00:00:00', '2023-12-12 04:38:08', 0, 0, 0);
@@ -698,7 +737,11 @@ INSERT INTO `thucdon` (`idthucdon`, `tenthucdon`, `ngaytao`) VALUES
 (2, 'Thực đơn thứ năm', '2023-12-12'),
 (3, 'Thực đơn thứ sáu', '2023-12-13'),
 (4, 'Thực đơn thứ bảy', '2023-12-14'),
-(31, '', '2023-12-15');
+(32, '', '2023-12-25'),
+(33, '', '2023-12-22'),
+(34, '', '2023-12-20'),
+(35, '', '2023-12-23'),
+(36, '', '2023-12-18');
 
 -- --------------------------------------------------------
 
@@ -725,6 +768,14 @@ INSERT INTO `vaitro` (`idvaitro`, `tenvaitro`, `ngaytao`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `binhluan`
+--
+ALTER TABLE `binhluan`
+  ADD PRIMARY KEY (`idBinhluan`),
+  ADD KEY `idtaikhoan` (`idtaikhoan`),
+  ADD KEY `id_monan` (`id_monan`);
 
 --
 -- Indexes for table `chitietgiohang`
@@ -831,6 +882,12 @@ ALTER TABLE `vaitro`
 --
 
 --
+-- AUTO_INCREMENT for table `binhluan`
+--
+ALTER TABLE `binhluan`
+  MODIFY `idBinhluan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT for table `loaimonan`
 --
 ALTER TABLE `loaimonan`
@@ -858,7 +915,7 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT for table `thucdon`
 --
 ALTER TABLE `thucdon`
-  MODIFY `idthucdon` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idthucdon` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables

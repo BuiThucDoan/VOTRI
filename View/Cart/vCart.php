@@ -7,7 +7,7 @@ $p = new controlCart();
 
 
 
-$list_buy = $p->getAllCartByIdTaiKhoan($idtaikhoan);
+
 
 $ngayHomNay = date('y-m-d');
 $p->DeleteMonanCartDate($ngayHomNay);
@@ -19,7 +19,12 @@ $p->DeleteMonanCartDate($ngayHomNay);
 
     }
 </style>
-<?php if (isset($_SESSION['login'])) { ?>
+<?php
+if (isset($_SESSION['login'])) {
+    $idTK = $_SESSION['is_login']['idtaikhoan'];
+    $list_buy = $p->getAllCartByIdTaiKhoan($idTK);
+?>
+
     <main id="main" class="main" style="padding: 100px 0 100px; ">
     
 
@@ -197,12 +202,13 @@ $p->DeleteMonanCartDate($ngayHomNay);
 
     </main>
 
+    <?php } else { ?>
+    <script>
+        alert("Bạn cần đăng nhập để truy cập giỏ hàng!");
+        window.location.href = "index.php?mod=login"; // Điều hướng đến trang đăng nhập
+    </script>
+<?php } ?>
 <?php
-
-} else {
-
-    echo header("refresh: 0; url='?mod=404");
-}
 
 if (!empty($list_buy)) {
     foreach ($list_buy as $item) {

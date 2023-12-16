@@ -109,12 +109,12 @@ $comment = $p->getBinhluanByIdMonAn($id_monan);
         <div class="info">
     <div class="name"><h2><?php echo $monan['monan']['tenmonan']; ?></h2></div>
     <div class="product__details__rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
+                                <i class="">&#9733;</i>
+                                <i class="">&#9733;</i>
+                                <i class="">&#9733;</i>
+                                <i class="">&#9733;</i>
+                                <i class="">&#9733;</i>
+                                
                                 <span>(<?php if (!empty($comment)) {
                                             echo count($comment);
                                         } else {
@@ -283,7 +283,7 @@ $comment = $p->getBinhluanByIdMonAn($id_monan);
                                             <div class="row ml-3">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-8">
-                                                    <p class="message"><?= $item['noidung'] ?></p>
+                                                    <p class="message"><?php $item['noidung'] ?></p>
                                                 </div>
                                             </div>
 

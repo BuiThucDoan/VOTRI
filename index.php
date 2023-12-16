@@ -81,11 +81,10 @@ if (isset($_GET['mod'])) {
                 include_once('View/PhieuDat/vPhieudat.php');
                 include_once("Includes/templates/footer.php");
 			}elseif($_GET['act'] == 'DeletePhieu'){
-
                 include_once('View/PhieuDat/vDeletePhieu.php');
-
 			}elseif($_GET['act'] == 'ThanhToan'){
-
+                include 'Includes/functions/functions.php';
+                include "Includes/templates/header.php";
                 include_once('View/Thanhtoan/TrangThanhToan.php');
 
 			}elseif($_GET['act'] == 'CongThanhToanMoMo_QR'){
@@ -107,9 +106,7 @@ if (isset($_GET['mod'])) {
             include_once('View/Admin/vHoso.php');
             include_once("Includes/templates/footer.php");
             break;
-        case 'pay':
-            include_once('thanhtoan.php');
-            break;
+        
         case 'chitiet':
             if (isset($_GET['id_monan'])) {
                 include 'Includes/functions/functions.php';

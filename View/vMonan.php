@@ -95,35 +95,43 @@ if (isset($_GET['date'])) {
         <div class="sidebar__item">
           <h4 class="txt">Lịch đặt món tuần này:</h4>
           <ul>
-            <?php
+    <?php
+    // Mảng chứa các ngày trong tuần
+    $days = array('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
 
-            $days = array('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
+    // Mảng lưu trữ menu
+    $menu = array();
 
-            $menu = array();
+    // Duyệt qua từng ngày trong tuần
+    foreach ($days as $index => $day) {
+        // Lấy timestamp của ngày hiện tại trong tuần
+        $timestamp = strtotime('this week ' . $day);
 
-            foreach ($days as $index => $day) {
+        // Lấy timestamp của thứ bảy trong tuần
+        $saturday = strtotime('this week saturday');
 
-              $timestamp = strtotime('this week ' . $day);
+        // Lấy timestamp của ngày hiện tại
+        $ngayHientai = new DateTime();
+        $ngayHientaiTimestamp = $ngayHientai->getTimestamp();
 
+        // Nếu đã qua thứ bảy trong tuần, thì chọn ngày của tuần tiếp theo
+        if ($ngayHientaiTimestamp >= $saturday) {
+            $timestamp = strtotime('next week ' . $day);
+        }
 
-              $friday = strtotime('this week saturday');
-              $ngayHientai = new DateTime();
-              $ngayHientaiTimestamp = $ngayHientai->getTimestamp();
+        // Định dạng ngày theo định dạng 'dd/mm/yyyy' và lưu vào mảng menu
+        $menu[$index] = date('d/m/Y', $timestamp);
 
-              if ($ngayHientaiTimestamp >= $friday) {
-                $timestamp = strtotime('next week ' . $day);
-              }
-              $menu[$index] = date('d/m/Y', $timestamp);
+        // Chuyển đổi định dạng ngày thành 'yyyy-mm-dd' và lưu vào mảng newDate
+        $newDate[$index] = date_format(date_create_from_format('d/m/Y',  $menu[$index]), 'Y-m-d');
+        ?>
 
-              $newDate[$index] = date_format(date_create_from_format('d/m/Y',  $menu[$index]), 'Y-m-d');
-            ?>
+        <!-- Hiển thị thông tin ngày dưới dạng list -->
+        <li><a class="text-warning" href="index.php?mod=menus&act=list&date=<?php echo $newDate[$index] ?>">Thứ <?php echo $index + 2 ?>, Ngày <?php echo $menu[$index];  ?></a></li>
+    <?php
+    } ?>
+</ul>
 
-            <li><a class="text-warning" href="index.php?mod=menus&act=list&date=<?php echo $newDate[$index] ?>">Thứ <?php echo $index + 2 ?>, Ngày <?php echo $menu[$index];  ?></a></li>
-            <?php
-
-            } ?>
-            
-          </ul>
         </div>
 
 
@@ -173,12 +181,11 @@ if (isset($_GET['date'])) {
 
             // Check if today is Saturday (6) or Sunday (7)
             if ($today->format('N') == 6 || $today->format('N') == 7) {
-                // If today is Saturday or Sunday, get the date for the next Monday
                 $tomorrow = $today->modify('next Monday')->format('Y-m-d');
             } else {
-                // Otherwise, add one day to the current date, P1D means a period of 1 day.
                 $tomorrow = $today->add(new DateInterval('P1D'))->format('Y-m-d');
             }
+            
 
             // Format the next business day for display
             $tomorrow_full = (new DateTime($tomorrow))->format("l, d/m/Y");
@@ -190,14 +197,21 @@ if (isset($_GET['date'])) {
                         <h2 class="txt">Món ăn cho ngày tiếp theo: <?php echo $ngaytt  ?></h2>
                     </div>
                     <?php
-                        $tomorrow = new DateTime();
-                        $tomorrow->add(new DateInterval('P1D'));
-                        $tomorrow_date = $tomorrow->format('Y-m-d');
+                   // Create a new DateTime object representing the current date and time
+                    $tomorrow = new DateTime();
 
-                        // Assuming $p is an instance of your class, adjust this part based on your actual implementation
-                        $menuTomorrow = $p->getAllMonAnThucdonbyDate($tomorrow_date);
+                    // Add an interval of 1 day (P1D) to the current date and time
+                    $tomorrow->add(new DateInterval('P1D'));
 
-                        $dem_tomorrow = 0;
+                    // Format the resulting date as 'Y-m-d' (year-month-day)
+                    $tomorrow_date = $tomorrow->format('Y-m-d');
+
+                    // Assuming $p is an instance of your class, adjust this part based on your actual implementation
+                    $menuTomorrow = $p->getAllMonAnThucdonbyDate($tomorrow_date);
+
+                    // Initialize a counter variable
+                    $dem_tomorrow = 0;
+
                     ?>
 <div class="menu-items-container">
     <?php
@@ -237,21 +251,7 @@ if (isset($_GET['date'])) {
 
 
 
-<script>
-    var currentIndexTomorrow = 0;
-    var totalItemsTomorrow = <?php echo $dem_tomorrow; ?>;
 
-    function scrollMenuItemsTomorrow(direction) {
-        var containerTomorrow = document.querySelector('.menu-items-container');
-        var scrollAmountTomorrow = containerTomorrow.clientWidth * direction;
-
-        currentIndexTomorrow = Math.min(Math.max(currentIndexTomorrow + direction, 0), totalItemsTomorrow - 1);
-        containerTomorrow.scrollTo({
-            left: currentIndexTomorrow * containerTomorrow.clientWidth,
-            behavior: 'smooth'
-        });
-    }
-</script>
 
 
 <h2 class="text-white">Danh sách món </h2>
@@ -269,7 +269,8 @@ $dish->data_seek(0);
 $totalItems = $dish->num_rows;
 
 // Create a DateTime object for today with the correct timezone
-$today = new DateTime(null, new DateTimeZone('Asia/Ho_Chi_Minh'));
+$today = new DateTime('now', new DateTimeZone('Asia/Ho_Chi_Minh'));
+
 
 // Determine the selected date based on the provided date or default to null
 if (!isset($_REQUEST['date'])) {

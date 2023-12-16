@@ -28,8 +28,9 @@ if (isset($_GET['date'])) {
     $_SESSION['ngaylenmon'] = $_GET['date'];
 }
 
-?>
 
+
+?>
 	<!-- HOME SECTION -->
 
 	<section class="home-section" id="home" style="padding:100px 0px;">
@@ -46,7 +47,7 @@ if (isset($_GET['date'])) {
 						</h5>
                         <hr>
 						<div style="display: flex;">
-							<a href="?mod=menus&act=list&date" class="bttn_style_2" style="display: flex;justify-content: center;align-items: center;">
+							<a href="?mod=menus&act=list&date=<?php echo $ngay_mai ?>" class="bttn_style_2" style="display: flex;justify-content: center;align-items: center;">
 								Xem Thực đơn
 								<i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i>
 							</a>

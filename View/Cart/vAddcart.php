@@ -71,7 +71,7 @@ function processFoodOrder($p, $idgiohang, $idtaikhoan) {
            echo "<script>
                    setTimeout(function(){
                        window.location.href = 'index.php?mod=cart&act=Update&date=$date';
-                   }, 2000);
+                   }, 500);
                  </script>";
 
         }
