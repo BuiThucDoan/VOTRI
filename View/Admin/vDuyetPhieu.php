@@ -31,7 +31,7 @@ $list = array();
 
   <div class="">
 
-    <h1>Duyệt đơn đơn đặt món</h1>
+    <h1>Duyệt phiếu đặt món</h1>
 
     <nav>
       <ol class="breadcrumb">

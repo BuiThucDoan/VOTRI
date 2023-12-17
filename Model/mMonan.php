@@ -402,29 +402,7 @@ class modelMonan
         }
     }
 
-    function selectAllMonAnLoaiThucdon($cm)
-    {
-        $p = new KetNoiDB();
-        $con;
-        if ($p->moKetNoi($con)) {
-            $query = "SELECT *
-            FROM loai_thucdon
-            JOIN chitietthucdon ON loai_thucdon.idloaithucdon = chitietthucdon.idloaithucdon
-            JOIN monan ON chitietthucdon.id_monan = monan.id_monan
-            WHERE loai_thucdon.idloaithucdon = '$cm' ";
-            $result = $con->query($query);
-
-            if ($result) {
-                $p->dongKetNoi($con);
-                return $result;
-            } else {
-                // Xử lý lỗi truy vấn
-                echo "Lỗi truy vấn: " . $con->error;
-            }
-        } else {
-            return false;
-        }
-    }
+    
 
     function selectAllMonAnThucdon()
     {
@@ -448,32 +426,7 @@ class modelMonan
         }
     }
 
-    function SelectAllLoaiThucDon()
-    {
-        $p = new KetNoiDB();
-        $con;
     
-        if ($p->moKetNoi($con)) {
-            $query = "SELECT * FROM loai_thucdon";
-            $result = $con->query($query);
-    
-            if ($result) {
-                $data = array();
-    
-                while ($row = $result->fetch_assoc()) {
-                    $data[] = $row;
-                }
-    
-                $p->dongKetNoi($con);
-                return $data;
-            } else {
-                // Xử lý lỗi truy vấn
-                echo "Lỗi truy vấn: " . $con->error;
-            }
-        } else {
-            return false;
-        }
-    }
 
     function SelectAllLoaiMonAn()
     {

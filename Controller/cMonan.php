@@ -127,19 +127,9 @@ class controlMonan
         return $tbl;
     }
 
-    function getAllLoaiThucdon()
-    {
-        $p = new modelMonan();
-        $tbl = $p->selectAllLoaiThucdon();
-        return $tbl;
-    }
+   
 
-    function getAllMonAnLoaiThucdon($cm)
-    {
-        $p = new modelMonan();
-        $tbl = $p->selectAllMonAnLoaiThucdon($cm);
-        return $tbl;
-    }
+   
 
     function getAllLoaiMonAn()
     {

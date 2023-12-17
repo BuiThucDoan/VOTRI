@@ -6,7 +6,7 @@ include("Controller/cMonan.php");
 
 $p = new controlMonan();
 $loaimon = $p->getAllLoaiMonAn();
-$loaithucdon = $p->getAllLoaiThucDon();
+
 
 if (isset($_REQUEST['idloai'])) {
     $cate = $_REQUEST['idloai'];
@@ -14,9 +14,6 @@ if (isset($_REQUEST['idloai'])) {
 } elseif (isset($_REQUEST['search'])) {
     $search = $_REQUEST['search'];
     $dish = $p->getSearch($search);
-}elseif(isset($_REQUEST['cm'])){
-    $cm = $_REQUEST['cm'];
-    $dish = $p->getAllMonAnLoaiThucdon($cm);
 }
 elseif (isset($_REQUEST['date'])){
     $ngay = $_REQUEST['date'];

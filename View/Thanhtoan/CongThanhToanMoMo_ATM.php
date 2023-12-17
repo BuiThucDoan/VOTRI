@@ -34,8 +34,8 @@ $orderInfo = "$infor THANH TOAN MON AN - ATM";
 
 $amount = "$total";
 $orderId = time() ."";
-$redirectUrl = "http://localhost/VoTRI/index.php?mod=Order&act=dsphieu";
-$ipnUrl = "http://localhost/VoTRI/index.php?mod=Order&act=dsphieu";
+$redirectUrl = "http://localhost:8080/VoTRI/index.php?mod=Order&act=dsphieu";
+$ipnUrl = "http://localhost:8080/VoTRI/index.php?mod=Order&act=dsphieu";
 $extraData = "";
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2023 at 05:32 AM
+-- Generation Time: Dec 17, 2023 at 12:23 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,16 +35,6 @@ CREATE TABLE `binhluan` (
   `ngaygui` datetime NOT NULL,
   `danhgia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `binhluan`
---
-
-INSERT INTO `binhluan` (`idBinhluan`, `idtaikhoan`, `id_monan`, `noidung`, `ngaygui`, `danhgia`) VALUES
-(12, 2, 4, 'Ngon Tuyệt', '2023-12-13 07:22:51', 5),
-(14, 2, 32, 'ngon ', '2023-12-16 03:42:10', 4),
-(15, 1, 32, 'dở', '2023-12-16 04:16:28', 1),
-(16, 1, 32, 'cũng ngon', '2023-12-16 04:26:58', 3);
 
 -- --------------------------------------------------------
 
@@ -251,19 +241,7 @@ CREATE TABLE `chitietphieu` (
 --
 
 INSERT INTO `chitietphieu` (`idPhieu`, `id_monan`, `soluong`, `ngaylenmon`) VALUES
-(1350707, 17, 1, '2023-12-09 00:00:00'),
-(1965085, 4, 1, '2023-12-09 00:00:00'),
-(1512062, 17, 1, '2023-12-09 00:00:00'),
-(1688586, 17, 1, '2023-12-09 00:00:00'),
-(1757785, 17, 1, '2023-12-09 00:00:00'),
-(1736688, 17, 1, '2023-12-09 00:00:00'),
-(1947298, 9, 1, '2023-12-09 00:00:00'),
-(1749424, 17, 1, '2023-12-09 00:00:00'),
-(1279165, 3, 1, '2023-12-13 00:00:00'),
-(2760157, 8, 1, '2023-12-13 00:00:00'),
-(2783083, 13, 1, '2023-12-13 00:00:00'),
-(2436989, 5, 1, '2023-12-13 00:00:00'),
-(1928101, 32, 2, '2023-12-18 00:00:00');
+(1126407, 11, 1, '2023-12-18 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -281,27 +259,31 @@ CREATE TABLE `chitietthucdon` (
 --
 
 INSERT INTO `chitietthucdon` (`idthucdon`, `id_monan`) VALUES
-(1, 1),
-(1, 6),
-(1, 11),
-(2, 2),
-(2, 7),
-(2, 12),
-(3, 8),
-(3, 13),
-(4, 4),
-(4, 9),
-(4, 17),
-(4, 2),
-(5, 8),
-(1, 43),
-(3, 5),
-(34, 37),
-(33, 4),
-(32, 5),
+(36, 3),
+(36, 11),
+(36, 19),
+(36, 27),
+(38, 14),
+(38, 23),
+(38, 32),
+(38, 48),
+(34, 5),
+(34, 13),
+(34, 22),
+(34, 31),
+(39, 6),
+(39, 15),
+(39, 24),
+(39, 25),
+(33, 7),
+(33, 16),
+(33, 26),
+(33, 42),
+(35, 8),
+(35, 17),
+(35, 25),
 (35, 50),
-(36, 29),
-(36, 32);
+(40, 13);
 
 -- --------------------------------------------------------
 
@@ -325,6 +307,7 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (161975, '2023-12-16 11:11:16', 0),
 (192991, '2023-12-08 11:24:03', 0),
 (194913, '2023-12-08 19:30:46', 0),
+(271463, '2023-12-17 09:47:47', 0),
 (280836, '2023-12-12 10:38:05', 0),
 (328763, '2023-12-07 22:51:13', 0),
 (336551, '2023-12-07 23:11:43', 0),
@@ -344,6 +327,7 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (1288307, '2023-12-08 20:10:26', 0),
 (1299996, '2023-12-08 19:42:53', 0),
 (1304936, '2023-12-08 20:10:16', 0),
+(1390022, '2023-12-17 11:38:07', 0),
 (1419793, '2023-12-08 19:42:27', 0),
 (1445590, '2023-12-08 11:35:12', 0),
 (1481294, '2023-12-08 19:29:19', 0),
@@ -370,6 +354,8 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (2692396, '2023-12-16 09:58:05', 0),
 (2794419, '2023-12-16 09:56:12', 0),
 (2934152, '2023-12-16 09:14:23', 0),
+(2969464, '2023-12-17 09:48:25', 0),
+(2989769, '2023-12-17 09:47:57', 0),
 (3120502, '2023-12-07 23:21:46', 0),
 (3127435, '2023-12-07 10:28:49', 0),
 (3131152, '2023-12-07 23:09:50', 0),
@@ -426,7 +412,9 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (3934283, '2023-12-07 23:02:30', 0),
 (3943421, '2023-12-08 00:49:24', 0),
 (3954707, '2023-12-07 10:16:00', 0),
-(3986736, '2023-12-07 23:14:30', 0);
+(3986736, '2023-12-07 23:14:30', 0),
+(7366381, '2023-12-17 12:33:27', 0),
+(7714514, '2023-12-17 12:33:34', 0);
 
 -- --------------------------------------------------------
 
@@ -456,29 +444,6 @@ INSERT INTO `loaimonan` (`id_loaimonan`, `tenloaimonan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loai_thucdon`
---
-
-CREATE TABLE `loai_thucdon` (
-  `idloaithucdon` int(2) NOT NULL,
-  `tenloaithucdon` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `loai_thucdon`
---
-
-INSERT INTO `loai_thucdon` (`idloaithucdon`, `tenloaithucdon`) VALUES
-(1, 'Thứ Hai'),
-(2, 'Thứ Ba'),
-(3, 'Thứ Tư'),
-(4, 'Thứ Năm'),
-(5, 'Thứ Sáu'),
-(6, 'Thứ Bảy');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `monan`
 --
 
@@ -496,7 +461,6 @@ CREATE TABLE `monan` (
 --
 
 INSERT INTO `monan` (`id_monan`, `tenmonan`, `mota`, `hinhanh`, `gia`, `id_loaimonan`) VALUES
-(2, 'Canh cua mồng tơi', 'Canh cua mồng tơi là một món canh ngon và bổ dưỡng, đặc biệt là vào mùa hè. Món canh này có vị ngọt thanh của cua đồng, vị mát của mồng tơi và mùi thơm của hành lá. Nguyên liệu chính của món canh này là cua đồng, mồng tơi, hành lá. ', 'canhcuamongtoi.jpg', 20000, 1),
 (3, 'Canh gà lá giang', 'Canh gà lá giang là một món ăn đặc sản của miền Tây Nam Bộ. Món canh này có vị chua cay của lá giang, vị ngọt của thịt gà và mùi thơm của hành lá. Nguyên liệu chính của món canh này là thịt gà, lá giang, hành lá. ', 'canhgalagiang.jpg', 20000, 1),
 (4, 'Canh khổ qua', 'Canh khổ qua là một món ăn thanh mát, giải nhiệt cho cơ thể. Món canh này có vị đắng của khổ qua, vị ngọt của thịt băm và mùi thơm của hành lá. Nguyên liệu chính của món canh này là khổ qua, thịt băm, hành lá.', 'canhkhoqua.jpg', 20000, 1),
 (5, 'Canh bí đỏ', 'Canh bí đỏ là một món ăn bổ dưỡng, tốt cho sức khỏe. Món canh này có vị ngọt của bí đỏ, vị bùi của đậu phộng và mùi thơm của hành lá. Nguyên liệu chính của món canh này là bí đỏ, đậu phộng, hành lá. ', 'canhbido.jpg', 20000, 1),
@@ -569,7 +533,6 @@ INSERT INTO `nguyenlieu` (`idnguyenlieu`, `tennguyenlieu`) VALUES
 (5, 'Giá đỗ'),
 (6, 'Cốt me'),
 (7, 'Cua '),
-(8, 'Rau mồng tơi'),
 (9, 'Rau thơm'),
 (10, 'Lá giang'),
 (11, 'Khổ qua'),
@@ -580,7 +543,6 @@ INSERT INTO `nguyenlieu` (`idnguyenlieu`, `tennguyenlieu`) VALUES
 (16, 'Rau củ'),
 (17, 'Sườn heo'),
 (18, 'Hành tây'),
-(19, 'Giấm'),
 (20, 'Rau muống'),
 (21, 'Tỏi'),
 (22, 'Bắp cải '),
@@ -601,9 +563,7 @@ INSERT INTO `nguyenlieu` (`idnguyenlieu`, `tennguyenlieu`) VALUES
 (37, 'Xả'),
 (38, 'Cá diêu hồng'),
 (39, 'Đậu hủ'),
-(40, 'Cá '),
 (41, 'Mắm tôm'),
-(42, 'Muối'),
 (43, 'Tôm'),
 (44, 'Chanh '),
 (45, 'Ớt'),
@@ -623,7 +583,7 @@ INSERT INTO `nguyenlieu` (`idnguyenlieu`, `tennguyenlieu`) VALUES
 (59, 'viên mọc'),
 (60, 'bánh hỏi'),
 (61, 'rau kèo nèo'),
-(64, 'chả cá'),
+(62, 'chả cá'),
 (65, 'hến'),
 (66, 'khế chua'),
 (67, 'rau dền'),
@@ -666,12 +626,7 @@ CREATE TABLE `phieudatmon` (
 --
 
 INSERT INTO `phieudatmon` (`idPhieu`, `idtaikhoan`, `tongsoluong`, `tongtien`, `ngaylenmon`, `ngaydat`, `trangthai`, `duyetdon`, `thanhtoan`) VALUES
-(1279165, 1, 1, 20000, '2023-12-13 00:00:00', '2023-12-09 04:22:35', 0, 0, 0),
-(1749424, 1, 1, 30000, '2023-12-09 00:00:00', '2023-12-08 14:12:14', 1, 1, 1),
-(1928101, 1, 2, 60000, '2023-12-18 00:00:00', '2023-12-16 05:14:28', 1, 1, 1),
-(1947298, 1, 1, 30000, '2023-12-09 00:00:00', '2023-12-08 12:18:36', 1, 1, 1),
-(2760157, 2, 1, 45000, '2023-12-13 00:00:00', '2023-12-12 04:32:00', 1, 1, 1),
-(2783083, 2, 1, 35000, '2023-12-13 00:00:00', '2023-12-12 04:38:08', 0, 0, 0);
+(1126407, 1, 1, 30000, '2023-12-18 00:00:00', '2023-12-17 05:38:12', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -700,7 +655,8 @@ INSERT INTO `taikhoan` (`idtaikhoan`, `tendangnhap`, `matkhau`, `maNV`, `hoten`,
 (1, 'quanlybep', '123456', 'QL001', 'Bùi Thục Đoan', '0123556789', 'doan123@gmail.com', 'doan.jpg', '2023-11-09 17:26:16', 1),
 (2, 'thanhvu', '123456', '20010591', 'Nguyễn Thanh Vũ', '0944753646', 'thanhvu123@gmail.com', 'vu.jpg', '2023-12-09 12:28:28', 4),
 (3, 'nhanvienbep', '123456', '123456789', 'Đặng Ngọc Hiếu', '0123456789', 'hieu123@gmail.com', 'hieu.jpg', '2023-12-09 12:30:19', 2),
-(6, 'nhanvienphucvu', '123456', '111111', 'Dương Công Hiếu', '0987456123', 'hiueduong@gmail.com', 'user.jpg', '2023-12-09 19:54:54', 3);
+(6, 'nhanvienphucvu', '123456', '111111', 'Dương Công Hiếu', '0987456123', 'hiueduong@gmail.com', 'user.jpg', '2023-12-09 19:54:54', 3),
+(7, 'hung', '123456', 'NV03', 'Nguyễn Hoàng Hưng', '0125874639', 'hung123@gmail.com', 'user.jpg', '2023-12-17 12:28:55', 4);
 
 -- --------------------------------------------------------
 
@@ -724,7 +680,6 @@ CREATE TABLE `thanhtoan` (
 
 CREATE TABLE `thucdon` (
   `idthucdon` int(2) NOT NULL,
-  `tenthucdon` varchar(30) NOT NULL,
   `ngaytao` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -732,16 +687,22 @@ CREATE TABLE `thucdon` (
 -- Dumping data for table `thucdon`
 --
 
-INSERT INTO `thucdon` (`idthucdon`, `tenthucdon`, `ngaytao`) VALUES
-(1, 'Thực đơn thứ tư', '2023-12-11'),
-(2, 'Thực đơn thứ năm', '2023-12-12'),
-(3, 'Thực đơn thứ sáu', '2023-12-13'),
-(4, 'Thực đơn thứ bảy', '2023-12-14'),
-(32, '', '2023-12-25'),
-(33, '', '2023-12-22'),
-(34, '', '2023-12-20'),
-(35, '', '2023-12-23'),
-(36, '', '2023-12-18');
+INSERT INTO `thucdon` (`idthucdon`, `ngaytao`) VALUES
+(1, '2023-12-11'),
+(2, '2023-12-12'),
+(3, '2023-12-13'),
+(4, '2023-12-14'),
+(32, '2023-12-25'),
+(33, '2023-12-22'),
+(34, '2023-12-20'),
+(35, '2023-12-23'),
+(36, '2023-12-18'),
+(38, '2023-12-19'),
+(39, '2023-12-21'),
+(40, '2023-12-26'),
+(41, '2023-12-27'),
+(42, '2023-12-28'),
+(43, '2023-12-29');
 
 -- --------------------------------------------------------
 
@@ -817,12 +778,6 @@ ALTER TABLE `giohang`
 --
 ALTER TABLE `loaimonan`
   ADD PRIMARY KEY (`id_loaimonan`);
-
---
--- Indexes for table `loai_thucdon`
---
-ALTER TABLE `loai_thucdon`
-  ADD PRIMARY KEY (`idloaithucdon`);
 
 --
 -- Indexes for table `monan`
@@ -909,36 +864,53 @@ ALTER TABLE `nguyenlieu`
 -- AUTO_INCREMENT for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `idtaikhoan` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idtaikhoan` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `thucdon`
 --
 ALTER TABLE `thucdon`
-  MODIFY `idthucdon` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `idthucdon` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `binhluan`
+--
+ALTER TABLE `binhluan`
+  ADD CONSTRAINT `binhluan_ibfk_1` FOREIGN KEY (`idtaikhoan`) REFERENCES `taikhoan` (`idtaikhoan`),
+  ADD CONSTRAINT `binhluan_ibfk_2` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`);
+
+--
 -- Constraints for table `chitietgiohang`
 --
 ALTER TABLE `chitietgiohang`
   ADD CONSTRAINT `chitietgiohang_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`),
-  ADD CONSTRAINT `chitietgiohang_ibfk_2` FOREIGN KEY (`idgiohang`) REFERENCES `giohang` (`idgiohang`);
+  ADD CONSTRAINT `chitietgiohang_ibfk_2` FOREIGN KEY (`idgiohang`) REFERENCES `giohang` (`idgiohang`),
+  ADD CONSTRAINT `chitietgiohang_ibfk_3` FOREIGN KEY (`idtaikhoan`) REFERENCES `taikhoan` (`idtaikhoan`);
 
 --
 -- Constraints for table `chitietnguyenlieu`
 --
 ALTER TABLE `chitietnguyenlieu`
-  ADD CONSTRAINT `chitietnguyenlieu_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`);
+  ADD CONSTRAINT `chitietnguyenlieu_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`),
+  ADD CONSTRAINT `chitietnguyenlieu_ibfk_2` FOREIGN KEY (`idnguyenlieu`) REFERENCES `nguyenlieu` (`idnguyenlieu`);
 
 --
 -- Constraints for table `chitietphieu`
 --
 ALTER TABLE `chitietphieu`
-  ADD CONSTRAINT `chitietphieu_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`) ON DELETE NO ACTION;
+  ADD CONSTRAINT `chitietphieu_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`) ON DELETE NO ACTION,
+  ADD CONSTRAINT `chitietphieu_ibfk_2` FOREIGN KEY (`idPhieu`) REFERENCES `phieudatmon` (`idPhieu`);
+
+--
+-- Constraints for table `chitietthucdon`
+--
+ALTER TABLE `chitietthucdon`
+  ADD CONSTRAINT `chitietthucdon_ibfk_1` FOREIGN KEY (`idthucdon`) REFERENCES `thucdon` (`idthucdon`),
+  ADD CONSTRAINT `chitietthucdon_ibfk_2` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`);
 
 --
 -- Constraints for table `monan`

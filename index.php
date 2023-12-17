@@ -104,7 +104,7 @@ if (isset($_GET['mod'])) {
             include "Includes/templates/header.php";
             include "Includes/templates/navbar.php";
             include_once('View/Admin/vHoso.php');
-            include_once("Includes/templates/footer.php");
+       
             break;
         
         case 'chitiet':
