@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2023 at 12:23 PM
+-- Generation Time: Dec 17, 2023 at 02:47 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,6 +35,14 @@ CREATE TABLE `binhluan` (
   `ngaygui` datetime NOT NULL,
   `danhgia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `binhluan`
+--
+
+INSERT INTO `binhluan` (`idBinhluan`, `idtaikhoan`, `id_monan`, `noidung`, `ngaygui`, `danhgia`) VALUES
+(17, 1, 3, 'ngon', '2023-12-17 14:32:46', 4),
+(18, 1, 3, 'ngon', '2023-12-17 14:33:04', 4);
 
 -- --------------------------------------------------------
 
@@ -236,13 +244,6 @@ CREATE TABLE `chitietphieu` (
   `ngaylenmon` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `chitietphieu`
---
-
-INSERT INTO `chitietphieu` (`idPhieu`, `id_monan`, `soluong`, `ngaylenmon`) VALUES
-(1126407, 11, 1, '2023-12-18 00:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -282,8 +283,7 @@ INSERT INTO `chitietthucdon` (`idthucdon`, `id_monan`) VALUES
 (35, 8),
 (35, 17),
 (35, 25),
-(35, 50),
-(40, 13);
+(35, 50);
 
 -- --------------------------------------------------------
 
@@ -319,6 +319,7 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (385158, '2023-12-07 22:58:46', 0),
 (390905, '2023-12-06 23:14:10', 0),
 (397339, '2023-12-07 10:21:33', 0),
+(1141899, '2023-12-17 19:56:57', 0),
 (1154455, '2023-12-08 11:25:06', 0),
 (1156981, '2023-12-16 11:05:51', 0),
 (1195072, '2023-12-11 13:02:27', 0),
@@ -330,11 +331,13 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (1390022, '2023-12-17 11:38:07', 0),
 (1419793, '2023-12-08 19:42:27', 0),
 (1445590, '2023-12-08 11:35:12', 0),
+(1464083, '2023-12-17 19:56:46', 0),
 (1481294, '2023-12-08 19:29:19', 0),
 (1489603, '2023-12-08 20:12:10', 0),
 (1503561, '2023-12-08 19:33:52', 0),
 (1548078, '2023-12-08 12:03:24', 0),
 (1602788, '2023-12-08 11:28:10', 0),
+(1635648, '2023-12-17 19:57:06', 0),
 (1635997, '2023-12-09 10:22:27', 0),
 (1668785, '2023-12-08 19:27:07', 0),
 (1698596, '2023-12-08 11:34:14', 0),
@@ -344,6 +347,7 @@ INSERT INTO `giohang` (`idgiohang`, `ngaydat`, `tongtien`) VALUES
 (1890076, '2023-12-08 19:37:16', 0),
 (1914881, '2023-12-08 19:31:18', 0),
 (1933988, '2023-12-08 12:08:50', 0),
+(1984586, '2023-12-17 19:53:43', 0),
 (2100120, '2023-12-12 12:24:38', 0),
 (2317398, '2023-12-13 09:34:49', 0),
 (2431212, '2023-12-16 09:32:43', 0),
@@ -621,13 +625,6 @@ CREATE TABLE `phieudatmon` (
   `thanhtoan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `phieudatmon`
---
-
-INSERT INTO `phieudatmon` (`idPhieu`, `idtaikhoan`, `tongsoluong`, `tongtien`, `ngaylenmon`, `ngaydat`, `trangthai`, `duyetdon`, `thanhtoan`) VALUES
-(1126407, 1, 1, 30000, '2023-12-18 00:00:00', '2023-12-17 05:38:12', 0, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -840,7 +837,7 @@ ALTER TABLE `vaitro`
 -- AUTO_INCREMENT for table `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `idBinhluan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idBinhluan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `loaimonan`
@@ -903,7 +900,7 @@ ALTER TABLE `chitietnguyenlieu`
 --
 ALTER TABLE `chitietphieu`
   ADD CONSTRAINT `chitietphieu_ibfk_1` FOREIGN KEY (`id_monan`) REFERENCES `monan` (`id_monan`) ON DELETE NO ACTION,
-  ADD CONSTRAINT `chitietphieu_ibfk_2` FOREIGN KEY (`idPhieu`) REFERENCES `phieudatmon` (`idPhieu`);
+  ADD CONSTRAINT `chitietphieu_ibfk_2` FOREIGN KEY (`idPhieu`) REFERENCES `phieudatmon` (`idPhieu`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `chitietthucdon`

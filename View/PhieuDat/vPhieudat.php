@@ -110,21 +110,32 @@ $total = $p->getSumbyidtaikhoan($idtaikhoan);
 <br><br><br>
 
 
-            <?php
-            $resultArray = array();
-            foreach ($listOder as $item) {
-                $idPhieu = $item['idPhieu'];
-                if (!isset($resultArray[$idPhieu])) {
-                    // Nếu idDon chưa tồn tại trong mảng kết quả, thêm một mảng mới với khóa là idDon
-                    $resultArray[$idPhieu] = array();
-                }
-                // Thêm phần tử vào mảng idDon tương ứng
-                $resultArray[$idPhieu][] = $item;
-            }
+<?php
+$resultArray = array();
 
-            // Chuyển mảng kết quả thành mảng tuần tự nếu bạn muốn
-            $resultArray = array_values($resultArray);
-            ?>
+// Kiểm tra xem $listOder có tồn tại và là một mảng hoặc đối tượng hay không
+if (!empty($listOder) && (is_array($listOder) || is_object($listOder))) {
+    foreach ($listOder as $item) {
+        $idPhieu = $item['idPhieu'];
+        if (!isset($resultArray[$idPhieu])) {
+            // Nếu idPhieu chưa tồn tại trong mảng kết quả, thêm một mảng mới với khóa là idPhieu
+            $resultArray[$idPhieu] = array();
+        }
+        // Thêm phần tử vào mảng idPhieu tương ứng
+        $resultArray[$idPhieu][] = $item;
+    }
+
+    // Chuyển mảng kết quả thành mảng tuần tự nếu bạn muốn
+    $resultArray = array_values($resultArray);
+} else {
+    // Xử lý trường hợp $listOder không phải là mảng hoặc đối tượng hoặc là mảng rỗng
+    echo "<div style='padding-top: 70px'>";
+    echo "Không có phiếu!!!";
+    echo "</div>";
+}
+?>
+
+
 
 <style>
      @keyframes bounce {

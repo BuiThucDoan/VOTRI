@@ -283,7 +283,7 @@ $comment = $p->getBinhluanByIdMonAn($id_monan);
                                             <div class="row ml-3">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-8">
-                                                    <p class="message"><?php $item['noidung'] ?></p>
+                                                    <p class="message"><?= $item['noidung'] ?></p>
                                                 </div>
                                             </div>
 
